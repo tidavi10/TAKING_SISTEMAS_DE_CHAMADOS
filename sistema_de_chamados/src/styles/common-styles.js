@@ -82,7 +82,7 @@ export const Button = styled.button`
 export const Image = styled.img`
     width: 80px;
     height: 80px;
-    transform: translate(%, 50%);
+    transform: translate(0%, 50%);
 `;
 
 
