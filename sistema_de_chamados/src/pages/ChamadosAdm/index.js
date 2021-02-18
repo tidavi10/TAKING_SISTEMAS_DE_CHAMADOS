@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { FiEdit } from 'react-icons/fi'
+
 import {
     Container,
     Header,
@@ -37,10 +39,78 @@ export default function ChamadosAdm() {
                 </LegendCalls>
 
                 <CallItem>
-                    <CallCod>55</CallCod>
-                    <CallType>Criação de e-mail</CallType>
-                    <CallStatus>Pendente</CallStatus>
-                    <CallEditButton></CallEditButton>
+                    <CallCod>
+                        <span>55</span>
+                    </CallCod>
+                    <CallType>
+                        <span>Criação de e-mail</span>
+                    </CallType>
+                    <CallStatus>
+                        <span>Pendente</span>
+                    </CallStatus>
+                    <CallEditButton>
+                        <FiEdit />
+                    </CallEditButton>
+                </CallItem>
+
+                <CallItem>
+                    <CallCod>
+                        <span>55</span>
+                    </CallCod>
+                    <CallType>
+                        <span>Criação de e-mail</span>
+                    </CallType>
+                    <CallStatus>
+                        <span>Pendente</span>
+                    </CallStatus>
+                    <CallEditButton>
+                        <FiEdit />
+                    </CallEditButton>
+                </CallItem>
+
+                <CallItem>
+                    <CallCod>
+                        <span>55</span>
+                    </CallCod>
+                    <CallType>
+                        <span>Criação de e-mail</span>
+                    </CallType>
+                    <CallStatus>
+                        <span>Pendente</span>
+                    </CallStatus>
+                    <CallEditButton>
+                        <FiEdit />
+                    </CallEditButton>
+                </CallItem>
+
+                <CallItem>
+                    <CallCod>
+                        <span>55</span>
+                    </CallCod>
+                    <CallType>
+                        <span>Criação de e-mail</span>
+                    </CallType>
+                    <CallStatus>
+                        <span>Pendente</span>
+                    </CallStatus>
+                    <CallEditButton>
+                        <FiEdit />
+                    </CallEditButton>
+                </CallItem>
+
+                <CallItem>
+                    <CallCod>
+                        <span>55</span>
+                    </CallCod>
+                    <CallType>
+                        <span>Criação de e-mail</span>
+                    </CallType>
+                    <CallStatus>
+                        <span>Pendente</span>
+                    </CallStatus>
+                    <CallEditButton>
+                        <FiEdit />
+                    </CallEditButton>
                 </CallItem>
             </CallsBox>
         </Container>
