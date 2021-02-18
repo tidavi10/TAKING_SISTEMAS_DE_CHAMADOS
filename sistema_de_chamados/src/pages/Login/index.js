@@ -29,10 +29,13 @@ export default function Login() {
             <Form>
                     <Title>Login</Title>
                     <InputDiv>
-                        <label>Nome: </label>
-                        <Input type="email" name="email" placeholder="Nome"/> 
+                        <label>E-mail:</label>
+                        <Input type="email" name="email"/> 
                     </InputDiv>
-                    <Input type="password" name="password" id="password" placeholder="Senha"/>
+                    <InputDiv>
+                        <label>Senha:</label>   
+                        <Input type="password" name="password" id="password"/>
+                    </InputDiv>
                     <Button type="submit" onClick={gotoChamados}>Login</Button>
                     <Button type="submit">Login Social</Button>
                     <Button type="submit" onClick={gotoCadastro}>Cadastro</Button>
