@@ -7,6 +7,7 @@ import TelaChamados from './pages/TelaChamados';
 import PainelAdministrativo from './pages/PainelAdministrativo'
 import ChamadosAdm from './pages/ChamadosAdm';
 import ConsultaChamados from './pages/ConsultaChamados'
+import ConsultaChamadosAdm from './pages/ConsultaChamadosAdm'
 
 export default function Routes() {
     return (
@@ -18,6 +19,7 @@ export default function Routes() {
                 <Route path='/adm' component={PainelAdministrativo}/>
                 <Route path='/chamados-adm' component={ChamadosAdm}/>
                 <Route path='/consulta-chamados' component={ConsultaChamados}/>
+                <Route path='/consulta-chamados-adm' component={ConsultaChamadosAdm}/>
             </Switch>
         </BrowserRouter>
     )
