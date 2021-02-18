@@ -2,12 +2,14 @@ import React from 'react';
 import {
     BrowserRouter as Router
 } from 'react-router-dom';
-import { Input, Title } from '../../styles/common-styles';
 import {
     Header,
+    Title,
+    Input,
     Button,
     Form,
     Div,
+    FilterSelector,
 } from '../TelaChamados/style';
 
 export default function TelaChamados() {
@@ -15,20 +17,23 @@ export default function TelaChamados() {
         <Router>
             <Header>
                 <Button>
-                    Consultar chamado
+                   <span>Consultar chamado</span>
                 </Button>
             </Header>
             <Title>
-                Descreva o problema
+                <span>Descreva o problema</span>
             </Title>
             <Form>
                 <Div id="descricao">
 
                 </Div>
             </Form>
+            <FilterSelector>
+                <span>Filtro de problema</span>
+            </FilterSelector>
             <Input type="file" />
             <Button>
-                Finalizar chamado
+                <span>Finalizar chamado</span>
             </Button>
         </Router>
     )
