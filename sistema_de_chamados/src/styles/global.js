@@ -11,6 +11,7 @@ export default createGlobalStyle`
     background: #fcfcfc;
     color: #000;
     -webkit-font-smoothing: antialiased;
+    padding: 0 24px;
   }
   body, input, button {
     font-family: Arial, Helvetica, sans-serif;
