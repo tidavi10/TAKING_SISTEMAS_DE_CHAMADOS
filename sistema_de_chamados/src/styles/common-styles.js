@@ -35,6 +35,14 @@ export const InputDiv = styled.div`
     font-size: 17px;
 `;
 
+// export const InputDiv = styled.div`
+//     width: 100%;
+
+//     label {
+//         margin-bottom: 8px;
+//     }
+// `;
+
 export const Form = styled.div`
     margin-top: 50px;
     width: 400px;
@@ -53,7 +61,6 @@ export const Form = styled.div`
         align-items: center;
 
     }
-
  `;
 
 export const FormCadastro = styled.div`
