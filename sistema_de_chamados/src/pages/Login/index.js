@@ -5,7 +5,8 @@ import {
     Form,
     Input,
     Button,
-    Image
+    Image,
+    InputDiv
 } from '../../styles/common-styles';
 import logo from '../../assets/logo.png'
 import { useHistory } from 'react-router-dom';
@@ -27,7 +28,10 @@ export default function Login() {
         <Container>
             <Form>
                     <Title>Login</Title>
-                    <Input type="email" name="email" placeholder="Nome"/> 
+                    <InputDiv>
+                        <label>Nome: </label>
+                        <Input type="email" name="email" placeholder="Nome"/> 
+                    </InputDiv>
                     <Input type="password" name="password" id="password" placeholder="Senha"/>
                     <Button type="submit" onClick={gotoChamados}>Login</Button>
                     <Button type="submit">Login Social</Button>
