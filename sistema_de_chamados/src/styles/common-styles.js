@@ -53,7 +53,7 @@ export const Form = styled.div`
     background: #dee2e6; 
     border-radius: 10px;
     padding: 32px 24px;
-    border: solid #BBBBBB;
+    border: 1px solid #BBBBBB;
 
     @media (max-width: 600px) {
         width: 100%;
@@ -73,7 +73,7 @@ export const FormCadastro = styled.div`
     background: #dee2e6; 
     border-radius: 10px;
     padding: 32px 24px;
-    border: solid #BBBBBB;
+    border: 1px solid #BBBBBB;
 
     @media (max-width: 600px) {
         width: 100%;

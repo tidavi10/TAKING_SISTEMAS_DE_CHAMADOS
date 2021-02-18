@@ -1,82 +1,141 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 20px;
+    padding: 24px 0;
 `;
 
-export const Title = styled.h1`
-
+export const Title = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 16px;
+    width: 90%;
 `;
 
 export const Header = styled.div`
-    width: 800px;
-    height: 70px;
-    background-color: #DEE2E6;
-    border-radius:10px;
+    background: #dee2e6;
+    width: 100%;
+    height: 64px;
+    border-radius: 10px;
+    padding: 0 10px;
+
+    margin-bottom: 24px;
+
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;    
-    padding: 20px 20px; 
-    border: 1px solid black;
 `;
 
 export const HeaderContent = styled.div`
-  width: 300px;
-  display: flex;
-  justify-content: space-around;
-`;
-
-export const HeaderButton = styled.button`
-    width:200px;
-    height:40px;
-    background-color: #ADB5BD;
+    width: 50%;
+    height: 100%;
     display: flex;
-    border: 1px solid black;
-    align-items:center;
-    justify-content:center;
+    align-items: center;
 `;
 
-export const Par = styled.p`
-    padding: 20px 20px
+export const ButtonHeader = styled.button`
+    width: 160px;
+    height: 100%;
+    border: 1px solid #dee2e6;
 `;
 
-export const ControlList = styled.div`
-    width: 800px;
-    height: 70px;
-    background-color: #DEE2E6;
+export const CallsBox = styled.div`
+    width: 100%;
+    height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
+
+export const LegendCalls = styled.div`
+    width: 90%;
+    height: 48px;
+    background: #dee2e6;
     border-radius:10px;
     display: flex;
     justify-content: space-between;
     align-items: center; 
-    margin-bottom: 16px;  
-    border: 1px solid black;
-    border-right: 1px solid black;
+    margin-bottom: 16px;
+    border: 1px solid #eee;
+    
+    span:first-child {
+        width: 10%;
+        height: 100%;
+        border-right: 1px solid #eee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    span:nth-child(2) {
+        width: 70%;
+        height: 100%;
+        border-right: 1px solid #eee;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    span:nth-child(3) {
+        width: 20%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 `;
 
-export const Cod = styled.div`
-    border-right: 1px solid black;
-    height: 70px;
-    width: 70px;
-    align-items: center;
+export const CallItem = styled.div`
+    width: 90%;
+    height: 48px;
+    background: #dee2e6;
+    border-radius:10px;
     display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    margin-bottom: 16px;
+    border: 1px solid #eee;
+`;
+
+export const CallCod = styled.div`
+    width: 10%;
+    height: 100%;
+    border-right: 1px solid #eee;
+    display: flex;
+    align-items: center;
     justify-content: center;
 `;
 
-export const Desc = styled.div`
-
-`;
-
-export const Status = styled.div`
-    border-left: 1px solid black;
-    height: 70px;
-    width: 150px;
-    align-items: center;
+export const CallType = styled.div`
+    width: 70%;
+    height: 100%;
+    border-right: 1px solid #eee;
     display: flex;
+    align-items: center;
     justify-content: center;
 `;
 
+export const CallStatus = styled.div`
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`;
+
+export const CallEditButton = styled.button`
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    margin-right: -50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        color: #666;
+    }
+`;
 
