@@ -53,13 +53,12 @@ export const Form = styled.div`
     background: #dee2e6; 
     border-radius: 10px;
     padding: 32px 24px;
-    border: solid #BBBBBB;
+    border: 1px solid #BBBBBB;
 
     @media (max-width: 600px) {
         width: 100%;
         heigth: 100%;
         align-items: center;
-
     }
  `;
 
@@ -73,7 +72,7 @@ export const FormCadastro = styled.div`
     background: #dee2e6; 
     border-radius: 10px;
     padding: 32px 24px;
-    border: solid #BBBBBB;
+    border: 1px solid #BBBBBB;
 
     @media (max-width: 600px) {
         width: 100%;
@@ -92,6 +91,7 @@ export const Input = styled.input`
     padding: 10px 10px;
     margin-top: 5px;
     border-bottom: 1px solid #000000;
+    box-shadow: 1px 3px #888888;
 `;
 
 export const Button = styled.button`

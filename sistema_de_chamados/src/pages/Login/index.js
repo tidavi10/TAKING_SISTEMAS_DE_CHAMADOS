@@ -7,7 +7,7 @@ import {
     Button,
     Image,
     InputDiv
-} from '../../styles/common-styles';
+} from './styles';
 import logo from '../../assets/logo.png'
 import { useHistory } from 'react-router-dom';
 

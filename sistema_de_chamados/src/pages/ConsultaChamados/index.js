@@ -1,24 +1,25 @@
 import React from 'react';
 import {
     BrowserRouter as Router} from 'react-router-dom';
+import { FiEdit } from 'react-icons/fi'
 
-import{
-    Title,
+import {
     Container,
     Header,
     HeaderContent,
-    HeaderButton,
-    Par, 
-    ControlList,
-    Cod,
-    Desc,
-    Status
-
-}from './style'
+    ButtonHeader,
+    CallsBox,
+    LegendCalls,
+    CallItem,
+    CallCod,
+    CallType,
+    CallStatus,
+    CallEditButton,
+    Title
+} from './style';
 import { useHistory } from 'react-router-dom';
 
-
-export default function ConsultaChamados() {
+export default function ChamadosAdm() {
     const history = useHistory();
 
     const goToChamados = () => {
@@ -28,73 +29,78 @@ export default function ConsultaChamados() {
         <Container>
             <Header>
                 <HeaderContent>
-                    <HeaderButton type="submit" onClick={goToChamados}>
-                        <spam>Voltar</spam>
-                    </HeaderButton>
-                    <HeaderButton type="submit" onClick={goToChamados}> 
-                        <spam>Abrir novo chamado</spam>
-                    </HeaderButton>
+                    <ButtonHeader type="submit" onClick={goToChamados}>
+                        <span>Voltar</span>
+                    </ButtonHeader>
+                    <ButtonHeader type="submit" onClick={goToChamados}>
+                        <span>Abrir novo chamado</span>
+                    </ButtonHeader>
                 </HeaderContent>
-                <spam>usuário logado</spam>
+                <span>Usuário Logado</span>
             </Header>
-            <Par>
-                Chamados em aberto
-            </Par>
-            <ControlList>
-                    <Cod>
-                        Cód.
-                    </Cod>
-                    <Desc>
-                        Descrição
-                    </Desc>
-                    <Status>
-                        Status
-                    </Status>
-            </ControlList>  
-            <ControlList>
-                <Cod>
-                    
-                    </Cod>
-                <Desc>
-                    
-                    </Desc>
-                <Status>
-                    
-                    </Status>
-            </ControlList>
-            <ControlList>
-                <Cod>
-                    
-                    </Cod>
-                <Desc>
-                    
-                    </Desc>
-                <Status>
-                    
-                    </Status>
-            </ControlList>
-            <ControlList>
-                <Cod>
-                    
-                    </Cod>
-                <Desc>
-                    
-                    </Desc>
-                <Status>
-                    
-                    </Status>
-            </ControlList>  
-            <ControlList>
-                <Cod>
-                    
-                    </Cod>
-                <Desc>
-                    
-                    </Desc>
-                <Status>
-                    
-                    </Status>
-            </ControlList>
-        </Container>    
+            <Title>Chamados em aberto</Title>
+            <CallsBox>
+                <LegendCalls>
+                    <span>Cod.</span>
+                    <span>Descrição</span>
+                    <span>Status</span>
+                </LegendCalls>
+                <CallItem>
+                    <CallCod>
+                        <span>55</span>
+                    </CallCod>
+                    <CallType>
+                        <span>Criação de e-mail</span>
+                    </CallType>
+                    <CallStatus>
+                        <span>Pendente</span>
+                    </CallStatus>
+                </CallItem>
+                <CallItem>
+                    <CallCod>
+                        <span>55</span>
+                    </CallCod>
+                    <CallType>
+                        <span>Criação de e-mail</span>
+                    </CallType>
+                    <CallStatus>
+                        <span>Pendente</span>
+                    </CallStatus>
+                </CallItem>
+                <CallItem>
+                    <CallCod>
+                        <span>55</span>
+                    </CallCod>
+                    <CallType>
+                        <span>Criação de e-mail</span>
+                    </CallType>
+                    <CallStatus>
+                        <span>Pendente</span>
+                    </CallStatus>
+                </CallItem>
+                <CallItem>
+                    <CallCod>
+                        <span>55</span>
+                    </CallCod>
+                    <CallType>
+                        <span>Criação de e-mail</span>
+                    </CallType>
+                    <CallStatus>
+                        <span>Pendente</span>
+                    </CallStatus>
+                </CallItem>
+                <CallItem>
+                    <CallCod>
+                        <span>55</span>
+                    </CallCod>
+                    <CallType>
+                        <span>Criação de e-mail</span>
+                    </CallType>
+                    <CallStatus>
+                        <span>Pendente</span>
+                    </CallStatus>
+                </CallItem>
+            </CallsBox>
+        </Container>
     )
 }
