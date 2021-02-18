@@ -14,8 +14,9 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import taking.api.controller.AuthenticationFilter;
-import taking.api.controller.AuthorizationFilter;
+import taking.api.controller.Filter.AuthenticationAdmFilter;
+import taking.api.controller.Filter.AuthenticationFilter;
+import taking.api.controller.Filter.AuthorizationFilter;
 
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
@@ -34,8 +35,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
     };
     public WebSecurityConfiguration(UserDetailsService userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder)
     {
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-        this.userDetailsService = userDetailsService;
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+		this.userDetailsService = userDetailsService;
     }
     protected void configure(HttpSecurity httpSecurity) throws Exception
     {
@@ -44,12 +45,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter
                 .antMatchers(HttpMethod.POST, "/usuarios/cadastro").permitAll()
                 .anyRequest().authenticated()
                 .and().addFilter(new AuthenticationFilter(authenticationManager()))
+                .addFilter(new AuthenticationAdmFilter(authenticationManager()))
                 .addFilter(new AuthorizationFilter(authenticationManager()))
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
     }
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception
     {
-        authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+        authenticationManagerBuilder.userDetailsService(userDetailsService);
     }
     @Bean
     CorsConfigurationSource corsConfigurationSource()

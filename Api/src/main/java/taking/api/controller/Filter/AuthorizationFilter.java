@@ -1,4 +1,4 @@
-package taking.api.controller;
+package taking.api.controller.Filter;
 
 import io.jsonwebtoken.Jwts;
 import org.springframework.security.authentication.AuthenticationManager;
