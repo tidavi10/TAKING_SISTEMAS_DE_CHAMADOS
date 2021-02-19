@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 import { FiEdit } from 'react-icons/fi'
 
@@ -18,6 +19,12 @@ import {
 } from './style';
 
 export default function ChamadosAdm() {
+    const history = useHistory();
+
+    const goToEditCall = () => {
+        history.push('/edicao-chamados-adm')
+    }
+    
     return (
         <Container>
             <Header>
@@ -50,7 +57,7 @@ export default function ChamadosAdm() {
                     <CallStatus>
                         <span>Pendente</span>
                     </CallStatus>
-                    <CallEditButton>
+                    <CallEditButton onClick={goToEditCall}>
                         <FiEdit />
                     </CallEditButton>
                 </CallItem>
@@ -65,7 +72,7 @@ export default function ChamadosAdm() {
                     <CallStatus>
                         <span>Pendente</span>
                     </CallStatus>
-                    <CallEditButton>
+                    <CallEditButton onClick={goToEditCall}>
                         <FiEdit />
                     </CallEditButton>
                 </CallItem>
@@ -80,7 +87,7 @@ export default function ChamadosAdm() {
                     <CallStatus>
                         <span>Pendente</span>
                     </CallStatus>
-                    <CallEditButton>
+                    <CallEditButton onClick={goToEditCall}>
                         <FiEdit />
                     </CallEditButton>
                 </CallItem>
@@ -95,7 +102,7 @@ export default function ChamadosAdm() {
                     <CallStatus>
                         <span>Pendente</span>
                     </CallStatus>
-                    <CallEditButton>
+                    <CallEditButton onClick={goToEditCall}>
                         <FiEdit />
                     </CallEditButton>
                 </CallItem>
@@ -110,7 +117,7 @@ export default function ChamadosAdm() {
                     <CallStatus>
                         <span>Pendente</span>
                     </CallStatus>
-                    <CallEditButton>
+                    <CallEditButton onClick={goToEditCall}>
                         <FiEdit />
                     </CallEditButton>
                 </CallItem>

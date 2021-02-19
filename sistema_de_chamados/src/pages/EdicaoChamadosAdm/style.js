@@ -146,31 +146,92 @@ export const CallEditButton = styled.button`
 
 export const EditionArea = styled.div`
     width: 90%;
-    height: 50vh;
-    border: 1px solid #eee;
+    height: 40vh;
     padding: 0 24px;
-    
     display: flex;
     justify-content: space-between;
 `;
 
 export const InputArea = styled.div`
-    width: 40%;
-    border: 1px solid #eee;
+    width: 42%;
     height: 72%;
-
-    
 `;
 
 export const EditionStatus = styled.div`
     display: flex;
     flex-direction: column;
+    width: 60%;
+    height: 42%;
+    padding: 16px 0;
+    margin-bottom: 20px;
+
+    label {
+        margin-bottom: 8px;
+    }
+
+    select {
+        border: 1px solid #eee;
+        background: #fff;
+        border-radius: 4px;
+        height: 24px;
+    }
 `;
 
-export const EditionRunTime = styled.div``;
+export const EditionRunTime = styled.div`
+    width: 100%;
+    height: 40%;
+
+    div {
+        margin-top: 8px;
+        width: 60%;
+        height: 24px;
+        border: 1px solid #eee;
+        padding: 0 4px;
+        border-radius: 4px;
+        background: #fff;
+    }
+`;
 
 export const DescriptionArea = styled.div`
     width: 50%;
-    border: 1px solid #eee;
     height: 72%;
+    padding: 16px 0;
+    display: flex;
+    flex-direction: column;
+
+    label {
+        margin-bottom: 8px;
+    }
+
+    textarea {
+        margin-top: 8px;
+        width: 100%;
+        height: 80%;
+        resize: none;
+        border: 1px solid #eee;
+        padding: 0 4px;
+        border-radius: 4px;
+        background: #fff;   
+    }
+`;
+
+export const ButtonArea = styled.div`
+    width: 90%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+
+export const SubmitButton = styled.button`
+    width: 40%;
+    height: 100%;
+    border-radius: 4px;
+    background: #eee;
+    border: 1px solid #dee2e6;
+
+    span {
+        font-weight: bold;
+        color: #333;
+    }
 `;

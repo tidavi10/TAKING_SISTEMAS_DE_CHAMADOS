@@ -1,6 +1,5 @@
 import React from 'react';
-
-import { FiEdit } from 'react-icons/fi'
+import { useHistory } from 'react-router-dom';
 
 import {
     Container,
@@ -17,15 +16,23 @@ import {
     InputArea,
     EditionStatus,
     EditionRunTime,
-    DescriptionArea
+    DescriptionArea,
+    ButtonArea,
+    SubmitButton
 } from './style';
 
 export default function EdicaoChamadosAdm() {
+    const history = useHistory();
+
+    const goToChamadosAdm = () => {
+        history.push('/chamados-adm')
+    }
+
     return (
         <Container>
             <Header>
                 <HeaderContent>
-                    <ButtonHeader>
+                    <ButtonHeader onClick={goToChamadosAdm}>
                         <span>Chamados</span>
                     </ButtonHeader>
                     <ButtonHeader>
@@ -68,7 +75,7 @@ export default function EdicaoChamadosAdm() {
                     </EditionStatus>
 
                     <EditionRunTime>
-                        <label><small>Tempo gasto na execução:</small></label>
+                        <label>Tempo gasto na execução:</label>
                         <div>
                             <span>2 horas e 37 minutos</span>
                         </div>
@@ -79,6 +86,15 @@ export default function EdicaoChamadosAdm() {
                     <textarea></textarea>
                 </DescriptionArea>
             </EditionArea>
+
+            <ButtonArea>
+                <SubmitButton>
+                    <span>Cancelar</span>
+                </SubmitButton>
+                <SubmitButton>
+                <span>Atualizar</span>
+                </SubmitButton>
+            </ButtonArea>
         </Container>
     )
 }
