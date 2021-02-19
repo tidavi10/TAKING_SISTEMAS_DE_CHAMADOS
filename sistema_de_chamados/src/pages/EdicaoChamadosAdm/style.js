@@ -2,35 +2,27 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     padding: 24px 0;
-`;
-
-export const Title = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    margin-bottom: 16px;
-    width: 90%;
+    flex-direction: column;
 `;
 
 export const Header = styled.div`
-<<<<<<< HEAD
-    width: 800px;
-    height: 70px;
-    background-color: #DEE2E6;
-    border-radius:10px;
-=======
     background: #dee2e6;
     width: 100%;
     height: 64px;
     border-radius: 10px;
     padding: 0 10px;
 
-    margin-bottom: 24px;
+    margin-bottom: 32px;
 
->>>>>>> c3d048f17ce4d24dc582cc7d7c9cb16582941371
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    > span {
+        margin-right: 24px;
+    }
 `;
 
 export const HeaderContent = styled.div`
@@ -41,14 +33,20 @@ export const HeaderContent = styled.div`
 `;
 
 export const ButtonHeader = styled.button`
-    width: 160px;
+    width: 96px;
     height: 100%;
     border: 1px solid #dee2e6;
+    background: #eee;
+    margin-right: 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const CallsBox = styled.div`
     width: 100%;
-    height: 70vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -146,3 +144,33 @@ export const CallEditButton = styled.button`
     }
 `;
 
+export const EditionArea = styled.div`
+    width: 90%;
+    height: 50vh;
+    border: 1px solid #eee;
+    padding: 0 24px;
+    
+    display: flex;
+    justify-content: space-between;
+`;
+
+export const InputArea = styled.div`
+    width: 40%;
+    border: 1px solid #eee;
+    height: 72%;
+
+    
+`;
+
+export const EditionStatus = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+
+export const EditionRunTime = styled.div``;
+
+export const DescriptionArea = styled.div`
+    width: 50%;
+    border: 1px solid #eee;
+    height: 72%;
+`;

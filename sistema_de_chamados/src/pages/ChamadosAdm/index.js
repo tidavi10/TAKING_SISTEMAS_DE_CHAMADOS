@@ -13,7 +13,8 @@ import {
     CallCod,
     CallType,
     CallStatus,
-    CallEditButton
+    CallEditButton,
+    InvisibleElement
 } from './style';
 
 export default function ChamadosAdm() {
@@ -36,6 +37,7 @@ export default function ChamadosAdm() {
                     <span>Cod.</span>
                     <span>Tipo</span>
                     <span>Status</span>
+                    <InvisibleElement></InvisibleElement>
                 </LegendCalls>
 
                 <CallItem>
