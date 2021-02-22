@@ -22,4 +22,7 @@ export default createGlobalStyle`
   button {
     cursor: pointer;
   }
+  textarea {
+    border: none;
+  }
 `;

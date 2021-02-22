@@ -1,23 +1,30 @@
 import styled from 'styled-components';
 
 export const Header = styled.div`
-    height: 100%;
-    flex-direction: column;
-    background: #DEE2E6;
+    background: #dee2e6;
+    width: 100%;
+    height: 64px;
+    border-radius: 10px;
+    padding: 0 10px;
+    margin-bottom: 32px;
+    display: flex;
     align-items: center;
+    justify-content: space-between;
+    > span {
+        margin-right: 24px;
+    }
 `;
 
 export const Button = styled.button`
-    width: 15%;
-    background-color: #C4C4C4;
-    border-radius: 10px;
-    color: black;
-    padding: 15px 32px;
-    text-align: center;
-    justify-content: center;
-    font-size: 16px;
+    width: 20%;
+    height: 100%;
+    border: 1px solid #dee2e6;
+    background: #eee;
+    font-size: 18px;
+    margin-right: 4px;
     display: flex;
-    margin: 5px;
+    align-items: center;
+    justify-content: center;
 `;
 
 export const Title = styled.div`
@@ -45,21 +52,32 @@ export const EditionDescription = styled.div`
     flex-direction: column;
     margin: 5px;
     padding: 0 10px;
-    background: #81b29a;
 `;
 
 export const FilterSelector = styled.div`
     width: 25%;
     margin: 5px;
-	background: tomato;
 	text-align: center;
-	font-size: 1.5em;
+	font-size: 16px;
+    align-content: center;
 `;
 
-export const Input = styled.div`
-    width: 100%;
-    height: 30px;
-    margin-bottom: 24px;
-    border-radius: 5px;
-    margin-top: 5px;
+export const Footer = styled.div`
+    margin-top: 20px;
+
 `;
+
+export const ButtonFinish = styled.div`
+    width: 20%;
+    height: 100%;
+    border: 1px solid #dee2e6;
+    background: #eee;
+    margin-right: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    font-size: 18px;
+`;
+
+
