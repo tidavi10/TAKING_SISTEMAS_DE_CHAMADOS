@@ -10,8 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class TipoProblema implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -22,7 +20,6 @@ public class TipoProblema implements Serializable{
 	private String tipoDoProblema;
 	private String areaResponsavel;
 	
-//	@JsonIgnore
 	@OneToMany
 	private List<Chamados> chamados = new ArrayList<>(); 
 	
@@ -34,7 +31,7 @@ public class TipoProblema implements Serializable{
 		this.tipoDoProblema = tipoDoProblema;
 		this.areaResponsavel = areaResponsavel;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}

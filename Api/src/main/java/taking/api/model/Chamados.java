@@ -9,9 +9,6 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
 @Entity
 public class Chamados implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -26,14 +23,25 @@ public class Chamados implements Serializable{
 	private String tipoAnexo;
 	private String status;
 	private String dataCriacao;
-	
 	@ManyToOne
 	private TipoProblema problema;
-	
 	@ManyToOne
 	private Usuarios usuario;
 	
 	public Chamados() {
+	}
+	
+	public Chamados(String descricao, byte[] anexo, String nomeAnexo, String tipoAnexo, String status,
+			String dataCriacao, TipoProblema problema, Usuarios usuario) {
+		super();
+		this.descricao = descricao;
+		this.anexo = anexo;
+		this.nomeAnexo = nomeAnexo;
+		this.tipoAnexo = tipoAnexo;
+		this.status = status;
+		this.dataCriacao = dataCriacao;
+		this.problema = problema;
+		this.usuario = usuario;
 	}
 
 	public Long getId() {
