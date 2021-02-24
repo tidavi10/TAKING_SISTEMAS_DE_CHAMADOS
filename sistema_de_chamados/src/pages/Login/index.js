@@ -12,7 +12,7 @@ import logo from '../../assets/logo.png'
 import { useHistory } from 'react-router-dom';
 
 
-export default function Login() {
+const Login = () => {
     const history = useHistory();
 
     const gotoCadastro = () => {
@@ -22,6 +22,16 @@ export default function Login() {
     const gotoChamados = () => {
         history.push('/chamados')
     }
+
+    const armazenaTokenSession = () => {
+        let token = 'ahushaushaushuas';
+
+        sessionStorage.setItem('token', token);
+
+        setTimeout(() => {
+            sessionStorage.clear();
+        }, 3000);
+    ;}
 
     return (
     <>
@@ -37,7 +47,7 @@ export default function Login() {
                         <Input type="password" name="password" id="password"/>
                     </InputDiv>
                     <Button type="submit" onClick={gotoChamados}>Login</Button>
-                    <Button type="submit">Login Social</Button>
+                    <Button type="submit" onClick={armazenaTokenSession}>Login Social</Button>
                     <Button type="submit" onClick={gotoCadastro}>Cadastro</Button>
                     <Image src={logo} />
             </Form>  
@@ -45,3 +55,5 @@ export default function Login() {
     </>
 )
 }
+
+export default Login;
