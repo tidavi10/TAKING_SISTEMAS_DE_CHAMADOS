@@ -13,6 +13,8 @@ import {
     FilterSelector,
     Footer,
     ButtonFinish,
+    Dropzone,
+    Container,
 } from '../TelaChamados/style';
 
 function MyDropzone() {
@@ -41,35 +43,40 @@ export default function TelaChamados() {
     }
     return (
         <Router>
-            <Header>
-                <Button type="submit" onClick={gotoConsultaChamados}>
-                   <span>Consultar chamado</span>
-                </Button>
-            </Header>
-            <FilterSelector>
-                <label for="tipoProblema">Tipo de problema </label>
-                <select name="tipoProblema" id="tipoProblema">
-                    <option value="criacaoEmail">Criação de e-mail</option>
-                    <option value="reset">Resetar de senha</option>
-                    <option value="problemaMaquina">Problema na máquina</option>                    
-                    <option value="acessoBitrix">Liberar acesso ao Bitrix</option>
-                </select>
-            </FilterSelector>
-            <EditionArea>
-                <InputArea>
-                    <EditionDescription>
-                        <label>Descreva o problema:</label>
-                        <textarea></textarea>
-                    </EditionDescription>
-                </InputArea>
-            </EditionArea>
-            <Footer>
-                <MyDropzone />
-                
-                <ButtonFinish>
-                    Cadastrar chamado
-                </ButtonFinish>
-            </Footer>
+            <Container>
+                <Header>
+                    <Button type="submit" onClick={gotoConsultaChamados}>
+                        <span>Consultar chamado</span>
+                    </Button>
+                </Header>
+                <FilterSelector>
+                    <label for="tipoProblema">Tipo de problema </label>
+                    <select name="tipoProblema" id="tipoProblema">
+                        <option value="criacaoEmail">Criação de e-mail</option>
+                        <option value="reset">Resetar de senha</option>
+                        <option value="problemaMaquina">Problema na máquina</option>                    
+                        <option value="acessoBitrix">Liberar acesso ao Bitrix</option>
+                    </select>
+                </FilterSelector>
+                <EditionArea>
+                    <InputArea>
+                        <EditionDescription>
+                            <label>Descreva o problema:</label>
+                            {/* demilitar area */}
+                            <textarea maxLength={2000}></textarea>
+                        </EditionDescription>
+                    </InputArea>
+                        <Dropzone>
+                            {/* estilizar botão  trazer para lado da descrição do problema  */}
+                            <MyDropzone />
+                        </Dropzone>
+                </EditionArea>
+                <Footer>
+                    <ButtonFinish>
+                        Cadastrar chamado
+                    </ButtonFinish>
+                </Footer>
+            </Container>
         </Router>
     )
 }
