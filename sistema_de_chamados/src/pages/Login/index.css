@@ -1,39 +1,19 @@
-import styled from 'styled-components';
-
-export const Container = styled.div`
+div#container{
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     background: #fff;
-
-    @media (max-width: 600px) {
-        display: flex;
-        justify-content: center;  
-    }
-    
-    @media (min-width: 700px){
-
 }
 
-    @media (min-width: 1100px){
-
-}
-`;
-
-export const Title = styled.div`
+title{
     font-size: 30px;
     margin-bottom: 20px;
     padding: 32px 24px;
-`;
+}
 
-export const InputDiv = styled.div`
-    width: 100%;
-    font-size: 17px;
-`;
-
-export const Form = styled.div`
+#form{
     margin-top: 50px;
     width: 400px;
     height: 600px;
@@ -44,17 +24,14 @@ export const Form = styled.div`
     border-radius: 10px;
     padding: 32px 24px;
     border: 1px solid #BBBBBB;
+}
 
-    @media (max-width: 600px) {
-        width: 100%;
-        heigth: 100%;
-        align-items: center;
+div#input-div{
+    width: 100%;
+    font-size: 17px;
+}
 
-    }
- `;
-
-
-export const Input = styled.input`
+#input{
     width: 100%;
     height: 30px;
     margin-bottom: 24px;
@@ -62,10 +39,10 @@ export const Input = styled.input`
     padding: 10px 10px;
     margin-top: 5px;
     border-bottom: 1px solid #807F7F;
-`;
+}
 
-export const Button = styled.button`
-    width: 50%;
+button{
+     width: 50%;
     height: 30px;
     border-radius: 10px;
     padding: 10px 20px;
@@ -74,15 +51,15 @@ export const Button = styled.button`
     justify-content: center;
     margin-bottom: 24px;
     background-color: #adb5bd;
+}
 
-`;
-
-export const Image = styled.img`
+img{
     width: 80px;
     height: 80px;
     transform: translate(0%, 50%);
-`;
+}
 
-
-
-
+div#Form-erro{
+    color: red;
+    transform: translate(2px, -20px);
+}
