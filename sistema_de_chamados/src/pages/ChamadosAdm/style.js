@@ -1,7 +1,25 @@
 import styled from "styled-components";
 
+
+
 export const Container = styled.div`
+    // Extra large devices (large desktops, 1200px and up)
+    /* @media (min-width: 1200px) {} */
     padding: 24px 0;
+    font-size: 93.75%;
+
+// Small devices (landscape phones, 576px and up)
+    @media (min-with: 576px) {
+    }
+
+// Medium devices (tablets, 768px and up)
+    @media (min-width: 768px) {
+        padding: 24px 0;
+        font-size: 87.5%;
+    }
+
+// Large devices (desktops, 992px and up)
+    @media (min-width: 992px) {}
 `;
 
 export const Header = styled.div`
@@ -16,6 +34,14 @@ export const Header = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media (min-width: 768px) {
+        font-size: 87.5%;
+        height: 56px;
+        margin-bottom: 24px;
+        padding: 0 8px;
+        border-radius: 8px;
+    }
 `;
 
 export const HeaderContent = styled.div`
@@ -26,9 +52,13 @@ export const HeaderContent = styled.div`
 `;
 
 export const ButtonHeader = styled.button`
-    width: 96px;
+    width: 88px;
     height: 100%;
     border: 1px solid #dee2e6;
+
+    @media (min-width: 768px) {
+        font-size: 87.5%;
+    }
 `;
 
 export const CallsBox = styled.div`

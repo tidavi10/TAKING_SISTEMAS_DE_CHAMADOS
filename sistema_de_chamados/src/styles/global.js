@@ -16,7 +16,7 @@ export default createGlobalStyle`
   }
   body, input, button {
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
+    font-size: 1rem;
     border: 0;
   }
   button {
