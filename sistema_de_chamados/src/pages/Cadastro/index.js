@@ -35,7 +35,7 @@ export default function Cadastro() {
                 render={({ isValid }) => (
              <div className="container">
                 <Form className="form">
-                    <h1>Cadastro</h1>
+                    <h1 className="title-cadastro">Cadastro</h1>
                     <div className="inputdiv">
                        <label>Nome</label>
                         <Field className="input" type="text" name="nome"/>

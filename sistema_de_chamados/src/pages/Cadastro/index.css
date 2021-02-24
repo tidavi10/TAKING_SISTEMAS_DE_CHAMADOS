@@ -7,7 +7,7 @@
     background: #fff;
 }
 
-.title{
+.title-cadastro{
     font-size: 30px;
     margin-bottom: 20px;
     padding: 32px 24px;
@@ -56,3 +56,14 @@ Form.form{
     transform: translate(2px, -20px);
 }
 
+.Submit{
+    width: 50%;
+    height: 30px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    background-color: #adb5bd;
+}
