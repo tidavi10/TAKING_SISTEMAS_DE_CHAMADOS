@@ -1,4 +1,4 @@
-div#container{
+div.container-login{
     height: 100%;
     display: flex;
     align-items: center;
@@ -7,13 +7,13 @@ div#container{
     background: #fff;
 }
 
-title{
+.title-login{
     font-size: 30px;
     margin-bottom: 20px;
     padding: 32px 24px;
 }
 
-#form{
+.form-login{
     margin-top: 50px;
     width: 400px;
     height: 600px;
@@ -26,12 +26,12 @@ title{
     border: 1px solid #BBBBBB;
 }
 
-div#input-div{
+div.input-div{
     width: 100%;
     font-size: 17px;
 }
 
-#input{
+.input{
     width: 100%;
     height: 30px;
     margin-bottom: 24px;
@@ -41,8 +41,32 @@ div#input-div{
     border-bottom: 1px solid #807F7F;
 }
 
-button{
+button.login{
      width: 50%;
+    height: 30px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    background-color: #adb5bd;
+}
+
+button.login-social{
+     width: 50%;
+    height: 30px;
+    border-radius: 10px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    background-color: #adb5bd;
+}
+
+button.cadast{
+    width: 50%;
     height: 30px;
     border-radius: 10px;
     padding: 10px 20px;
@@ -59,7 +83,7 @@ img{
     transform: translate(0%, 50%);
 }
 
-div#Form-erro{
+div.Form-erro{
     color: red;
     transform: translate(2px, -20px);
 }

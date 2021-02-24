@@ -10,7 +10,7 @@ export default function Login() {
 
     function onSubmit(values, actions) {
         history.push('/chamados');
-    }
+    }   
 
     const history = useHistory();
 
@@ -24,8 +24,8 @@ export default function Login() {
 
     return (
     <>
-        <div id="container">
-            <Formik id="formik"
+        <div className="container-login">
+            <Formik className="formik"
                 validationSchema={schema}
                 onSubmit={onSubmit}
                 validateOnMount
@@ -34,25 +34,25 @@ export default function Login() {
                 password: '',
                     }}
                     render={({isValid}) => (
-                <Form id="form">
-                    <h1>Login</h1>
-                    <div id="input-div">
+                <Form className="form-login">
+                    <h1 className="title-login">Login</h1>
+                    <div className="input-div">
                         <label>E-mail:</label>
-                        <Field id="input" type="email" name="email"/> 
-                        <div id="Form-erro">
+                        <Field className="input" type="email" name="email"/> 
+                        <div className="Form-erro">
                             <ErrorMessage name="email" component="spam" />
                         </div>
                     </div>
-                    <div id="input-div">
+                    <div className="input-div">
                         <label>Senha:</label>   
-                        <Field id="input" type="password" name="password"/>
-                        <div id="Form-erro">
+                        <Field className="input" type="password" name="password"/>
+                        <div className="Form-erro">
                             <ErrorMessage  name="password" component="spam" /> 
                         </div>                                     
                     </div>
-                    <button type="submit" disabled={!isValid} onClick={onSubmit}>Login</button>
-                    <button type="submit">Login Social</button>
-                    <button type="submit" onClick={gotoCadastro}>Cadastro</button>
+                    <button className="login" type="submit" disabled={!isValid} onClick={onSubmit}>Login</button>
+                    <button className="login-social" type="submit">Login Social</button>
+                    <button className="cadast" type="submit" onClick={gotoCadastro}>Cadastro</button>
                     <img src={logo} />
                 </Form>  
                 )}          
