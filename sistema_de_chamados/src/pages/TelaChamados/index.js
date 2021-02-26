@@ -7,6 +7,7 @@ import { useDropzone } from 'react-dropzone';
 import {
     Container,
     Header,
+    HeaderContent,
     Button,
     EditionArea,
     InputArea,
@@ -16,6 +17,7 @@ import {
     ButtonFinish,
     Dropzone,
     EditionText,
+    ButtonExit,
 } from '../TelaChamados/style';
 
 function MyDropzone() {
@@ -46,15 +48,19 @@ export default function TelaChamados() {
         <Router>
             <Container>
                 <Header>
-                    <Button type="submit" onClick={gotoConsultaChamados}>
-                        <span>Consultar chamado</span>
-                    </Button>
+                    <HeaderContent>
+                        <Button type="submit" onClick={gotoConsultaChamados}>
+                            <span>Consultar chamado</span>
+                        </Button>
+                        <ButtonExit>
+                            <span>Sair</span>
+                        </ButtonExit>
+                    </HeaderContent>
+                    <span>username</span>
                 </Header>
                 <EditionArea>
                     <InputArea>
-                        <div className="label">
                             <label for="tipoProblema">Selecione o problema: </label>
-                        </div>
                         <FilterSelector>
                             <select name="tipoProblema" id="tipoProblema">
                                 <option value="criacaoEmail">Criar e-mail</option>

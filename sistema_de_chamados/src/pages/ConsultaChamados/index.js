@@ -14,14 +14,15 @@ import {
   CallCod,
   CallType,
   CallStatus,
-  Title
+  Title,
+  ButtonExit
 } from './style';
 import { useHistory } from 'react-router-dom';
 
 export default function ChamadosAdm() {
   const history = useHistory();
 
-  const [state, setState] = useState({activePage:1});
+  const [state, setState] = useState({ activePage: 1 });
 
   const [listaDeChamados, setlistaDeChamados] = useState([
     { id: 55, descricao: 'Teste5', status: 'P' },
@@ -30,7 +31,7 @@ export default function ChamadosAdm() {
   ])
 
   function getPaginated() {
-    return listaDeChamados.filter((_, idx) => idx >= ((state.activePage - 1) * 2) && idx < (state.activePage)* 2 )
+    return listaDeChamados.filter((_, idx) => idx >= ((state.activePage - 1) * 2) && idx < (state.activePage) * 2)
   }
 
   const goToChamados = () => {
@@ -43,47 +44,52 @@ export default function ChamadosAdm() {
   }
 
   return (
-    <Container>
-      <Header>
-        <HeaderContent>
-          <ButtonHeader type="submit" onClick={goToChamados}>
-            <span>Abrir novo chamado</span>
-          </ButtonHeader>
-        </HeaderContent>
-        <span>Usuário Logado</span>
-      </Header>
-      <Title>Chamados em aberto</Title>
-      <CallsBox>
-        <LegendCalls>
-          <span>Cod.</span>
-          <span>Descrição</span>
-          <span>Status</span>
-        </LegendCalls>
-        {
-          getPaginated().map(d =>
-            <CallItem>
-              <CallCod>
-                <span>{d.id}</span>
-              </CallCod>
-              <CallType>
-                <span>{d.descricao}</span>
-              </CallType>
-              <CallStatus>
-                <span>{d.status}</span>
-              </CallStatus>
-            </CallItem>
-          )
-        }
-      </CallsBox>
-      <div>
-        <Pagination
-          activePage={state.activePage}
-          itemsCountPerPage={2}
-          totalItemsCount={listaDeChamados.length}
-          pageRangeDisplayed={5}
-          onChange={handlerPageChange}
-        />
-      </div>
-    </Container>
+    <Router>
+      <Container>
+        <Header>
+          <HeaderContent>
+            <ButtonHeader type="submit" onClick={goToChamados}>
+              <span>Abrir novo chamado</span>
+            </ButtonHeader>
+            <ButtonExit>
+              <span>Sair</span>
+            </ButtonExit>
+          </HeaderContent>
+          <span>username</span>
+        </Header>
+        <Title>Chamados em aberto</Title>
+        <CallsBox>
+          <LegendCalls>
+            <span>Cod.</span>
+            <span>Descrição</span>
+            <span>Status</span>
+          </LegendCalls>
+          {
+            getPaginated().map(d =>
+              <CallItem>
+                <CallCod>
+                  <span>{d.id}</span>
+                </CallCod>
+                <CallType>
+                  <span>{d.descricao}</span>
+                </CallType>
+                <CallStatus>
+                  <span>{d.status}</span>
+                </CallStatus>
+              </CallItem>
+            )
+          }
+        </CallsBox>
+        <>
+          <Pagination
+            activePage={state.activePage}
+            itemsCountPerPage={2}
+            totalItemsCount={listaDeChamados.length}
+            pageRangeDisplayed={5}
+            onChange={handlerPageChange}
+          />
+        </>
+      </Container>
+    </Router>
   )
 }
