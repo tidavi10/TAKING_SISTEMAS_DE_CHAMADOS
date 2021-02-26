@@ -1,0 +1,130 @@
+###########################################################
+# APPLICATION SETTINGS                                    #
+###########################################################
+ app_base_auth_login: login
+ app_base_auth_pass: pass
+ app_protocol: http
+ app_host: my.website.com
+
+ app_test_user: test@test.com
+ app_test_pass: mypass
+ app_test_user_name: Auto Tester
+
+ app_api_token:
+ app_api_end_point: "api/v1"
+ app_api_protocol: http
+
+###########################################################
+# TEST ENVIRONMENTS SETTINGS                              #
+###########################################################
+ user_agent: # if blank, then default agent
+ page_load_idle_timeout: 20
+ maximized_window: true # Specify maximized browser window size
+
+ # Run scenarios in the order they were 'defined' (default).
+ # 'random' - shuffle scenarios before running.
+ # Specify SEED to reproduce the shuffling from a previous run. e.g. 'random:5738'
+ test_order: defined
+
+ # Specify one of the following drivers: selenium, selenium_grid, webkit, poltergeist, sauce,
+ # testingbot, browserstack, crossbrowsertesting, headless_chrome, headless_firefox, appium
+ driver: poltergeist
+
+ # -Selenium-
+ # specify one of next browsers: iexplore (ie), firefox (ff), chrome, safari
+ selenium_browser: ff
+
+ # -Headless Chrome-
+ # List of available flags (http://peter.sh/experiments/chromium-command-line-switches/)
+ headless_chrome_flags: "window-size=1920x1080, disable-gpu"
+
+ # -Headless Firefox-
+ # For use custom screen size "maximized_window" should be false
+ headless_firefox_flags: "-height=1920, -width=1080"
+
+ # -Selenium Grid-
+ selenium_hub_url: "http://example.com:4444/wd/hub"
+
+ # -Poltergeist-
+ # specify settings for poltergeist
+ phantom_ignore_js_errors: false
+ phantom_ignore_ssl_errors: true
+
+ # -Appium- (https://appium.io/docs/en/writing-running-appium/caps/)
+ appium_url: "http://localhost:80/wd/hub"
+ appium_platform_name: "iOS"
+ appium_platform_version: "10.0"
+ appium_browser_name: "Safari"
+ appium_device_name: "iPad Air 2 Simulator"
+ appium_device_orientation: "portrait"
+
+
+ rspec_wait_timeout: 10
+
+###########################################################
+# Cloud-based Cross-browser Services                      #
+###########################################################
+ cloud_auth_login: some_user_or_client_key
+ cloud_auth_pass: api_key_or_api_secret_or_access_key
+ cloud_platform: any
+ cloud_browser_name: Chrome
+ cloud_browser_version: '31'
+ cloud_max_duration: '1800'
+ cloud_http_idle_timeout: 40
+
+ # -SauceLabs- (https://wiki.saucelabs.com/display/DOCS/Test+Configuration+Options)
+ cloud_sauce_record_screenshots: false
+ cloud_sauce_idle_timeout: '180'
+ cloud_sauce_video_upload_on_pass: false
+
+ # -TestingBot- (https://testingbot.com/support/other/test-options)
+ cloud_testingbot_idle_timeout: '180'
+ cloud_testingbot_screenshots: false
+
+ # -BrowserStack (https://www.browserstack.com/automate/capabilities)
+ cloud_bstack_resolution: '1024x768'
+ cloud_bstack_project: 'Howitzer Example'
+ cloud_bstack_build: 'v1'
+ cloud_bstack_mobile_device:
+
+ # -CrossBrowserTesting (https://app.crossbrowsertesting.com/selenium/run)
+ cloud_cbt_name: 'Howitzer Example'
+ cloud_cbt_build: '1.0'
+ cloud_cbt_os_api_name: 'Win7x64-C1'
+ cloud_cbt_screen_resolution: '1024x768'
+ cloud_cbt_record_video: 'true'
+ cloud_cbt_record_network: 'true'
+
+###########################################################
+# CAPYBARA SETTINGS                                       #
+###########################################################
+ capybara_wait_time: 20
+
+###########################################################
+# LOGGER SETTINGS                                         #
+###########################################################
+ log_dir: "log"
+ debug_mode: false
+ html_log: log.html
+ selenium_server_log: selenium-server.log
+ required_clean_logs: true
+ hide_datetime_from_log: false
+
+###########################################################
+# MAIL SETTINGS                                           #
+###########################################################
+ mail_adapter: mailgun
+ mail_wait_time: 60
+ mail_sleep_time: 3
+
+# -Mailgun- (http://www.mailgun.com/)
+ mailgun_key: mailgun_account_private_key
+ mailgun_domain: mailgun_domain_with_stored_method
+
+ # -Mailtrap- (https://mailtrap.io/)
+ mailtrap_api_token: private_api_key
+ mailtrap_inbox_id: inbox_id
+
+# -Gmail-
+ gmail_login: gmail_address
+ gmail_password: gmail_password
