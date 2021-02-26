@@ -1,6 +1,7 @@
 package taking.api.controller;
 
 import java.net.URI;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,9 @@ public class ChamadosController {
 
 	@Autowired
 	private ChamadosService chamadosService;
+	
+	@Autowired
+	private ChamadosRepository chamadosRepository;
 
 	@ApiOperation(value = "", authorizations = { @Authorization(value = "jwtToken") })
 	@GetMapping(value = "/{chamadoId}")
@@ -41,14 +45,16 @@ public class ChamadosController {
 	@PostMapping("/{userId}/{problemId}")
 	public ResponseEntity<Chamados> cadastrarChamado(@PathVariable("userId") Long userId,
 			@PathVariable("problemId") Long problemId, @RequestParam("file") MultipartFile file,
-			@RequestParam("descricaoProblema") String descricaoProblema,
-			@RequestParam("dataCriacao") String dataCriacao) {
-
-		Chamados obj = chamadosService.salvarDados(userId, problemId, file, descricaoProblema, dataCriacao);
-
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{chamadoId}").buildAndExpand(obj.getId())
-				.toUri();
-		return ResponseEntity.created(uri).build();
+			@RequestParam("descricaoProblema") String descricaoProblema) {
+		
+		if(chamadosRepository.existsById(userId)) {
+			Chamados obj = chamadosService.salvarDados(userId, problemId, file, descricaoProblema, new Date());
+	
+			URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{chamadoId}").buildAndExpand(obj.getId())
+					.toUri();
+			return ResponseEntity.created(uri).build();
+		}
+		return null;
 	}
 
 	@ApiOperation(value = "", authorizations = { @Authorization(value = "jwtToken") })

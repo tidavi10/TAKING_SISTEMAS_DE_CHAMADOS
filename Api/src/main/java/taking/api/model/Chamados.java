@@ -1,13 +1,17 @@
 package taking.api.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Chamados implements Serializable{
@@ -22,7 +26,11 @@ public class Chamados implements Serializable{
 	private String nomeAnexo;
 	private String tipoAnexo;
 	private String status;
-	private String dataCriacao;
+	
+	@Column(name = "dataChamado", updatable = false)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date dataCriacao;
+	
 	@ManyToOne
 	private TipoProblema problema;
 	@ManyToOne
@@ -34,7 +42,7 @@ public class Chamados implements Serializable{
 	}
 	
 	public Chamados(String descricao, byte[] anexo, String nomeAnexo, String tipoAnexo, String status,
-			String dataCriacao, TipoProblema problema, Usuarios usuario) {
+			Date dataCriacao, TipoProblema problema, Usuarios usuario) {
 		super();
 		this.descricao = descricao;
 		this.anexo = anexo;
@@ -94,11 +102,11 @@ public class Chamados implements Serializable{
 		this.status = status;
 	}
 
-	public String getDataCriacao() {
+	public Date getDataCriacao() {
 		return dataCriacao;
 	}
 
-	public void setDataCriacao(String dataCriacao) {
+	public void setDataCriacao(Date dataCriacao) {
 		this.dataCriacao = dataCriacao;
 	}
 

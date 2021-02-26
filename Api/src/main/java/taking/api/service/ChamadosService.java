@@ -1,12 +1,12 @@
 package taking.api.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -49,7 +49,7 @@ public class ChamadosService {
 	}
 
 	public Chamados salvarDados(Long userId, Long problemId, MultipartFile file, String descricaoProblema,
-			String dataCriacao) {
+			Date dataCriacao) {
 		Chamados obj = null;
 		try {
 			String nomeAnexo = file.getOriginalFilename();
