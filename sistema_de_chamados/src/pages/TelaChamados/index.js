@@ -5,6 +5,7 @@ import {
 import { useHistory } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
 import {
+    Container,
     Header,
     Button,
     EditionArea,
@@ -14,22 +15,22 @@ import {
     Footer,
     ButtonFinish,
     Dropzone,
-    Container,
+    EditionText,
 } from '../TelaChamados/style';
 
 function MyDropzone() {
     const onDrop = useCallback(acceptedFiles => {
         console.log(acceptedFiles)
     }, [])
-    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
     return (
         <div {...getRootProps()}>
             <input {...getInputProps()} />
             {
-                isDragActive?
-                <p>Solte os arquivos aqui...</p> :
-                <p>Arraste e solte alguns arquivos aqui, ou clique para selecionar arquivos</p>
+                isDragActive ?
+                    <p>Solte os arquivos aqui...</p> :
+                    <p>Adicionar arquivos</p>
             }
         </div>
     )
@@ -49,31 +50,36 @@ export default function TelaChamados() {
                         <span>Consultar chamado</span>
                     </Button>
                 </Header>
-                <FilterSelector>
-                    <label for="tipoProblema">Tipo de problema </label>
-                    <select name="tipoProblema" id="tipoProblema">
-                        <option value="criacaoEmail">Criação de e-mail</option>
-                        <option value="reset">Resetar de senha</option>
-                        <option value="problemaMaquina">Problema na máquina</option>                    
-                        <option value="acessoBitrix">Liberar acesso ao Bitrix</option>
-                    </select>
-                </FilterSelector>
                 <EditionArea>
                     <InputArea>
-                        <EditionDescription>
-                            <label>Descreva o problema:</label>
-                            {/* demilitar area */}
-                            <textarea maxLength={2000}></textarea>
-                        </EditionDescription>
-                    </InputArea>
+                        <div className="label">
+                            <label for="tipoProblema">Selecione o problema: </label>
+                        </div>
+                        <FilterSelector>
+                            <select name="tipoProblema" id="tipoProblema">
+                                <option value="criacaoEmail">Criar e-mail</option>
+                                <option value="acessoBitrix">Liberar acesso ao Bitrix</option>
+                                <option value="reset">Resetar senha</option>
+                                <option value="problemaMaquina">Problema na máquina</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </FilterSelector>
                         <Dropzone>
-                            {/* estilizar botão  trazer para lado da descrição do problema  */}
                             <MyDropzone />
                         </Dropzone>
+                    </InputArea>
+                    <EditionText>
+                        <EditionDescription>
+                            <textarea
+                                placeholder="Descreva o problema"
+                                maxLength={2000} >
+                            </textarea>
+                        </EditionDescription>
+                    </EditionText>
                 </EditionArea>
                 <Footer>
                     <ButtonFinish>
-                        Cadastrar chamado
+                        Abrir chamado
                     </ButtonFinish>
                 </Footer>
             </Container>
