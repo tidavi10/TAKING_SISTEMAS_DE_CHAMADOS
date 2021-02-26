@@ -7,15 +7,21 @@ export const Container = styled.div`
     /* @media (min-width: 1200px) {} */
     padding: 24px;
 
+    @media (max-width: 576px) {
+        padding: 12px;
+    }
+
     @media (min-width: 576.1px) and (max-width: 767.9px) {
-        padding: 16px 0;
+        padding: 16px;
     }
 
     @media (min-width: 768px) {
-        padding: 20px 0;
+        padding: 20px;
     }
 
-    @media (min-width: 992px) {}
+    @media (min-width: 992px) and (max-width: 1199px) {
+        padding: 24px;
+    }
 `;
 
 export const Header = styled.div`
@@ -33,28 +39,38 @@ export const Header = styled.div`
 
     @media (max-width: 576px) {
         height: 36px;
-        padding: 0 8px;
+        padding: 0 6px;
         font-size: 75%;
         font-weight: 500;
-        border-radius: 8px;
+        border-radius: 6px;
         margin-bottom: 16px;
     }
 
     @media (min-width: 576.1px) {
         height: 40px;
-        padding: 0 8px;
+        padding: 0 6px;
         font-size: 81.25%;
         font-weight: 500;
-        border-radius: 8px;
-        margin-bottom: 24px;
+        border-radius: 6px;
+        margin-bottom: 20px;
     }
 
     @media (min-width: 768px) {
         font-size: 87.5%;
         height: 56px;
         margin-bottom: 24px;
+        font-weight: 500;
         padding: 0 8px;
         border-radius: 8px;
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        height: 60px;
+        padding: 0 10px;
+        font-size: 93.75%;
+        font-weight: 500;
+        border-radius: 10px;
+        margin-bottom: 28px;
     }
 `;
 
@@ -68,20 +84,27 @@ export const HeaderContent = styled.div`
 export const ButtonHeader = styled.button`
     width: 88px;
     height: 100%;
-    font-weight: 600;
+    font-weight: 500;
     border: 1px solid #dee2e6;
 
     @media (max-width: 576px) {
         font-size: 81.25%;
+        font-weight: 500;
     }
 
     @media (min-width: 576.1px) {
         font-size: 87.5%;
+        font-weight: 500;
     }
-
 
     @media (min-width: 768px) {
         font-size: 87.5%;
+        font-weight: 500;
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        font-size: 93.75%;
+        font-weight: 500;
     }
 `;
 
@@ -131,9 +154,10 @@ export const LegendCalls = styled.div`
 
     @media (max-width: 576px) {
         font-size: 75%;
-        font-weight: 600;
+        font-weight: 500;
         width: 85%;
         height: 32px;
+        margin-bottom: 12px;
 
         div:first-child {
             width: 16%;
@@ -150,7 +174,7 @@ export const LegendCalls = styled.div`
 
     @media (min-width: 576.1px) {
         font-size: 81.25%;
-        font-weight: 600;
+        font-weight: 500;
         height: 36px;
         margin-bottom: 16px;
 
@@ -166,6 +190,32 @@ export const LegendCalls = styled.div`
             width: 24%;
         }
     }
+
+    @media (min-width: 768px) {
+        font-size: 87.5%;
+        font-weight: 500;
+        height: 44px;
+        margin-bottom: 18px;
+
+        div:first-child {
+            width: 10%;
+        }
+
+        div:nth-child(2) {
+            width: 70%;
+        }
+
+        div:nth-child(3) {
+            width: 20%;
+        }
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        font-size: 93.75%;
+        font-weight: 500;
+        height: 44px;
+        margin-bottom: 20px;
+    }
 `;
 
 export const CallItem = styled.div`
@@ -177,23 +227,31 @@ export const CallItem = styled.div`
     align-items: center; 
     margin-bottom: 16px;
     border: 1px solid #eee;
-    font-weight: 500;
+    font-weight: 400;
 
     @media (max-width: 576px) {
         font-size: 81.25%;
         width: 85%;
         height: 32px;
-        margin-bottom: 8px;
+        margin-bottom: 4px;
     }
 
     @media (min-width: 576.1px) {
         font-size: 87.5%;
         height: 40px;
-        margin-bottom: 12px;
+        margin-bottom: 6px;
     }
 
     @media (min-width: 768px) {
         font-size: 87.5%;
+        height: 44px;
+        margin-bottom: 8px;
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        font-size: 87.5%;
+        height: 44px;
+        margin-bottom: 10px;
     }
 `;
 
@@ -214,7 +272,7 @@ export const CallCod = styled.div`
     }
 
     @media (min-width: 768px) {
-        
+        width: 10%;
     }
 `;
 
@@ -233,6 +291,10 @@ export const CallType = styled.div`
     @media (min-width: 576.1px) {
         width: 60%;
     }
+
+    @media (min-width: 768px) {
+        width: 70%;
+    }
 `;
 
 export const CallStatus = styled.div`
@@ -249,6 +311,10 @@ export const CallStatus = styled.div`
     @media (min-width: 576.1px) {
         width: 24%;
     }
+
+    @media (min-width: 768px) {
+        width: 20%;
+    }
 `;
 
 export const CallEditButton = styled.button`
@@ -256,7 +322,8 @@ export const CallEditButton = styled.button`
     height: 30px;
     border-radius: 50%;
     border: 1px solid #eee;
-    margin-right: -50px;
+    margin-right: -50%;
+    margin-left: 10px;
 
     display: flex;
     align-items: center;
@@ -269,11 +336,19 @@ export const CallEditButton = styled.button`
     @media (max-width: 576px) {
         width: 24px;
         height: 24px;
+        margin-left: 4px;
     }
 
     @media (min-width: 576.1px) {
         width: 28px;
         height: 28px;
+        margin-left: 6px;
+    }
+
+    @media (min-width: 768px) and (max-width: 991.9) {
+        width: 28px;
+        height: 28px;
+        margin-left: 8px;
     }
 `;
 
