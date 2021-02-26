@@ -1,4 +1,4 @@
-.container{
+.container-adm{
     height: 100%;
     display: flex;
     align-items: center;
@@ -7,16 +7,14 @@
     background: #fff;
 }
 
-.title-cadastro{
-    font-size: 30px;
-    margin-bottom: 20px;
-    padding: 32px 24px;
+.formik-adm{
+
 }
 
-Form.form{
+.form-adm{
     margin-top: 50px;
     width: 400px;
-    height: auto; 
+    height: 600px; 
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -26,16 +24,7 @@ Form.form{
     border: 1px solid #BBBBBB;
 }
 
-.inputdiv{
-    width: 100%;
-    font-size: 17px;
-}
-
-.label{
-
-}
-
-.input{
+.input-adm{
     width: 100%;
     height: 30px;
     margin-bottom: 24px;
@@ -45,18 +34,18 @@ Form.form{
     border-bottom: 1px solid #807F7F;
 }
 
-.imagem{
-    width: 80px;
-    height: 80px;
-    transform: translate(0%, 30%);
+.title-adm{
+    font-size: 30px;
+    margin-bottom: 20px;
+    padding: 32px 24px;
 }
 
-.Form-erro{
-    color: red;
-    transform: translate(2px, -20px);
+.div-adm{
+    width: 100%;
+    font-size: 17px;
 }
 
-.Submit{
+.button-adm{
     width: 50%;
     height: 30px;
     border-radius: 10px;
@@ -66,4 +55,15 @@ Form.form{
     justify-content: center;
     margin-bottom: 24px;
     background-color: #adb5bd;
+}
+
+.img-adm{
+     width: 80px;
+    height: 80px;
+    transform: translate(0%, 50%);
+}
+
+.Form-erro-adm{
+    color: red;
+    transform: translate(2px, -20px);
 }
