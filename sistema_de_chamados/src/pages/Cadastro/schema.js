@@ -5,8 +5,8 @@ export default Yup.object().shape({
     email: Yup.string().email('*E-mail inválido').required('*campo vazio'),
     nome: Yup.string().min(0, '*Digite seu nome completo').required('*O campo está vazio'),
     cpf: Yup.string().matches(/^\d{3}\d{3}\d{3}\d{2}$/,  '*Digite só números').required('*Digite seu CPF por favor!'),
-    rg: Yup.string().matches(/^\d{2}\d{3}\d{3}\d{1}$/, '*Digite só números').required('Digite seu RG por favor!'),
+    rg: Yup.string().matches(/^\d{2}\d{3}\d{3}\d{1}$/, '*Digite só números').required('*Digite seu RG por favor!'),
     cep: Yup.string().matches(/^\d{5}\d{3}$/, '*Digite só números').required('*Digite seu cep por favor!'),
     endereco: Yup.string().required('*Digite seu endereço por favor!'),
-    cargo: Yup.string().required('*Coque seu cargo por favor!'),
+    cargo: Yup.string().required('*Digit seu cargo por favor!'),
 });

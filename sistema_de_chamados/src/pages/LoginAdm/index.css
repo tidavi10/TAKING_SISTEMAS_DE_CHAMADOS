@@ -5,6 +5,19 @@
     justify-content: center;
     flex-direction: column;
     background: #fff;
+
+    @media (max-width: 600px) {
+        display: flex;
+        justify-content: center;  
+    }
+    
+    @media (min-width: 700px){
+
+}
+
+    @media (min-width: 1100px){
+
+}
 }
 
 .formik-adm{
@@ -22,6 +35,12 @@
     border-radius: 10px;
     padding: 32px 24px;
     border: 1px solid #BBBBBB;
+
+    @media (max-width: 600px) {
+        width: 100%;
+        heigth: 100%;
+        align-items: center;
+    }
 }
 
 .input-adm{

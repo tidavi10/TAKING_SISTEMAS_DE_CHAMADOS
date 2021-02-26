@@ -18,6 +18,7 @@ export default function Login() {
         history.push('/cadastro')
     }
 
+<<<<<<< HEAD
     const gotoChamados = () => {
         history.push('/chamados')
     }
@@ -32,6 +33,8 @@ export default function Login() {
         }, 3000);
     ;}
 
+=======
+>>>>>>> b0dad80923c20c737ac438ae970a63147749005b
     return (
     <>
         <div className="container-login">
