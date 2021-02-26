@@ -9,10 +9,9 @@ export default createGlobalStyle`
   }
   body {
     background: #fcfcfc;
-    padding: 0 24px;
     color: #000;
     -webkit-font-smoothing: antialiased;
-    padding: 0 24px;
+    /* padding: 0 24px; */
   }
   body, input, button {
     font-family: Arial, Helvetica, sans-serif;

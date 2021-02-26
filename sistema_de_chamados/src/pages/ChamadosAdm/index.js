@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { FiEdit } from 'react-icons/fi'
+import { FiEdit } from 'react-icons/fi';
 
 import {
     Container,
@@ -41,21 +41,21 @@ export default function ChamadosAdm() {
 
             <CallsBox>
                 <LegendCalls>
-                    <span>Cod.</span>
-                    <span>Tipo</span>
-                    <span>Status</span>
+                    <div>Cod.</div>
+                    <div>Tipo</div>
+                    <div>Status</div>
                     <InvisibleElement></InvisibleElement>
                 </LegendCalls>
 
                 <CallItem>
                     <CallCod>
-                        <span>55</span>
+                        <div>55</div>
                     </CallCod>
                     <CallType>
-                        <span>Criação de e-mail</span>
+                        <div>Criação de e-mail</div>
                     </CallType>
                     <CallStatus>
-                        <span>Pendente</span>
+                        <div>Pendente</div>
                     </CallStatus>
                     <CallEditButton onClick={goToEditCall}>
                         <FiEdit />

@@ -5,10 +5,11 @@ import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
 import TelaChamados from './pages/TelaChamados';
 import ChamadosAdm from './pages/ChamadosAdm';
-import ConsultaChamados from './pages/ConsultaChamados'
-import EdicaoChamadosAdm from './pages/EdicaoChamadosAdm'
-import LoginAdm from '../src/pages/LoginAdm'
-import MenuAdm from '../src/pages/MenuAdm'
+import ConsultaChamados from './pages/ConsultaChamados';
+import EdicaoChamadosAdm from './pages/EdicaoChamadosAdm';
+import LoginAdm from '../src/pages/LoginAdm';
+import MenuAdm from '../src/pages/MenuAdm';
+import Teste from '../src/pages/Teste';
 
 export default function Routes() {
     return (
@@ -21,7 +22,7 @@ export default function Routes() {
                 <Route path='/consulta-chamados' component={ConsultaChamados}/>
                 <Route path='/edicao-chamados-adm' component={EdicaoChamadosAdm}/>
                 <Route path='/login-adm' component={LoginAdm}/>
-                <Route path= '/menu-adm' component={MenuAdm}/>
+                <Route path= '/menu-adm' component={Teste}/>
             </Switch>
         </BrowserRouter>
     )

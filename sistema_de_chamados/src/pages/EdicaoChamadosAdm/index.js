@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import {
@@ -23,7 +23,6 @@ import {
 
 export default function EdicaoChamadosAdm() {
     const history = useHistory();
-
     const goToChamadosAdm = () => {
         history.push('/chamados-adm')
     }
