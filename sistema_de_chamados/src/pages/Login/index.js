@@ -18,10 +18,6 @@ export default function Login() {
         history.push('/cadastro')
     }
 
-    const gotoChamados = () => {
-        history.push('/chamados')
-    }
-
     return (
     <>
         <div className="container-login">
