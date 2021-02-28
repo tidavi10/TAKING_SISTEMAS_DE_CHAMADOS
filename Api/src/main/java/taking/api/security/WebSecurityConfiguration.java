@@ -95,7 +95,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter imple
 package taking.api.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -106,6 +108,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -113,10 +116,18 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import taking.api.config.JwtAuthenticationEntryPoint;
 import taking.api.controller.Filter.JwtRequestFilter;
+import taking.api.oauth2.CustomAuthenticationSuccessHandler;
 
+@Configuration
 @EnableWebSecurity
-public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter implements ApplicationContextAware {
 
+	@Autowired
+	private OidcUserService oidcUserService;
+
+	@Autowired
+	private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+	
 	@Autowired
 	private JwtRequestFilter jwtRequestFilter;
 
@@ -133,15 +144,43 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 		this.userDetailsService = userDetailsService;
 	}
+	
+	@Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.cors().and().csrf().disable().authorizeRequests()
+        		.antMatchers(AUTH_WHITELIST).permitAll()
+                .antMatchers(HttpMethod.POST, "/usuarios/cadastro", "/authenticate", "/usuariosadm/cadastro")
+                .permitAll().anyRequest().authenticated()
+                .and()
+                .oauth2Login()
+                .redirectionEndpoint()
+                .baseUri("/oauth2/callback/*")
+                .and()
+                .userInfoEndpoint()
+                .oidcUserService(oidcUserService)
+                .and()
+                .authorizationEndpoint()
+                .baseUri("/oauth2/authorize")
+                .and()
+                .successHandler(customAuthenticationSuccessHandler);
 
+        httpSecurity
+                .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
+    }
+	
+	
+	/**
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 		httpSecurity.cors().and().csrf().disable().authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll()
 				.antMatchers(HttpMethod.POST, "/usuarios/cadastro", "/authenticate", "/usuariosadm/cadastro").permitAll().anyRequest()
 				.authenticated().and()
 				.oauth2Login();
+				//.and()
+				//.successHandler(customAuthenticationSuccessHandler);
 		
 		httpSecurity.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-	}
+	}**/
 
 	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 		authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
