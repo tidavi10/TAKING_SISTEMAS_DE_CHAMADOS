@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    // Extra large devices (large desktops, 1200px and up)
-    /* @media (min-width: 1200px) {} */
     padding: 24px;
 
     @media (max-width: 576px) {
