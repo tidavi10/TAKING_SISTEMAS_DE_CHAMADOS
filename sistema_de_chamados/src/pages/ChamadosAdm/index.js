@@ -30,32 +30,32 @@ export default function ChamadosAdm() {
             <Header>
                 <HeaderContent>
                     <ButtonHeader>
-                        <span>Chamados</span>
+                        <p>Chamados</p>
                     </ButtonHeader>
                     <ButtonHeader>
-                        <span>Meus dados</span>
+                        <p>Meus dados</p>
                     </ButtonHeader>
                 </HeaderContent>
-                <span>Usuário Logado</span>
+                <p>Usuário Logado</p>
             </Header>
 
             <CallsBox>
                 <LegendCalls>
-                    <div>Cod.</div>
-                    <div>Tipo</div>
-                    <div>Status</div>
+                    <p>Cod.</p>
+                    <p>Tipo</p>
+                    <p>Status</p>
                     <InvisibleElement></InvisibleElement>
                 </LegendCalls>
 
                 <CallItem>
                     <CallCod>
-                        <div>55</div>
+                        <p>55</p>
                     </CallCod>
                     <CallType>
-                        <div>Criação de e-mail</div>
+                        <p>Criação de e-mail</p>
                     </CallType>
                     <CallStatus>
-                        <div>Pendente</div>
+                        <p>Pendente</p>
                     </CallStatus>
                     <CallEditButton onClick={goToEditCall}>
                         <FiEdit />
@@ -64,13 +64,13 @@ export default function ChamadosAdm() {
 
                 <CallItem>
                     <CallCod>
-                        <span>55</span>
+                        <p>55</p>
                     </CallCod>
                     <CallType>
-                        <span>Criação de e-mail</span>
+                        <p>Criação de e-mail</p>
                     </CallType>
                     <CallStatus>
-                        <span>Pendente</span>
+                        <p>Pendente</p>
                     </CallStatus>
                     <CallEditButton onClick={goToEditCall}>
                         <FiEdit />
@@ -79,13 +79,13 @@ export default function ChamadosAdm() {
 
                 <CallItem>
                     <CallCod>
-                        <span>55</span>
+                        <p>55</p>
                     </CallCod>
                     <CallType>
-                        <span>Criação de e-mail</span>
+                        <p>Criação de e-mail</p>
                     </CallType>
                     <CallStatus>
-                        <span>Pendente</span>
+                        <p>Pendente</p>
                     </CallStatus>
                     <CallEditButton onClick={goToEditCall}>
                         <FiEdit />
@@ -94,13 +94,13 @@ export default function ChamadosAdm() {
 
                 <CallItem>
                     <CallCod>
-                        <span>55</span>
+                        <p>55</p>
                     </CallCod>
                     <CallType>
-                        <span>Criação de e-mail</span>
+                        <p>Criação de e-mail</p>
                     </CallType>
                     <CallStatus>
-                        <span>Pendente</span>
+                        <p>Pendente</p>
                     </CallStatus>
                     <CallEditButton onClick={goToEditCall}>
                         <FiEdit />
@@ -109,13 +109,13 @@ export default function ChamadosAdm() {
 
                 <CallItem>
                     <CallCod>
-                        <span>55</span>
+                        <p>55</p>
                     </CallCod>
                     <CallType>
-                        <span>Criação de e-mail</span>
+                        <p>Criação de e-mail</p>
                     </CallType>
                     <CallStatus>
-                        <span>Pendente</span>
+                        <p>Pendente</p>
                     </CallStatus>
                     <CallEditButton onClick={goToEditCall}>
                         <FiEdit />

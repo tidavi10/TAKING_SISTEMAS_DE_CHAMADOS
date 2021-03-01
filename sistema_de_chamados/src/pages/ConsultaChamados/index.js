@@ -43,6 +43,11 @@ export default function ChamadosAdm() {
     setState({ activePage: pageNumber });
   }
 
+  function logout() {
+    localStorage.clear();
+    window.location.href= '/';
+  }
+
   return (
     <Router>
       <Container>
@@ -51,7 +56,7 @@ export default function ChamadosAdm() {
             <ButtonHeader type="submit" onClick={goToChamados}>
               <span>Abrir novo chamado</span>
             </ButtonHeader>
-            <ButtonExit>
+            <ButtonExit type="submit" onClick={logout}>
               <span>Sair</span>
             </ButtonExit>
           </HeaderContent>

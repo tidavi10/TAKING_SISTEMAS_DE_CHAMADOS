@@ -1,10 +1,26 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    padding: 24px 0;
+    padding: 24px;
     display: flex;
     align-items: center;
     flex-direction: column;
+
+    @media (max-width: 576px) {
+        padding: 12px;
+    }
+
+    @media (min-width: 576.1px) {
+        padding: 16px;
+    }
+
+    @media (min-width: 768px) {
+        padding: 20px;
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        padding: 24px;
+    }
 `;
 
 export const Header = styled.div`
@@ -13,15 +29,66 @@ export const Header = styled.div`
     height: 64px;
     border-radius: 10px;
     padding: 0 10px;
-
+    font-weight: 500;
     margin-bottom: 32px;
-
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    > span {
+    > p {
         margin-right: 24px;
+    }
+
+    @media (max-width: 576px) {
+        height: 36px;
+        border-radius: 6px;
+        padding: 0 6px;
+        margin-bottom: 16px;
+
+        > p {
+            margin-right: 6px;
+            font-size: 75%;
+            font-weight: 500;
+        }
+    }
+
+    @media (min-width: 576.1px) {
+        height: 48px;
+        border-radius: 6px;
+        padding: 0 6px;
+        margin-bottom: 20px;
+
+        > p {
+            margin-right: 6px;
+            font-size: 81.25%;
+            font-weight: 500;
+        }
+    }
+
+    @media (min-width: 768px) {
+        height: 56px;
+        border-radius: 8px;
+        padding: 0 8px;
+        margin-bottom: 24px;
+
+        > p {
+            margin-right: 6px;
+            font-size: 87.5%;
+            font-weight: 500;
+        }
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        height: 60px;
+        border-radius: 10px;
+        padding: 0 10px;
+        margin-bottom: 28px;
+
+        > p {
+            margin-right: 6px;
+            font-size: 93.75%;
+            font-weight: 500;
+        }
     }
 `;
 
@@ -33,15 +100,30 @@ export const HeaderContent = styled.div`
 `;
 
 export const ButtonHeader = styled.button`
-    width: 96px;
+    width: 88px;
     height: 100%;
+    font-weight: 500;
     border: 1px solid #dee2e6;
-    background: #eee;
-    margin-right: 4px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @media (max-width: 576px) {
+        font-size: 81.25%;
+        font-weight: 500;
+    }
+
+    @media (min-width: 576.1px) {
+        font-size: 81.25%;
+        font-weight: 500;
+    }
+
+    @media (min-width: 768px) {
+        font-size: 87.5%;
+        font-weight: 500;
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        font-size: 93.75%;
+        font-weight: 500;
+    }
 `;
 
 export const CallsBox = styled.div`
@@ -56,14 +138,13 @@ export const LegendCalls = styled.div`
     width: 90%;
     height: 48px;
     background: #dee2e6;
-    border-radius:10px;
+    border-radius: 10px;
     display: flex;
-    justify-content: space-between;
     align-items: center; 
     margin-bottom: 16px;
     border: 1px solid #eee;
     
-    span:first-child {
+    p:first-child {
         width: 10%;
         height: 100%;
         border-right: 1px solid #eee;
@@ -72,7 +153,7 @@ export const LegendCalls = styled.div`
         justify-content: center;
     }
 
-    span:nth-child(2) {
+    p:nth-child(2) {
         width: 70%;
         height: 100%;
         border-right: 1px solid #eee;
@@ -81,12 +162,78 @@ export const LegendCalls = styled.div`
         justify-content: center;
     }
 
-    span:nth-child(3) {
+    p:nth-child(3) {
         width: 20%;
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+
+    @media (max-width: 576px) {
+        font-size: 75%;
+        font-weight: 500;
+        width: 85%;
+        height: 32px;
+        margin-bottom: 12px;
+        border-radius: 6px;
+
+        p:first-child {
+            width: 16%;
+        }
+
+        p:nth-child(2) {
+            width: 60%;
+        }
+
+        p:nth-child(3) {
+            width: 24%;
+        }
+    }
+
+    @media (min-width: 576.1px) {
+        font-size: 81.25%;
+        font-weight: 500;
+        height: 40px;
+        margin-bottom: 14px;
+
+        p:first-child {
+            width: 16%;
+        }
+
+        p:nth-child(2) {
+            width: 60%;
+        }
+
+        p:nth-child(3) {
+            width: 24%;
+        }
+    }
+
+    @media (min-width: 768px) {
+        font-size: 87.5%;
+        font-weight: 500;
+        height: 44px;
+        margin-bottom: 16px;
+
+        p:first-child {
+            width: 10%;
+        }
+
+        p:nth-child(2) {
+            width: 70%;
+        }
+
+        p:nth-child(3) {
+            width: 20%;
+        }
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        font-size: 93.75%;
+        font-weight: 500;
+        height: 44px;
+        margin-bottom: 18px;
     }
 `;
 
@@ -98,8 +245,29 @@ export const CallItem = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center; 
-    margin-bottom: 16px;
     border: 1px solid #eee;
+
+    @media (max-width: 576px) {
+        font-size: 75%;
+        width: 85%;
+        height: 32px;
+        border-radius: 6px;
+    }
+
+    @media (min-width: 576.1px) {
+        font-size: 81.25%;
+        height: 40px;
+    }
+
+    @media (min-width: 768px) {
+        font-size: 87.5%;
+        height: 44px;
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        font-size: 93.75%;
+        height: 44px;
+    }
 `;
 
 export const CallCod = styled.div`
@@ -109,6 +277,18 @@ export const CallCod = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 576px) {
+        width: 16%;
+    }
+
+    @media (min-width: 576.1px) {
+        width: 16%;
+    }
+
+    @media (min-width: 768px) {
+        width: 10%;
+    }
 `;
 
 export const CallType = styled.div`
@@ -118,6 +298,18 @@ export const CallType = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 576px) {
+        width: 60%;
+    }
+
+    @media (min-width: 576.1px) {
+        width: 60%;
+    }
+
+    @media (min-width: 768px) {
+        width: 70%;
+    }
 `;
 
 export const CallStatus = styled.div`
@@ -126,35 +318,82 @@ export const CallStatus = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-`;
 
-export const CallEditButton = styled.button`
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 1px solid #eee;
-    margin-right: -50px;
+    @media (max-width: 576px) {
+        width: 24%;
+    }
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @media (min-width: 576.1px) {
+        width: 24%;
+    }
 
-    svg {
-        color: #666;
+    @media (min-width: 768px) {
+        width: 20%;
     }
 `;
 
 export const EditionArea = styled.div`
     width: 90%;
     height: 40vh;
-    padding: 0 24px;
+    padding: 0 16px;
     display: flex;
     justify-content: space-between;
+
+    @media (max-width: 576px) {
+        font-size: 75%;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    @media (min-width: 576.1px) {
+        font-size: 81.25%;
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;  
+    }
+
+    @media (min-width: 768px) {
+        font-size: 87.5%;
+        height: 54vh;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        font-size: 93.75%;
+    }
 `;
 
 export const InputArea = styled.div`
     width: 42%;
     height: 72%;
+
+    @media (max-width: 576px) {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    @media (min-width: 576.1px) {
+        width: 100%;
+        height: 50%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    @media (min-width: 768px) {
+        width: 40%;
+        height: 72%;
+    }
 `;
 
 export const EditionStatus = styled.div`
@@ -175,6 +414,57 @@ export const EditionStatus = styled.div`
         border-radius: 4px;
         height: 24px;
     }
+
+    @media (max-width: 576px) {
+        width: 100%;
+        margin-bottom: 12px;
+        
+        label {
+            margin-bottom: 6px;
+        }
+    }
+
+    @media (min-width: 576.1px) {
+        width: 100%;
+        margin-bottom: 12px;
+        
+        label {
+            margin-bottom: 6px;
+        }    
+    }
+
+    @media (min-width: 768px) {
+        width: 100%;
+        height: 24%;
+        padding: 0;
+
+        label {
+            margin-bottom: 8px;
+        }
+
+        select {
+            border: 1px solid #eee;
+            background: #fff;
+            border-radius: 4px;
+            height: 24px;
+            font-size: 87.5%;
+        }
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        width: 100%;
+        height: 24%;
+        padding: 0;
+
+        label {
+            margin-bottom: 6px;
+        }
+
+        select {
+            font-size: 93.75%;
+            height: 24px;
+        }
+    }
 `;
 
 export const EditionRunTime = styled.div`
@@ -189,6 +479,26 @@ export const EditionRunTime = styled.div`
         padding: 0 4px;
         border-radius: 4px;
         background: #fff;
+    }
+
+    @media (max-width: 576px) {
+        width: 100%;
+        
+        div {
+            width: 100%;
+            padding: 3px 4px;
+            margin-top: 6px;
+        }
+    }
+
+    @media (min-width: 576.1px) {
+        width: 100%;
+        
+        div {
+            width: 100%;
+            padding: 3px 4px;
+            margin-top: 6px;
+        }
     }
 `;
 
@@ -213,14 +523,70 @@ export const DescriptionArea = styled.div`
         border-radius: 4px;
         background: #fff;   
     }
+
+    @media (max-width: 576px) {
+        width: 100%;
+        padding: 0;
+
+        label {
+            margin-bottom: 0;
+        }
+    }
+
+    @media (min-width: 576.1px) {
+        width: 100%;
+        padding: 0;
+
+        label {
+            margin-bottom: 0;
+        }
+    }
+
+    @media (min-width: 768px) {
+        width: 54%;
+    }
 `;
 
 export const ButtonArea = styled.div`
     width: 90%;
     height: 40px;
+    padding: 0 16px;
     display: flex;
     align-items: center;
+    flex-direction: row;
     justify-content: space-between;
+
+    @media (max-width: 576px) {
+        width: 100%;
+        height: auto;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    @media (min-width: 576.1px) {
+        width: 100%;
+        height: auto;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    @media (min-width: 768px) {
+        width: 90%;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        width: 90%;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+    }
 `;
 
 export const SubmitButton = styled.button`
@@ -229,9 +595,55 @@ export const SubmitButton = styled.button`
     border-radius: 4px;
     background: #eee;
     border: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    span {
-        font-weight: bold;
+    p {
+        font-size: 87.5%;
+        font-weight: 500;
         color: #333;
+    }
+
+    @media (max-width: 576px) {
+        width: 90%;
+        height: 32px;
+
+        & + button {
+            margin-top: 8px;
+        }
+    }
+
+    @media (min-width: 576.1px) {
+        width: 90%;
+        height: 32px;
+
+        & + button {
+            margin-top: 8px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        width: 48%;
+        height: 100%;
+        border-radius: 4px;
+        background: #eee;
+        border: 1px solid #dee2e6;
+        
+        & + button {
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 87.5%;
+            font-weight: 500;
+            color: #333;
+        }
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        > p {
+            font-size: 93.75%;
+        }   
     }
 `;

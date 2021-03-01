@@ -75,6 +75,12 @@ export const ButtonHeader = styled.button`
     align-items: center;
     justify-content: center;
 
+    transition: background-color 0.2s;
+
+    :hover {
+        background: #ced4da;
+    }
+
     @media (max-width: 576px) {
         font-size: 14px;
         width: 60%;
@@ -89,7 +95,7 @@ export const ButtonHeader = styled.button`
     }
 `;
 
-export const ButtonExit = styled.div`
+export const ButtonExit = styled.button`
     width: 20%;
     height: 90%;
     border: 2px solid #dee2e6;
@@ -99,6 +105,12 @@ export const ButtonExit = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    transition: background-color 0.2s;
+
+    :hover {
+        background: #ced4da;
+    }
 
     @media (max-width: 576px) {
         font-size: 14px;

@@ -32,31 +32,31 @@ export default function EdicaoChamadosAdm() {
             <Header>
                 <HeaderContent>
                     <ButtonHeader onClick={goToChamadosAdm}>
-                        <span>Chamados</span>
+                        <p>Chamados</p>
                     </ButtonHeader>
                     <ButtonHeader>
-                        <span>Meus dados</span>
+                        <p>Meus dados</p>
                     </ButtonHeader>
                 </HeaderContent>
-                <span>Usuário Logado</span>
+                <p>Usuário Logado</p>
             </Header>
 
             <CallsBox>
                 <LegendCalls>
-                    <span>Cod.</span>
-                    <span>Tipo</span>
-                    <span>Status</span>
+                    <p>Cod.</p>
+                    <p>Tipo</p>
+                    <p>Status</p>
                 </LegendCalls>
 
                 <CallItem>
                     <CallCod>
-                        <span>55</span>
+                        <p>55</p>
                     </CallCod>
                     <CallType>
-                        <span>Criação de e-mail</span>
+                        <p>Criação de e-mail</p>
                     </CallType>
                     <CallStatus>
-                        <span>Pendente</span>
+                        <p>Pendente</p>
                     </CallStatus>
                 </CallItem>
             </CallsBox>
@@ -64,7 +64,7 @@ export default function EdicaoChamadosAdm() {
             <EditionArea>
                 <InputArea>
                     <EditionStatus>
-                        <label for="status">Status:</label>
+                        <label htmlFor="status">Status:</label>
                         <select name="status" id="status">
                             <option value="Aberto">Aberto</option>
                             <option value="Pendente">Pendente</option>
@@ -76,7 +76,7 @@ export default function EdicaoChamadosAdm() {
                     <EditionRunTime>
                         <label>Tempo gasto na execução:</label>
                         <div>
-                            <span>2 horas e 37 minutos</span>
+                            <p>2 horas e 37 minutos</p>
                         </div>
                     </EditionRunTime>
                 </InputArea>
@@ -88,11 +88,12 @@ export default function EdicaoChamadosAdm() {
 
             <ButtonArea>
                 <SubmitButton>
-                    <span>Cancelar</span>
+                    <p>Cancelar</p>
                 </SubmitButton>
                 <SubmitButton>
-                <span>Atualizar</span>
+                    <p>Atualizar</p>
                 </SubmitButton>
+                
             </ButtonArea>
         </Container>
     )
