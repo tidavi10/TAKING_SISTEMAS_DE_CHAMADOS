@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { darken } from 'polished';
 
 export const Container = styled.div`
     padding: 24px;
@@ -101,6 +102,13 @@ export const ButtonHeader = styled.button`
     height: 100%;
     font-weight: 500;
     border: 1px solid #dee2e6;
+    transition: background 0.2s;
+    transition: border 0.2s;
+
+    &:hover {
+        background: #dee2e6;
+        border: 3px solid #efefef;
+    }
 
     @media (max-width: 576px) {
         font-size: 81.25%;
@@ -340,6 +348,13 @@ export const CallEditButton = styled.button`
     border: 1px solid #eee;
     margin-right: -50%;
     margin-left: 10px;
+    transition: background 0.2s;
+    transition: border 0.2s;
+
+    &:hover {
+        background: ${darken(0.02, '#dee2e6')};
+        border: 2px solid #efefef;
+    }
 
     display: flex;
     align-items: center;

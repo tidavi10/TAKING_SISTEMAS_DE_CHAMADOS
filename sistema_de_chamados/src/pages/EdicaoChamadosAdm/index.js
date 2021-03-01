@@ -18,6 +18,7 @@ import {
     EditionRunTime,
     DescriptionArea,
     ButtonArea,
+    CancelButton,
     SubmitButton
 } from './style';
 
@@ -87,13 +88,14 @@ export default function EdicaoChamadosAdm() {
             </EditionArea>
 
             <ButtonArea>
-                <SubmitButton>
-                    <p>Cancelar</p>
-                </SubmitButton>
-                <SubmitButton>
-                    <p>Atualizar</p>
-                </SubmitButton>
-                
+                <>
+                    <CancelButton>
+                        <p>Cancelar</p>
+                    </CancelButton>
+                    <SubmitButton>
+                        <p>Atualizar</p>
+                    </SubmitButton>
+                </>
             </ButtonArea>
         </Container>
     )

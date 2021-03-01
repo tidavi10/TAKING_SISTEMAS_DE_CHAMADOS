@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { darken } from 'polished';
 
 export const Container = styled.div`
     padding: 24px;
@@ -104,6 +105,13 @@ export const ButtonHeader = styled.button`
     height: 100%;
     font-weight: 500;
     border: 1px solid #dee2e6;
+    transition: background 0.2s;
+    transition: border 0.2s;
+
+    &:hover {
+        background: #dee2e6;
+        border: 3px solid #efefef;
+    }
 
     @media (max-width: 576px) {
         font-size: 81.25%;
@@ -593,11 +601,16 @@ export const SubmitButton = styled.button`
     width: 40%;
     height: 100%;
     border-radius: 4px;
-    background: #eee;
+    background: #4cd62b;
     border: 1px solid #dee2e6;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background 0.2s;
+    
+    &:hover {
+        background: ${darken(0.04, '#4cd62b')};
+    }
 
     p {
         font-size: 87.5%;
@@ -627,8 +640,67 @@ export const SubmitButton = styled.button`
         width: 48%;
         height: 100%;
         border-radius: 4px;
-        background: #eee;
-        border: 1px solid #dee2e6;
+        
+        & + button {
+            margin-top: 0;
+        }
+
+        p {
+            font-size: 87.5%;
+            font-weight: 500;
+            color: #333;
+        }
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        > p {
+            font-size: 93.75%;
+        }   
+    }
+`;
+
+export const CancelButton = styled.button`
+    width: 40%;
+    height: 100%;
+    border-radius: 4px;
+    background: #F0440A;
+    border: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    
+    &:hover {
+        background: ${darken(0.02, '#F0440A')};
+    }
+
+    p {
+        font-size: 87.5%;
+        font-weight: 500;
+        color: #333;
+    }
+
+    @media (max-width: 576px) {
+        width: 90%;
+        height: 32px;
+
+        & + button {
+            margin-top: 8px;
+        }
+    }
+
+    @media (min-width: 576.1px) {
+        width: 90%;
+        height: 32px;
+
+        & + button {
+            margin-top: 8px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        width: 48%;
+        height: 100%;
         
         & + button {
             margin-top: 0;
