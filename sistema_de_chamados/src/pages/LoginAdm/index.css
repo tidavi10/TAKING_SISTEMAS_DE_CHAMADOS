@@ -5,20 +5,26 @@
     justify-content: center;
     flex-direction: column;
     background: #fff;
-
+}
     @media (max-width: 600px) {
-        display: flex;
-        justify-content: center;  
+        .container-adm{
+            display: flex;
+            justify-content: center;
+        }  
     }
     
     @media (min-width: 700px){
+        .container-adm{
 
+        }
 }
 
     @media (min-width: 1100px){
+        .container-adm{
 
+        }
 }
-}
+
 
 .formik-adm{
 
@@ -35,13 +41,15 @@
     border-radius: 10px;
     padding: 32px 24px;
     border: 1px solid #BBBBBB;
-
-    @media (max-width: 600px) {
-        width: 100%;
-        heigth: 100%;
-        align-items: center;
-    }
 }
+    @media (max-width: 600px) {
+        .form-adm{
+            width: 100%;
+            height: 100%;
+            align-items: center;
+        }
+    }
+
 
 .input-adm{
     width: 100%;
@@ -82,6 +90,13 @@
     height: 80px;
     transform: translate(0%, 50%);
 }
+
+ @media (max-width: 576px) {
+        .img-adm{
+            width: 60px;
+            height: 60px;
+        }
+    }
 
 .Form-erro-adm{
     color: red;

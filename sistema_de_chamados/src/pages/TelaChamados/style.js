@@ -76,6 +76,11 @@ export const Button = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.2s;
+
+    :hover {
+        background: #ced4da;
+    }
 
     @media (max-width: 576px) {
         font-size: 14px;
@@ -91,7 +96,7 @@ export const Button = styled.button`
     }
 `;
 
-export const ButtonExit = styled.div`
+export const ButtonExit = styled.button`
     width: 20%;
     height: 90%;
     border: 2px solid #dee2e6;
@@ -101,6 +106,11 @@ export const ButtonExit = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.2s;
+
+    :hover {
+        background: #ced4da;
+    }
 
     @media (max-width: 576px) {
         font-size: 14px;
@@ -302,7 +312,7 @@ export const EditionDescription = styled.div`
     
     textarea:focus {
         outline: none !important;
-        border:1px solid blue;
+        border:1px solid #58a4b0;
         box-shadow: 0 0 5px #719ECE;
     }
 
@@ -338,7 +348,7 @@ export const Footer = styled.div`
     justify-content: space-between;
 `;
 
-export const ButtonFinish = styled.div`
+export const ButtonFinish = styled.button`
     width: 200px;
     height: 40px;
     font-size: 18px;
@@ -349,6 +359,12 @@ export const ButtonFinish = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 30px;
+
+    transition: background-color 0.2s;
+
+    :hover {
+        background: #ced4da;
+    }
 
     @media (max-width: 576px) {
         margin: auto;

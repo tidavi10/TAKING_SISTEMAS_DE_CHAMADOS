@@ -44,6 +44,16 @@ export default function TelaChamados() {
     const gotoConsultaChamados = () => {
         history.push('/consulta-chamados')
     }
+
+    function logout() {
+        localStorage.clear();
+        window.location.href= '/'
+    }
+
+    function alertFinish() {
+        alert("Chamado cadastrado com sucesso!");
+      }
+
     return (
         <Router>
             <Container>
@@ -52,7 +62,7 @@ export default function TelaChamados() {
                         <Button type="submit" onClick={gotoConsultaChamados}>
                             <span>Consultar chamado</span>
                         </Button>
-                        <ButtonExit>
+                        <ButtonExit type="submit" onClick={logout}>
                             <span>Sair</span>
                         </ButtonExit>
                     </HeaderContent>
@@ -84,7 +94,7 @@ export default function TelaChamados() {
                     </EditionText>
                 </EditionArea>
                 <Footer>
-                    <ButtonFinish>
+                    <ButtonFinish type="submit" onClick={alertFinish}>
                         Abrir chamado
                     </ButtonFinish>
                 </Footer>
