@@ -25,6 +25,8 @@ public interface ChamadosRepository extends JpaRepository<Chamados, Long> {
 	
 	Optional<Chamados> findById(Long id);
 	
+	boolean existsById(Long userId);
+	
 	Page<Chamados> findByAdm(Optional<UsuariosAdm> optional, Pageable pageable);
 	
 	Page<Chamados> findByUsuario(Optional<Usuarios> optional, Pageable pageable);

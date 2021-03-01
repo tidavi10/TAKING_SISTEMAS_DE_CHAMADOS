@@ -3,6 +3,8 @@ package taking.api.controller;
 import java.net.URI;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Authorization;
+import taking.api.dto.ChamadosRespostaDTO;
 import taking.api.model.Chamados;
 import taking.api.repository.ChamadosRepository;
 import taking.api.service.ChamadosService;
@@ -41,6 +44,15 @@ public class ChamadosController {
 		return ResponseEntity.ok().body(obj);
 	}
 
+	
+	@ApiOperation(value = "", authorizations = { @Authorization(value = "jwtToken") })
+	@GetMapping
+	public ResponseEntity<List<ChamadosRespostaDTO>> listaDeChamados() {
+		List<Chamados> lista =  chamadosService.lista();
+		List<ChamadosRespostaDTO> listaDto = lista.stream().map(obj -> new ChamadosRespostaDTO(obj)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listaDto);
+	}
+	
 	@ApiOperation(value = "", authorizations = { @Authorization(value = "jwtToken") })
 	@PostMapping("/{userId}/{problemId}")
 	public ResponseEntity<Chamados> cadastrarChamado(@PathVariable("userId") Long userId,
@@ -48,20 +60,14 @@ public class ChamadosController {
 			@RequestParam("descricaoProblema") String descricaoProblema) {
 		
 		if(chamadosRepository.existsById(userId)) {
+			
 			Chamados obj = chamadosService.salvarDados(userId, problemId, file, descricaoProblema, new Date());
 	
 			URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{chamadoId}").buildAndExpand(obj.getId())
 					.toUri();
 			return ResponseEntity.created(uri).build();
-		}
+		}	
 		return null;
-	}
-
-	@ApiOperation(value = "", authorizations = { @Authorization(value = "jwtToken") })
-	@GetMapping
-	public ResponseEntity<List<Chamados>> ListaDeChamados() {
-		List<Chamados> list = chamadosService.lista();
-		return ResponseEntity.ok().body(list);
 	}
 
 	@ApiOperation(value = "", authorizations = { @Authorization(value = "jwtToken") })
