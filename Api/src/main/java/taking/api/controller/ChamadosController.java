@@ -67,15 +67,13 @@ public class ChamadosController {
 			@PathVariable("admId") Long admId, @PathVariable("problemId") Long problemId, @RequestParam("file") MultipartFile file,
 			@RequestParam("descricaoProblema") String descricaoProblema) {
 		
+		Chamados obj = null;
 		if(usuarioRepository.existsById(userId) && admRepository.existsById(admId)) {
-			
-			Chamados obj = chamadosService.salvarDados(userId, problemId, admId, file, descricaoProblema, new Date());
-	
-			URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{chamadoId}").buildAndExpand(obj.getId())
-					.toUri();
-			return ResponseEntity.created(uri).build();
-		}	
-		throw new RuntimeException("Erro: ChamadoController");
+			obj = chamadosService.salvarDados(userId, problemId, admId, file, descricaoProblema, new Date());
+		}
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{chamadoId}").buildAndExpand(obj.getId())
+				.toUri();
+		return ResponseEntity.created(uri).build();
 	}
 
 	@ApiOperation(value = "", authorizations = { @Authorization(value = "jwtToken") })

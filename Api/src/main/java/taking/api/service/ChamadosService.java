@@ -59,21 +59,19 @@ public class ChamadosService {
 			Date dataCriacao) {
 		Chamados obj = null;
 		try {
+	
 			String nomeAnexo = file.getOriginalFilename();
 			Optional<Usuarios> usuario = usuariosRepository.findById(userId);
 			Optional<TipoProblema> problema = problemaRepository.findById(problemId);
 			Optional<UsuariosAdm> adm = usuariosAdmRepository.findById(admId);
 			
-
 			Chamados chamados = new Chamados(descricaoProblema, file.getBytes(), nomeAnexo, file.getContentType(),
 					"Pendente", dataCriacao, problema.get(), usuario.get(), adm.get());
-
+	
 			obj = chamadosRepository.save(chamados);
-
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
-
+		}	
 		return obj;
 	}
 
