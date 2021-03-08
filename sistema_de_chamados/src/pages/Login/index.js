@@ -76,7 +76,7 @@ export default function Login() {
 
                     <button className="login" type="submit" disabled={!isValid} onClick={successToast}>Login</button>
                     <ToastContainer/>
-                    <button className="login-social" >Login Social</button>
+                    <button className="login-social">Login Social</button>
                     <button className="cadast" type="submit" onClick={gotoCadastro}>Cadastro</button>
                     <img src={logo} />
                 </Form>  
