@@ -12,6 +12,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import taking.api.dto.ChamadosRespostaDTO;
 import taking.api.model.Chamados;
 import taking.api.model.Usuarios;
 import taking.api.model.UsuariosAdm;
@@ -30,7 +31,7 @@ public interface ChamadosRepository extends JpaRepository<Chamados, Long> {
 	
 //	boolean existsById(Long userId);
 	
-	Page<Chamados> findByAdm(Optional<UsuariosAdm> optional, Pageable pageable);
+	Page<ChamadosRespostaDTO> findByAdm(Optional<UsuariosAdm> optional, Pageable pageable);
 	
 	Page<Chamados> findByUsuario(Optional<Usuarios> optional, Pageable pageable);
 	

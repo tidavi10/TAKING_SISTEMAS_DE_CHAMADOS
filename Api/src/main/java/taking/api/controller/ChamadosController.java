@@ -124,7 +124,7 @@ public class ChamadosController {
 							+ "argumento na URL o ID do ADM e o número da página respectivamente."
 							+ "\nA primeira página começa passando como parametro 0.",
 					authorizations = { @Authorization(value = "jwtToken") })
-	public List<Chamados> chamadosAdm(@PathVariable Long idAdm, @PathVariable int numeroPagina){
+	public List<ChamadosRespostaDTO> chamadosAdm(@PathVariable Long idAdm, @PathVariable int numeroPagina){
 		return chamadosService.findChamadosAdmPaginated(numeroPagina, idAdm);
 	}
 }

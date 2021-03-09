@@ -40,7 +40,7 @@ public class CustomOidcUserService extends OidcUserService {
         user.setEmail(userInfo.getEmail());
         user.setNome(userInfo.getName());
         user.setCpf(".");
-        user.setTelefone(".");
+        user.setCargo(".");
         user.setRg(".");
         user.setSenha(".");
         user.setEndereco(".");

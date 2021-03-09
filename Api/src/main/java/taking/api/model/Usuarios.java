@@ -52,10 +52,10 @@ public class Usuarios implements Serializable {
 	@NotBlank (message = "CEP inválido")
 	@ApiModelProperty(notes = "CEP do usuário", required = true, position = 7)
 	private String cep;
-	
-	@NotBlank (message = "Telefone inválido")
-	@ApiModelProperty(notes = "Telefone do usuário", required = true, position = 9)
-	private String telefone;
+
+	@NotBlank (message = "Cargo inválido")
+	@ApiModelProperty(notes = "Cargo do usuário", required = true, position = 9)
+	private String cargo;
 	
 	@NotBlank (message = "CPF inválido")
 	@ApiModelProperty(notes = "CPF do usuário", required = true, position = 5)
@@ -114,12 +114,12 @@ public class Usuarios implements Serializable {
 		this.cep = cep;
 	}
 
-	public String getTelefone() {
-		return telefone;
+	public String getCargo() {
+		return cargo;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 
 	public String getCpf() {

@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import taking.api.dto.ChamadosRespostaDTO;
 import taking.api.model.Chamados;
 import taking.api.model.TipoProblema;
 import taking.api.model.Usuarios;
@@ -94,11 +95,11 @@ public class ChamadosService {
 		return chamadosPaginados;
 	}
 	
-	public List<Chamados> findChamadosAdmPaginated(int pageNo, Long adm){
-		List<Chamados> chamadosPaginados = new ArrayList<Chamados>();
+	public List<ChamadosRespostaDTO> findChamadosAdmPaginated(int pageNo, Long adm){
+		List<ChamadosRespostaDTO> chamadosPaginados = new ArrayList<ChamadosRespostaDTO>();
 		Pageable paginacao = PageRequest.of(pageNo, 4);
 		
-		Page<Chamados> chamadosAdm = chamadosRepository.findByAdm(usuariosAdmRepository.findById(adm), paginacao);
+		Page<ChamadosRespostaDTO> chamadosAdm = chamadosRepository.findByAdm(usuariosAdmRepository.findById(adm), paginacao);
 		
 		chamadosPaginados = chamadosAdm.getContent();
 		
