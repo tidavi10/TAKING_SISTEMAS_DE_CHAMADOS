@@ -1,11 +1,11 @@
 .container{
     width: 100%;
-    height: 100%;
+    height: 110vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: #fff;
+    background: #219ebc;
     }
     
 @media (max-width: 576px) {
@@ -42,8 +42,11 @@
 .title-cadastro{
     font-size: 30px;
     font-weight: 500;
-    margin-bottom: 20px;
-    padding: 32px 24px;
+    margin-bottom: 24px;
+    padding: 0px 0px;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-evenly;
 }
 @media (max-width: 576px) {
     .title-cadastro{
@@ -57,24 +60,75 @@
 
 Form.form{
     margin-top: 50px;
-    width: 400px;
+    width: 50%;
     height: auto; 
     display: flex;
     align-items: center;
     flex-direction: column;
-    background: #dee2e6; 
+    background: #f8f9fa; 
     border-radius: 10px;
-    padding: 32px 24px;
-    border: 1px solid #BBBBBB;
+    padding: 32px 0px;
+    border: 1px solid #eee;
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.3);
+    color: #000000;
 }
 @media (max-width: 576px) {
     Form.form{
         width: 100%;
-        height: 100%;
+        height: auto;
         align-items: center;
     }
 }
 
+
+.parte{
+    padding: 20px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 90%;
+    height: auto;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+@media (max-width: 576px){
+    .parte{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        flex-direction: column;
+        width: 90%;
+        height: auto;
+        margin-bottom: 20px;
+        border-radius: 10px;
+    }
+}
+
+.parte1{
+    width: 40%;
+    height: 40%;
+}
+
+@media (max-width: 576px){
+    .parte1{
+        width: 90%;
+        height: 90%;
+    }
+}
+
+.parte2{
+    width: 40%;
+    height: 40%;
+}
+
+@media (max-width: 576px){
+    .parte2{
+        width: 90%;
+        height: 90%;
+    }
+}
 
 .inputdiv{
     width: 100%;
@@ -94,11 +148,11 @@ Form.form{
 .input{
     width: 100%;
     height: 30px;
-    margin-bottom: 24px;
+    margin-bottom: 8px;
     border-radius: 5px;
-    padding: 10px 10px;
+    padding: 0px 4px;
     margin-top: 5px;
-    border-bottom: 1px solid #807F7F;
+    border: #eee 1px solid;
 }
 
 .imagem{
@@ -108,18 +162,39 @@ Form.form{
 }
 
 .Form-erro{
+    color: rgba(255, 251, 24, 0.74);
+    font-size: 15px;
+    transform: translate(20px, 20px);
+    display: flex;
+    align-items: center;
+
+}
+
+.erro{
+    transform: translate(0px, 11px);
     color: red;
-    transform: translate(2px, -20px);
+    border-radius: 4px;
 }
 
 .Submit{
-    width: 50%;
+    width: 100%;
     height: 30px;
     border-radius: 10px;
-    padding: 10px 20px;
+    padding: 3px 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 24px;
-    background-color: #adb5bd;
+    background: #ffb703;
+    color: white;
+    margin-top: 20px;
+}
+
+.teste{
+    background: #000000;
+    width: 300px;
+    height: 40px;
+    border-radius: 10px;
+    padding: 10px;
+    color: white;
 }

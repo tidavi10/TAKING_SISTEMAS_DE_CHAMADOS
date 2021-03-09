@@ -1,18 +1,16 @@
 div.container-login{
-    height: 100%;
+    height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    background: rgb(251, 251, 251);
+    background: #219ebc;
 }
     /*Phone less than 576px*/
     @media (max-width: 576px) {
         div.container-login{
-            margin: 10px;
-            font-size: 14px;
-            display: flex;
-            justify-content: center;  
+
         }
     }
    
@@ -61,16 +59,20 @@ div.container-login{
     display: flex;
     align-items: center;
     flex-direction: column;
-    background: #dee2e6; 
+    background: #f8f9fa; 
     border-radius: 10px;
     padding: 32px 24px;
-    border: 1px solid #BBBBBB;
+    border: 1px solid #eee;
+    margin-bottom: 100px;
+    box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.7);
 }
     @media (max-width: 576px) {
         .form-login{
-            width: 100%;
-            height: 100%;
+            width: 80%;
+            height: 70%;
             align-items: center;
+            margin: 20px;
+            
         }
     }
 
@@ -93,9 +95,8 @@ div.input-div{
     border-radius: 5px;
     padding: 10px 10px;
     margin-top: 5px;
-    border-bottom: 1px solid #807F7F;
+    border: #eee 1px solid;
 }
-
 button.login{
      width: 50%;
     height: 30px;
@@ -105,19 +106,14 @@ button.login{
     align-items: center;
     justify-content: center;
     margin-bottom: 24px;
-    background-color: #adb5bd;
+    background-color: #ffb703;
+    color: white;
+    margin-top: 40px;
 }
 
-button.login-social{
-     width: 50%;
-    height: 30px;
-    border-radius: 10px;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 24px;
-    background-color: #adb5bd;
+div.social{
+    transform: translate(0px, 20px);
+    border-radius: 100px;
 }
 
 button.cadast{
@@ -128,13 +124,13 @@ button.cadast{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 24px;
-    background-color: #adb5bd;
+    margin-bottom: 4px;
+    background-color: #ffb703;
+    color: white;
 }
-
 img{
-    width: 80px;
-    height: 80px;
+    width: 40px;
+    height: 40px;
     transform: translate(0%, 40%);
 }
     @media (max-width: 576px) {
@@ -150,7 +146,6 @@ div.Form-erro{
     transform: translate(2px, -20px);
 }
 
-.teste{
-    transform: translate(0px 0px);
-    background-color: black;
+p.par{
+    margin-top: 30px;
 }
