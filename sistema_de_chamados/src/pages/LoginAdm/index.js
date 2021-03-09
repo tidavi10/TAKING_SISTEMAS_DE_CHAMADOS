@@ -13,28 +13,37 @@ import { useHistory } from 'react-router-dom';
 export default function LoginAdm() {
     const history = useHistory();
 
-    const { login } = useAuth();
+    const { login, token } = useAuth();
     const { addToast } = useToast();
-     
+     console.log(token)
     const handleSubmit = useCallback((data) => {
         try {
-            login();
+            login({
+                email: data.email,
+                senha: data.senha
+            });
+
+            addToast({
+                type: 'info',
+                title: 'Erro na autenticação',
+                description: 'Ocorreu um erro ao fazer o login. Por favor, verifique os dados inseridos.'
+            });
         } catch (error) {
             alert('Não foi possível logar.')
         }
-        addToast();
+        
     }, [login, addToast]);
 
     return (
         <>
             <div className="container-adm">
                 <Formik className="formik-adm"
-                    validationSchema={schema}
+                    // validationSchema={schema}
                     onSubmit={handleSubmit}
                     validateOnMount
                     initialValues={{
                         email: '',
-                        password: '',
+                        senha: '',
                     }}
                     render={({ isValid }) => (
                     <Form className="form-adm">
@@ -48,7 +57,7 @@ export default function LoginAdm() {
                         </div>
                          <div className="div-adm">
                             <label>Senha:</label>
-                            <Field type="password" name="password" className="input-adm" />
+                            <Field type="password" name="senha" className="input-adm" />
                             <div className="Form-erro-adm">
                                 <ErrorMessage name="password" component="spam" />
                             </div>
