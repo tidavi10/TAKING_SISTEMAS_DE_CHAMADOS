@@ -24,7 +24,7 @@ export default function LoginAdm() {
             });
 
             addToast({
-                type: 'info',
+                type: 'success',
                 title: 'Erro na autenticação',
                 description: 'Ocorreu um erro ao fazer o login. Por favor, verifique os dados inseridos.'
             });

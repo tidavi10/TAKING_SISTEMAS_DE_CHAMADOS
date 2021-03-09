@@ -16,5 +16,6 @@ const listarChamados = function (numeroDaPagina) {
     return api.get(`chamados/pagina/${numeroDaPagina}`)
 }
 
+export default api;
 
 export {listarPossiveisProblemas, listarChamados};

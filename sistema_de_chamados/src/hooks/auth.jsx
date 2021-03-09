@@ -29,7 +29,7 @@ const AuthProvider =  ({ children }) => {
     }, []);
 
     const logout = useCallback(() => {
-        sessionStorage.removeItem('@chamadosTaking:userAdmToken');
+        localStorage.removeItem('@chamadosTaking:userAdmToken');
 
         setAuthData({});
     }, []);
