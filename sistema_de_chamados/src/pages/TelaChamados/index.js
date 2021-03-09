@@ -1,9 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
     BrowserRouter as Router
 } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
+import Select from 'react-select';
+import {listarPossiveisProblemas} from '../../services/api'
 import {
     Container,
     Header,
@@ -42,8 +44,26 @@ function MyDropzone() {
     )
 }
 
+const options = [
+    { value: 'criacaoEmail', label: 'Criar e-mail'},
+    { value: 'acessoBitrix', label: 'Liberar acesso ao Bitrix'},
+    { value: 'reset', label: 'Resetar senha'},
+    { value: 'problemaMaquina', label: 'Problema na máquina'},
+    { value: 'outros', label: 'Outros'},
+];
+
 export default function TelaChamados() {
     const history = useHistory();
+    const [selectedOption, setSelectedOption] = useState(null);
+    const [possiveisProblemas, setPossiveisProblemas] = useState([]);
+
+    useEffect(() => {
+        // Efetuar a chamada no endpoint para listar os possiveis Problemas.
+        // Quando receber o resultado dos possiveis problemas transformar 
+        // os mesmos no padrao que a lib react-selector precisa
+        // { label: 'TextoExemplo', value: 'identificadorParaOItem'}
+        // Tendo o item transformado pode se definir o mesmo utilizando o set UseState setPossiveisProblemas
+    }, [possiveisProblemas.length])
 
     const gotoConsultaChamados = () => {
         history.push('/consulta-chamados')
@@ -56,7 +76,13 @@ export default function TelaChamados() {
 
     function alertFinish() {
         alert("Chamado cadastrado com sucesso!");
-      }
+    }
+
+
+    function problemaSelectedHandler(selectedOption) {
+        console.log(selectedOption)
+        setSelectedOption(selectedOption)
+    }
 
     return (
         <Router>
@@ -76,13 +102,11 @@ export default function TelaChamados() {
                     <InputArea>
                             <label for="tipoProblema">Selecione o problema: </label>
                         <FilterSelector>
-                            <select name="tipoProblema" id="tipoProblema">
-                                <option value="criacaoEmail">Criar e-mail</option>
-                                <option value="acessoBitrix">Liberar acesso ao Bitrix</option>
-                                <option value="reset">Resetar senha</option>
-                                <option value="problemaMaquina">Problema na máquina</option>
-                                <option value="outros">Outros</option>
-                            </select>
+                            <Select
+                                value={selectedOption}
+                                options={possiveisProblemas}
+                                onChange={problemaSelectedHandler}
+                                placeholder="Selecione"/>
                         </FilterSelector>
                         <Dropzone>
                             <CloudUpStyle>

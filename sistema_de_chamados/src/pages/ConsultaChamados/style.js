@@ -4,32 +4,37 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin: 30px;
+    
+    max-width: 1100px;
+    margin: 10px auto;
 
     // Media query
     // Phone 
     @media (max-width: 576px) {
-        margin: 15px;
+        margin: 5px;
     }
     
     // Tablete
     @media (min-width: 577px) and (max-width: 768px){
-
+        width: 95%;
     }
 
     // Desktop 992px
-    @media (min-width: 769px) and (max-width: 992px){
-
+    @media (min-width: 769px) and (max-width: 1200px){
+        width: 95%;
     }
 
     // Desktop 1200px
     @media (min-width: 1200px){
 
     }
+
 `;
 
 export const Header = styled.div`
-    background: #dee2e6;
+    background: #219ebc;
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 4px -2px #989898;
     width: 100%;
     height: 64px;
     border-radius: 10px;
@@ -38,6 +43,12 @@ export const Header = styled.div`
     align-items: center;
     justify-content: space-between;
     text-align: center;
+    margin-bottom: 1rem;
+
+    span {
+        color: #ffecd1;
+        margin-right: 20px;
+    }
 
     @media (max-width: 576px) {
         span{
@@ -48,10 +59,9 @@ export const Header = styled.div`
 `;
 
 export const HeaderContent = styled.div`
-    background: #dee2e6;
+    background: #219ebc;
     width: 50%;
-    height: 64px;
-    border-radius: 10px;
+    height: 60px;
     padding: 0 10px;
     display: flex;
     align-items: center;
@@ -59,26 +69,26 @@ export const HeaderContent = styled.div`
 
     @media (max-width: 576px) {
         margin-bottom: 0px;
-        width: 60%;
+        width: 70%;
         justify-content: space-between;
     } 
 `;
 
 export const ButtonHeader = styled.button`
+    background: #219ebc;
     width: 50%;
+    max-width: 200px;
     height: 90%;
-    border: 2px solid #dee2e6;
-    background: #eee;
     font-size: 18px;
     margin-left: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-
     transition: background-color 0.2s;
 
     :hover {
-        background: #ced4da;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
     }
 
     @media (max-width: 576px) {
@@ -97,19 +107,20 @@ export const ButtonHeader = styled.button`
 
 export const ButtonExit = styled.button`
     width: 20%;
+    max-width: 90px;
     height: 90%;
-    border: 2px solid #dee2e6;
-    background: #eee;
     font-size: 18px;
     margin-left: 6px;
     display: flex;
     align-items: center;
     justify-content: center;
-
     transition: background-color 0.2s;
 
+    background: #219ebc;
+
     :hover {
-        background: #ced4da;
+        border: 1px solid #dee2e6;
+        border-radius: 10px;
     }
 
     @media (max-width: 576px) {

@@ -205,43 +205,28 @@ export const InputArea = styled.div`
 `;
 
 export const FilterSelector = styled.div`
-    width: 95%;
-    height: 40px;
-    display: flex;
-    align-items: flex-start;
-    margin-top: 15px;
- 
-    select {
-        width: 200px;
-    }
-    
-    option {
-        font-family: sans-serif;
-        font-size: 1rem;
-    }
+    width: 300px;
+    height: 35px;
+    margin-top: 10px;
 
     @media (max-width: 576px) {
-        width: 100%;
-        height: 100%;
-        align-items: center;
-
-        select {
-            margin: auto;
-        }
-
-        option {
-            font-size: 14px;
-        }
+        margin: auto;
+        font-size: 1rem;
+        margin-top: 10px;
+        width: 50%;
+        text-align: center;
     }
 
     @media (min-width: 577px) and (max-width: 768px){
-        width: 100%;
-        height: 100%;
-        align-items: center;
+        margin: auto;
+        font-size: 1rem;
+        margin-top: 10px;
+        width: 40%;
+        text-align: center;
+    }
 
-        select {
-            margin: auto;
-        }
+    @media (min-width: 769px) and (max-width: 992px){
+        width: 70%;
     }
 `;
 

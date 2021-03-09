@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router
 } from 'react-router-dom';
 import Pagination from 'react-js-pagination';
+import {listarChamados} from '../../services/api';
 import {
   Container,
   Header,
@@ -24,14 +25,17 @@ export default function ChamadosAdm() {
 
   const [state, setState] = useState({ activePage: 1 });
 
-  const [listaDeChamados, setlistaDeChamados] = useState([
-    { id: 55, descricao: 'Teste5', status: 'P' },
-    { id: 56, descricao: 'Teste6', status: 'C' },
-    { id: 57, descricao: 'Teste7', status: 'A' },
-  ])
+  const [listaDeChamados, setlistaDeChamados] = useState([]);
+
+  useEffect(() => {
+    listarChamados(state.activePage - 1).then(d => d.data).then(d => {
+      setlistaDeChamados(d)
+      console.log(d)
+    })
+  }, [state.activePage]);
 
   function getPaginated() {
-    return listaDeChamados.filter((_, idx) => idx >= ((state.activePage - 1) * 2) && idx < (state.activePage) * 2)
+    return listaDeChamados//.filter((_, idx) => idx >= ((state.activePage) * 2) && idx < (state.activePage) * 2)
   }
 
   const goToChamados = () => {
@@ -71,7 +75,7 @@ export default function ChamadosAdm() {
           </LegendCalls>
           {
             getPaginated().map(d =>
-              <CallItem>
+              <CallItem key={d.id}>
                 <CallCod>
                   <span>{d.id}</span>
                 </CallCod>
