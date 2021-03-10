@@ -19,4 +19,7 @@ const listarChamados = function (numeroDaPagina) {
 
 export {listarPossiveisProblemas, listarChamados};
 
+
+
+
 export default api
