@@ -1,48 +1,32 @@
 import React from 'react';
-import { FiAlertCircle, FiXCircle, FiCheckCircle, FiX } from 'react-icons/fi';
+import { useTransition } from 'react-spring';
 
-import { Container, Toast } from './styles';
+import Toast from './Toast';
 
-function ToastContainer() {
-  return <Container>
-      <Toast hasDescription>
-          <FiAlertCircle size={20} />
+import { Container } from './styles';
 
-          <div>
-              <strong>Houve um erro</strong>
-              <p>Não foi possível logar. Verifique seus dados por favor.</p>
-          </div>
+const ToastContainer = ({ messages }) => {
+  const messagesWithTransitions = useTransition(
+    messages,
+    message => message.id,
+    {
+      from: { right: '-120%' },
+      enter: { right: '0%' },
+      leave: { right: '-120%' },
+    }
+  );
 
-          <button type="button">
-            <FiX size={18} />
-          </button>
-      </Toast>
-
-      <Toast type="success" hasDescription={false}>
-          <FiCheckCircle size={20} />
-
-          <div>
-              <strong>Houve um erro</strong>
-          </div>
-
-          <button type="button">
-            <FiX size={18} />
-          </button>
-      </Toast>
-
-      <Toast type="error" hasDescription>
-          <FiXCircle size={20} />
-
-          <div>
-              <strong>Houve um erro</strong>
-              <p>Não foi possível logar. Verifique seus dados por favor.</p>
-          </div>
-
-          <button type="button">
-            <FiX size={18} />
-          </button>
-      </Toast>
-  </Container>;
+  return (
+    <Container>
+        {messagesWithTransitions.map(({ item, key, props }) => (
+          <Toast 
+            key={key}
+            message={item}
+            style={props}
+          />
+        ))}
+    </Container>
+  );
 }
 
 export default ToastContainer;
