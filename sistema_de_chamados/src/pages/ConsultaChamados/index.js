@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import {
   BrowserRouter as Router
 } from 'react-router-dom';
-import Pagination from 'react-js-pagination';
+
+import Pagination from './components/Pagination';
+//import Pagination from 'react-js-pagination';
 import {listarChamados} from '../../services/api';
 import {
   Container,
@@ -22,20 +24,41 @@ import { useHistory } from 'react-router-dom';
 
 export default function ChamadosAdm() {
   const history = useHistory();
-
-  const [state, setState] = useState({ activePage: 1 });
+  const [state, setState] = useState({ 
+    activePage: 1,
+    posts: [],
+    loading: false,
+    totalChamados: 5,
+    currentPage: 0,
+    postsPerPage: 2, 
+  });
 
   const [listaDeChamados, setlistaDeChamados] = useState([]);
 
   useEffect(() => {
+    setState({ ...state, loading: true });
+
     listarChamados(state.activePage - 1).then(d => d.data).then(d => {
       setlistaDeChamados(d)
-      console.log(d)
+      setState({ ...state, loading: false });
     })
   }, [state.activePage]);
 
+  const { currentPage, postsPerPage, posts, loading } = state;
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+  const paginate = pageNum => {
+    setState({ ...state, loading: true });
+    listarChamados(pageNum).then(d => d.data).then(d => {
+      setlistaDeChamados(d)
+      setState({ ...state, loading: false, currentPage: pageNum });
+    })
+  }
+
   function getPaginated() {
-    return listaDeChamados//.filter((_, idx) => idx >= ((state.activePage) * 2) && idx < (state.activePage) * 2)
+    return listaDeChamados
   }
 
   const goToChamados = () => {
@@ -50,6 +73,34 @@ export default function ChamadosAdm() {
   function logout() {
     localStorage.clear();
     window.location.href= '/';
+  }
+
+  function renderCallBox () {
+    if (state.loading) {
+      return <h1>Carregando</h1>
+    }
+    return <CallsBox>
+    <LegendCalls>
+      <span>Cod.</span>
+      <span>Descrição</span>
+      <span>Status</span>
+    </LegendCalls>
+    {
+      listaDeChamados.map(d =>
+        <CallItem key={d.id}>
+          <CallCod>
+            <span>{d.id}</span>
+          </CallCod>
+          <CallType>
+            <span>{d.descricao}</span>
+          </CallType>
+          <CallStatus>
+            <span>{d.status}</span>
+          </CallStatus>
+        </CallItem>
+      )
+    }
+  </CallsBox>
   }
 
   return (
@@ -67,29 +118,15 @@ export default function ChamadosAdm() {
           <span>username</span>
         </Header>
         <Title>Chamados em aberto</Title>
-        <CallsBox>
-          <LegendCalls>
-            <span>Cod.</span>
-            <span>Descrição</span>
-            <span>Status</span>
-          </LegendCalls>
+        { renderCallBox() }
+        <Pagination postsPerPage={postsPerPage} totalPosts={state.totalChamados} paginate={paginate} />
+        <div>
           {
-            getPaginated().map(d =>
-              <CallItem key={d.id}>
-                <CallCod>
-                  <span>{d.id}</span>
-                </CallCod>
-                <CallType>
-                  <span>{d.descricao}</span>
-                </CallType>
-                <CallStatus>
-                  <span>{d.status}</span>
-                </CallStatus>
-              </CallItem>
-            )
+            // <Posts posts={posts} loading={loading} />
+            // <Pagination postsPerPage={postsPerPage} totalPosts={state.totalChamados} paginate={paginate} />
           }
-        </CallsBox>
-        <>
+        </div>
+        {/* <>
           <Pagination
             activePage={state.activePage}
             itemsCountPerPage={2}
@@ -97,8 +134,9 @@ export default function ChamadosAdm() {
             pageRangeDisplayed={5}
             onChange={handlerPageChange}
           />
-        </>
+        </> */}
       </Container>
     </Router>
   )
 }
+  

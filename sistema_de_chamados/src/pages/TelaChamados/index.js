@@ -44,25 +44,22 @@ function MyDropzone() {
     )
 }
 
-const options = [
-    { value: 'criacaoEmail', label: 'Criar e-mail'},
-    { value: 'acessoBitrix', label: 'Liberar acesso ao Bitrix'},
-    { value: 'reset', label: 'Resetar senha'},
-    { value: 'problemaMaquina', label: 'Problema na máquina'},
-    { value: 'outros', label: 'Outros'},
-];
-
 export default function TelaChamados() {
     const history = useHistory();
     const [selectedOption, setSelectedOption] = useState(null);
     const [possiveisProblemas, setPossiveisProblemas] = useState([]);
 
     useEffect(() => {
-        // Efetuar a chamada no endpoint para listar os possiveis Problemas.
-        // Quando receber o resultado dos possiveis problemas transformar 
-        // os mesmos no padrao que a lib react-selector precisa
-        // { label: 'TextoExemplo', value: 'identificadorParaOItem'}
-        // Tendo o item transformado pode se definir o mesmo utilizando o set UseState setPossiveisProblemas
+        listarPossiveisProblemas().then(d => d.data).then(d => {
+            const ordenados = d.map(c => (
+                {
+                    label: c.tipoDoProblema, value: c.id
+                }
+            )).sort((a,b) => a.label > b.label ? 1 : a.label == 0 ? 0 : -1);
+            setPossiveisProblemas(
+                ordenados
+            )
+        })
     }, [possiveisProblemas.length])
 
     const gotoConsultaChamados = () => {
@@ -80,7 +77,6 @@ export default function TelaChamados() {
 
 
     function problemaSelectedHandler(selectedOption) {
-        console.log(selectedOption)
         setSelectedOption(selectedOption)
     }
 

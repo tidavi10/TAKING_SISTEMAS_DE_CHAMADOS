@@ -13,24 +13,7 @@
         }  
     }
     
-    @media (min-width: 700px){
-        .container-adm{
-
-        }
-}
-
-    @media (min-width: 1100px){
-        .container-adm{
-
-        }
-}
-
-
-.formik-adm{
-
-}
-
-.form-adm{
+ .form-adm{
     margin-top: 50px;
     width: 400px;
     height: 600px; 

@@ -1,52 +1,41 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
 import api from '../services/api';
 
-const AuthContext = createContext({
-});
+const AuthContext = createContext({});
 
 
 const AuthProvider =  ({ children }) => {
-    // Estado que armazena o token. O valor inicial verifica se já tem token no sessionStorage e o 
-    // adic. como valor inicial dentro de um objeto, se não o define como objeto vazio.
-    
-    const [data, setData] = useState(() => {
-        const token = 'usdhausgdug9';
-        const token1 = sessionStorage.getItem('@chamadosTaking:userToken', token);
+    const [authData, setAuthData] = useState(() => {
+        const token = localStorage.getItem('@chamadosTaking:userToken');
 
-        if (token1) {
+        if (token) {
             return { token };
         }
 
         return {};
     });
 
-    const login = useCallback(() => {
-        // passar o "data" no parâmetro, e utilizar o "async".
-        // const response = await api.post('admAuth', {
-        //     email,
-        //     senha
-        // });
+    const login = useCallback(async({ email, senha }) => {
+        const response = await api.post('authenticate', {
+            email,
+            senha
+        });
 
-        // const { token } = response.data;
-        const token = 'usdhausgdug9';
+        const { token } = response.data;
 
+        localStorage.setItem('@chamadosTaking:userAdmToken', token);
 
-        sessionStorage.setItem('@chamadosTaking:userToken', token);
-
-        setData({ token });
-
-        console.log('oioiooi');
+        setAuthData({ token });
     }, []);
 
     const logout = useCallback(() => {
-        const token = 'usdhausgdug9';
-        sessionStorage.removeItem('@chamadosTaking:userToken', token);
+        localStorage.removeItem('@chamadosTaking:userAdmToken');
 
-        setData({});
+        setAuthData({});
     }, []);
 
     return (
-        <AuthContext.Provider value={{ login, logout }}>
+        <AuthContext.Provider value={{ login, logout, token: authData.token }}>
             {children}
         </AuthContext.Provider>
     );

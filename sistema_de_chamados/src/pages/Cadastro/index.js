@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Formik, Form, Field, ErrorMessage, withFormik } from 'formik'
+import React from 'react';
+import { useState } from 'react'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import schema from './schema'
 import './index.css'
 import {
@@ -118,7 +119,7 @@ export default function Cadastro() {
                                 <ErrorMessage className="erro" name="password" component="spam" />
                             </div>
                         </div>
-                        <button variant="contained" className="Submit" type="submit" onClick={handleSubmit} >Cadastrar</button>
+                        <button variant="contained" className="Submit" type="submit" onClick={handleSubmit}>Cadastrar</button>
                  </div>
                 </div>
 
