@@ -8,7 +8,7 @@ public class ChamadoIdDTO {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public ChamadoIdDTO(Long id) {
 		this.id = id;
 	}
 }

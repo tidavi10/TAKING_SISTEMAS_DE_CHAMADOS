@@ -1,5 +1,7 @@
 package taking.api.service;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -36,12 +38,6 @@ public class ChamadosService {
 	
 	@Autowired
 	private UsuariosAdmRepository usuariosAdmRepository;
-	
-//	public Boolean UserExistsById(Long useId) {
-//		if(usuariosRepository.findById(useId)) {
-//			
-//		}
-//	}
 
 	public Chamados findById(Long chamadoId) {
 		Optional<Chamados> obj = chamadosRepository.findById(chamadoId);
@@ -57,9 +53,8 @@ public class ChamadosService {
 	}
 
 	public Chamados salvarDados(Long userId, Long problemId, Long admId, MultipartFile file, String descricaoProblema,
-			Date dataCriacao) {
-		Chamados obj = null;
-		try {
+			Date dataCriacao) throws IOException  {
+
 			if(usuariosRepository.existsById(userId) && usuariosAdmRepository.existsById(admId)) {
 				String nomeAnexo = file.getOriginalFilename();
 				Optional<Usuarios> usuario = usuariosRepository.findById(userId);
@@ -69,12 +64,10 @@ public class ChamadosService {
 				Chamados chamados = new Chamados(descricaoProblema, file.getBytes(), nomeAnexo, file.getContentType(),
 						"Pendente", dataCriacao, problema.get(), usuario.get(), adm.get());
 		
-				obj = chamadosRepository.save(chamados);
+				Chamados obj = chamadosRepository.save(chamados);
+				return obj;
 			}
-		} catch (Exception e) {
-			 e.printStackTrace();
-		}	
-		return obj;
+			throw new IOException("Failed to acess the file: " + file);
 	}
 
 	public List<Chamados> findChamadosPaginated(int pageNo) {

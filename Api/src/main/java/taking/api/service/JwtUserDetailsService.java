@@ -35,7 +35,6 @@ public class JwtUserDetailsService implements UserDetailsService {
 		throw new UsernameNotFoundException("User not found with username: " + email);
 	}
 	
-	
 	public Usuarios save(Usuarios user) {
 		Usuarios newUser = new Usuarios();
 		newUser.setEmail(user.getEmail());
