@@ -1,9 +1,11 @@
 package taking.api.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,8 +29,9 @@ import taking.api.oauth2.CustomAuthenticationSuccessHandler;
 import taking.api.service.AdmDetailsService;
 import taking.api.service.JwtUserDetailsService;
 
+@Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
@@ -36,11 +39,9 @@ public class SecurityConfig {
 		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
 		return source;
 	}
-	
-	
-	
-	@Configuration
-	@Order(1)
+
+	@Configuration 
+	@Order(1) 
 	public static class UserSecurityConfiguration extends WebSecurityConfigurerAdapter
 			implements ApplicationContextAware {
 
@@ -51,10 +52,10 @@ public class SecurityConfig {
 		private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
 		@Autowired
-		private JwtRequestFilter jwtRequestFilter;
-
-		@Autowired
 		private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+		
+		@Autowired
+		private JwtRequestFilter jwtRequestFilter;
 
 		private BCryptPasswordEncoder bCryptPasswordEncoder;
 		private JwtUserDetailsService userDetailsService;
@@ -70,11 +71,12 @@ public class SecurityConfig {
 
 		@Override
 		protected void configure(HttpSecurity httpSecurity) throws Exception {
-			httpSecurity.addFilterAfter(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-			
-			httpSecurity.cors().and().csrf().disable().authorizeRequests()
-						.antMatchers(AUTH_WHITELIST).permitAll()
-					.antMatchers(HttpMethod.POST, "/usuarios/cadastro", "/authenticate").permitAll();
+			httpSecurity.cors().and().csrf().disable().authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll()
+					.antMatchers(HttpMethod.POST, "/usuarios/cadastro", "/usuariosadm/cadastro").permitAll()
+					.and()
+					.antMatcher("/authenticate")
+					.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+
 			// .and()
 			// .oauth2Login()
 			// .redirectionEndpoint()
@@ -113,47 +115,44 @@ public class SecurityConfig {
 			return super.authenticationManager();
 		}
 	}
-	
+
 	@Configuration
 	@Order(2)
 	public static class AdmSecurityConfiguration extends WebSecurityConfigurerAdapter
-	implements ApplicationContextAware {
-		
+			implements ApplicationContextAware {
+
 		private BCryptPasswordEncoder bCryptPasswordEncoder;
-		private AdmDetailsService userDetailsService;
-		
+		private AdmDetailsService admDetailsService;
+
 		@Autowired
 		private AdmJwtRequestFilter admJwtRequestFilter;
-		
+
 		public AdmSecurityConfiguration(AdmDetailsService userDetailsService,
 				BCryptPasswordEncoder bCryptPasswordEncoder) {
 			this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-			this.userDetailsService = userDetailsService;
+			this.admDetailsService = userDetailsService;
 		}
-		
+
 		@Override
-	    protected void configure(HttpSecurity httpSecurity) throws Exception {
-			httpSecurity.addFilterBefore(admJwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
-			
-			httpSecurity.authorizeRequests()
-						.antMatchers(HttpMethod.POST, "/admAuth", "/usuariosadm/cadastro").permitAll();
+		protected void configure(HttpSecurity httpSecurity) throws Exception {
+
+			httpSecurity.antMatcher("/admAuth").addFilterBefore(admJwtRequestFilter,
+					UsernamePasswordAuthenticationFilter.class);
 		}
-		
+
 		public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-			authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+			authenticationManagerBuilder.userDetailsService(admDetailsService).passwordEncoder(bCryptPasswordEncoder);
 		}
 	}
 
 	@Configuration
 	@Order(3)
-	public static class AllEndpoints extends WebSecurityConfigurerAdapter
-	implements ApplicationContextAware {
-		
+	public static class AllEndpoints extends WebSecurityConfigurerAdapter implements ApplicationContextAware {
+
 		@Override
-	    protected void configure(HttpSecurity httpSecurity) throws Exception {
-			httpSecurity.authorizeRequests()
-						.anyRequest().authenticated();
+		protected void configure(HttpSecurity httpSecurity) throws Exception {
+			httpSecurity.authorizeRequests().anyRequest().authenticated();
 		}
-		
+
 	}
 }

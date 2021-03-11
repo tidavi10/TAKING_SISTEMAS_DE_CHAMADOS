@@ -3,6 +3,7 @@ package taking.api.service;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -15,7 +16,6 @@ import taking.api.repository.UsuariosRepository;
 
 
 @Service
-@Primary
 public class JwtUserDetailsService implements UserDetailsService {
 	
 	

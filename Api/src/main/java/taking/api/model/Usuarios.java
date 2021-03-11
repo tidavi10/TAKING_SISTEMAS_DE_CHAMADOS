@@ -21,8 +21,6 @@ import io.swagger.annotations.ApiModelProperty;
 
 @Entity
 @Table(uniqueConstraints={@UniqueConstraint(columnNames={"email", "cpf"})})
-@ApiModel(description = "Modelo do usuário")
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"email", "cpf"})})
 public class Usuarios implements Serializable {
 	
 	

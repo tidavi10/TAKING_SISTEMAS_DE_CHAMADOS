@@ -1,21 +1,15 @@
 package taking.api.service;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import taking.api.config.JwtTokenUtil;
 import taking.api.dto.TokenDTO;
-import taking.api.model.JwtRequest;
 import taking.api.model.Usuarios;
 import taking.api.model.UsuariosAdm;
 import taking.api.repository.UsuariosAdmRepository;
@@ -24,7 +18,7 @@ import taking.api.repository.UsuariosRepository;
 @Service
 public class AuthenticateService {
 
-	@Autowired(required = false)
+	@Autowired
 	private AuthenticationManager authenticationManager;
 
 	@Autowired
@@ -32,6 +26,9 @@ public class AuthenticateService {
 
 	@Autowired
 	private JwtUserDetailsService userDetailsService;
+	
+	@Autowired
+	private AdmDetailsService admDetailsService;
 
 	@Autowired
 	private UsuariosRepository usuariosRepository;
@@ -44,7 +41,7 @@ public class AuthenticateService {
 		Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
 				email, senha));
 		
-		final UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+		final UserDetails userDetails = admDetailsService.loadUserByUsername(email);
 
 		UsuariosAdm usuarioAdm = usuariosAdmRepository.findByEmail(email);
 
