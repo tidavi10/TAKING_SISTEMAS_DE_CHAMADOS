@@ -519,13 +519,14 @@ export const EditionStatus = styled.div`
 export const EditionRunTime = styled.div`
     width: 100%;
     height: 40%;
+    display: flex;
+    flex-direction: column;
 
-    div {
-        margin-top: 8px;
-        width: 60%;
+    input {
+        width: 100%;
         height: 24px;
         border: 2px solid #eee;
-        padding: 0 4px;
+        padding: 2px 4px;
         border-radius: 4px;
         background: #fff;
     }
@@ -647,6 +648,10 @@ export const SubmitButton = styled.button`
     align-items: center;
     justify-content: center;
     transition: background 0.3s;
+
+    p {
+            margin-bottom: 0;
+    }
     
     &:hover {
         /* background: #4cd62b; */
@@ -662,6 +667,8 @@ export const SubmitButton = styled.button`
     @media (max-width: 576px) {
         width: 90%;
         height: 32px;
+
+        
 
         & + button {
             margin-top: 8px;

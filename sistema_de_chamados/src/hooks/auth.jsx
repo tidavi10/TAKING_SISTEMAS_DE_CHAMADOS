@@ -6,7 +6,7 @@ const AuthContext = createContext({});
 
 const AuthProvider =  ({ children }) => {
     const [authData, setAuthData] = useState(() => {
-        const token = localStorage.getItem('@chamadosTaking:userToken');
+        const token = localStorage.getItem('@chamadosTaking:userAdmToken');
 
         if (token) {
             return { token };
@@ -15,7 +15,7 @@ const AuthProvider =  ({ children }) => {
         return {};
     });
 
-    const login = useCallback(async({ email, senha }) => {
+    const loginAdm = useCallback(async({ email, senha }) => {
         const response = await api.post('admAuth', {
             email,
             senha
@@ -35,7 +35,7 @@ const AuthProvider =  ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ login, logout, token: authData.token }}>
+        <AuthContext.Provider value={{ loginAdm, logout, token: authData.token }}>
             {children}
         </AuthContext.Provider>
     );

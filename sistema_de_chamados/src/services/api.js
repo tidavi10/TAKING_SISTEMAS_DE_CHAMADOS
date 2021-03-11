@@ -20,6 +20,10 @@ const listarChamados = function (numeroPagina) {
     return api.get(`chamados/usuario/${10}/${numeroPagina}`)
 }
 
+const listarChamadosAdm = function (numeroPagina) {
+    return api.get(`chamados/usuario/${10}/${numeroPagina}`)
+}
+
 export default api;
 
-export {listarPossiveisProblemas, listarChamados, cadastro};
+export {listarPossiveisProblemas, listarChamados, cadastro, listarChamadosAdm};

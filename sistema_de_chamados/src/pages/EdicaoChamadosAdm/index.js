@@ -79,9 +79,7 @@ export default function EdicaoChamadosAdm() {
 
                     <EditionRunTime>
                         <label>Tempo gasto na execução:</label>
-                        <div>
-                            <p>2 horas e 37 minutos</p>
-                        </div>
+                        <input type="text" />
                     </EditionRunTime>
                 </InputArea>
                 <DescriptionArea>
