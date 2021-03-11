@@ -1,5 +1,6 @@
 package taking.api.controller;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Authorization;
 import taking.api.dto.ChamadoIdDTO;
@@ -61,22 +63,14 @@ public class ChamadosController {
 			authorizations = { @Authorization(value = "jwtToken") })
 	@PostMapping("/{userId}/{problemId}/{admId}")
 	public ResponseEntity<ChamadoIdDTO> cadastrarChamado(@PathVariable("userId") Long userId,
-			@PathVariable("admId") Long admId, @PathVariable("problemId") Long problemId, @RequestParam("file") MultipartFile file,
-			@RequestParam("descricaoProblema") String descricaoProblema) {
+			@PathVariable("admId") Long admId,
+			@PathVariable("problemId") Long problemId, 
+			@RequestParam("file") MultipartFile file,
+			@RequestParam("descricaoProblema") String descricaoProblema) throws IOException {
 		
-		Chamados obj = null;
-		if(usuarioRepository.existsById(userId) && admRepository.existsById(admId)) {
-			obj = chamadosService.salvarDados(userId, problemId, admId, file, descricaoProblema, new Date());
-		}
-		
-		ChamadoIdDTO chamadoIdDto = new ChamadoIdDTO();
-		chamadoIdDto.setId(obj.getId());
+		Chamados obj = chamadosService.salvarDados(userId, problemId, admId, file, descricaoProblema, new Date());
+		ChamadoIdDTO chamadoIdDto = new ChamadoIdDTO(obj.getId());
 		return ResponseEntity.ok(chamadoIdDto);
-		
-//		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{chamadoId}").buildAndExpand(obj.getId())
-//				.toUri();
-//		System.out.println(obj.getId());
-//		return ResponseEntity.created(uri).build();
 	}
 
 	@ApiOperation(value = "Faz o download do anexo", 
