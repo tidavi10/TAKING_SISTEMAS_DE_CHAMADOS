@@ -24,10 +24,9 @@ export default function Cadastro() {
     const  [cargo, setcargo]  = useState('')
 
 
-     const handlerEnviar = () =>{
-        const formData = new FormData();
-        cadastro(nome, email, password, cpf, rg, endereco, cep, cargo).then(d => console.log(`Criado o item ${JSON.stringify(d)}`))
-        console.log(formData)
+     const handlerEnviar = (dados) =>{
+        cadastro(dados)
+            .then(d => console.log(`Criado o item ${JSON.stringify(d)}`))
     }
 
     return (

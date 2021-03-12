@@ -120,21 +120,6 @@ export default function ChamadosAdm() {
         <Title>Chamados em aberto</Title>
         { renderCallBox() }
         <Pagination postsPerPage={postsPerPage} totalPosts={state.totalChamados} paginate={paginate} />
-        <div>
-          {
-            // <Posts posts={posts} loading={loading} />
-            // <Pagination postsPerPage={postsPerPage} totalPosts={state.totalChamados} paginate={paginate} />
-          }
-        </div>
-        {/* <>
-          <Pagination
-            activePage={state.activePage}
-            itemsCountPerPage={2}
-            totalItemsCount={listaDeChamados.length}
-            pageRangeDisplayed={5}
-            onChange={handlerPageChange}
-          />
-        </> */}
       </Container>
     </Router>
   )
