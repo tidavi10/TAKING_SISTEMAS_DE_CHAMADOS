@@ -13,26 +13,21 @@ import { useHistory } from 'react-router-dom';
 export default function LoginAdm() {
     const history = useHistory();
 
-    const { login, token } = useAuth();
-    const { addToast } = useToast();
-     console.log(token)
+    const { loginAdm } = useAuth();
+     
     const handleSubmit = useCallback((data) => {
         try {
-            login({
+            loginAdm({
                 email: data.email,
                 senha: data.senha
             });
 
-            addToast({
-                type: 'success',
-                title: 'Erro na autenticação',
-                description: 'Ocorreu um erro ao fazer o login. Por favor, verifique os dados inseridos.'
-            });
+            console.log(data)
         } catch (error) {
             alert('Não foi possível logar.')
         }
         
-    }, [login, addToast]);
+    }, [loginAdm]);
 
     return (
         <>
@@ -47,6 +42,7 @@ export default function LoginAdm() {
                     }}
                     render={({ isValid }) => (
                     <Form className="form-adm">
+                        <img className="img-adm" src={logo} />
                         <h1 className="title-adm">Login</h1>
                         <div className="div-adm">
                             <label>E-mail:</label>
@@ -63,7 +59,7 @@ export default function LoginAdm() {
                             </div>
                         </div>
                         <button className="button-adm" type="submit" disabled={!isValid} onClick={handleSubmit}>Login</button>
-                        <img className="img-adm" src={logo} />
+                        
                     </Form>
                     )}          
                 />

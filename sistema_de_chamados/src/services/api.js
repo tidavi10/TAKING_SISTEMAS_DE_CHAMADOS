@@ -27,7 +27,7 @@ const listarChamados = function (numeroPagina) {
 }
 
 const listarChamadosAdm = function (numeroPagina) {
-    return api.get(`chamados/usuario/${10}/${numeroPagina}`)
+    return api.get(`chamados/adm/${10}/${numeroPagina}`)
 }
 
 export default api;

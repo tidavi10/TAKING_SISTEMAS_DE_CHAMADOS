@@ -106,10 +106,34 @@ export const HeaderContent = styled.div`
 `;
 
 export const Img =styled.img`
-    width: 30px;
-    height: 30px;
-    margin-bottom: 24px;
+    width: 34px;
+    height: 34px;
+    margin-bottom: 26px;
     margin-left: 4px;
+
+    @media (max-width: 576px) {
+        width: 22px;
+        height: 22px;
+        margin-bottom: 16px;
+    }
+
+    @media (min-width: 576.1px) {
+        width: 28px;
+        height: 28px;
+        margin-bottom: 24px;
+    }
+
+    @media (min-width: 768px) {
+        width: 30px;
+        height: 30px;
+        margin-bottom: 24px;
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 26px;
+    }
 `;
 
 export const ButtonHeader = styled.button`

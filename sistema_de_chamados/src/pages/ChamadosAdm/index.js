@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { FiEdit } from 'react-icons/fi';
 
 import Pagination from './components/Pagination';
-import {listarChamadosAdm} from '../../services/api'
+import {listarChamados} from '../../services/api'
 
 import logo from '../../assets/logo.png';
 
@@ -41,8 +41,9 @@ export default function ChamadosAdm() {
     useEffect(() => {
         setState({ ...state, loading: true });
     
-        listarChamadosAdm(state.activePage - 1).then(d => d.data).then(d => {
-          setlistaDeChamados(d)
+        listarChamados(state.activePage - 1).then(call => call.data).then(call => {
+            console.log(call)
+          setlistaDeChamados(call)
           setState({ ...state, loading: false });
         })
       }, [state.activePage]);
@@ -54,21 +55,22 @@ export default function ChamadosAdm() {
 
     const paginate = pageNum => {
         setState({ ...state, loading: true });
-        listarChamadosAdm(pageNum).then(d => d.data).then(d => {
-        setlistaDeChamados(d)
+        listarChamados(pageNum).then(call => call.data).then(call => {
+        setlistaDeChamados(call)
         setState({ ...state, loading: false, currentPage: pageNum });
-        })
+        });
     }
 
-  function getPaginated() {
-    return listaDeChamados
-  }
+    function getPaginated() {
+        return listaDeChamados
+    }
 
     function handlerPageChange(pageNumber) {
         console.log(`active page is ${pageNumber}`);
         setState({ activePage: pageNumber });
     }
-  
+    
+
     const goToEditCall = () => {
         history.push('/edicao-chamados-adm')
     }
@@ -85,16 +87,16 @@ export default function ChamadosAdm() {
                 <p>Status</p>
             </LegendCalls>
             {
-                listaDeChamados.map(d =>
-                    <CallItem key={d.id}>
+                listaDeChamados.map(call =>
+                    <CallItem key={call.id}>
                         <CallCod>
-                            <p>{d.id}</p>
+                            <p>{call.id}</p>
                         </CallCod>
                         <CallType>
-                            <p>{d.descricao}</p>
+                            <p>{call.descricao}</p>
                         </CallType>
                         <CallStatus>
-                            <p>{d.status}</p>
+                            <p>{call.status}</p>
                         </CallStatus>
                         <CallEditButton onClick={goToEditCall}>
                             <FiEdit />
@@ -119,34 +121,14 @@ export default function ChamadosAdm() {
                 </HeaderContent>
                 <p>Usuário Logado</p>
             </Header>
+
             { renderCallBox() }
+
             <Pagination
                 postsPerPage={postsPerPage}
                 totalPosts={state.totalChamados}
                 paginate={paginate}
             />
-            {/* <CallsBox>
-                <LegendCalls>
-                    <p>Cod.</p>
-                    <p>Tipo</p>
-                    <p>Status</p>
-                    <InvisibleElement></InvisibleElement>
-                </LegendCalls>
-
-                <CallItem>
-                    <CallCod>
-                        <p>55</p>
-                    </CallCod>
-                    <CallType>
-                        <p>Criação de e-mail</p>
-                    </CallType>
-                    <CallStatus>
-                        <p>Pendente</p>
-                    </CallStatus>
-                    <CallEditButton onClick={goToEditCall}>
-                        <FiEdit />
-                    </CallEditButton>
-                </CallItem> */}
         </Container>
     )
 }
