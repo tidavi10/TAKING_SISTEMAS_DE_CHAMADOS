@@ -29,7 +29,7 @@ import { BiCloudUpload } from "react-icons/bi";
 
 
 function MyDropzone(props) {
-    console.log(props)
+
     const onDrop = useCallback(acceptedFiles => {
         props.onFileSelected(acceptedFiles[0])
     }, [])

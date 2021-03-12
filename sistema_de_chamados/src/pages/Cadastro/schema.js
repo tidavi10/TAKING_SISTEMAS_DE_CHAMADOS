@@ -8,6 +8,5 @@ export default Yup.object().shape({
     rg: Yup.string().matches(/^\d{2}\d{3}\d{3}\d{1}$/, '*Digite só números').required('*Digite seu RG '),
     cep: Yup.string().matches(/^\d{5}\d{3}$/, '*Digite só números').required('*Digite seu cep '),
     endereco: Yup.string().required('*Digite seu endereço '),
-    telefone: Yup.string().max(11, 'São permetidos 11 digitos no máximo').required('Digite seu telefone'),
     cargo: Yup.string().required('*Digite seu cargo'),
 });
