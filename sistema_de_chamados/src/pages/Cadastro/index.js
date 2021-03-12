@@ -7,7 +7,7 @@ import {
     BrowserRouter as Router } from 'react-router-dom';
 import logo from '../../assets/logo.png'
 import { useHistory } from 'react-router-dom';
-import api from '../../services/api'
+import api, {cadastro} from '../../services/api'
 
 export default function Cadastro() {
 
@@ -24,26 +24,21 @@ export default function Cadastro() {
     const  [cargo, setcargo]  = useState('')
 
 
-     async function handleSubmit(){
-
-        const data = {nome:nome, email:email, senha:password, cep:cep, endereco:endereco, cpf:cpf, rg:rg, cargo: cargo}
-        const response = await api.post('usuarios/cadastro', data)
-
-        if(response.status=200){
-           console.log(response.status) //window.location.href ='http://localhost:3000/chamados'
-        }else{
-            alert('Erro ao cadastrar usuário');
-        }
-        
-        
+     const handlerEnviar = () =>{
+        const formData = new FormData();
+        cadastro(nome, email, password, cpf, rg, endereco, cep, cargo).then(d => console.log(`Criado o item ${JSON.stringify(d)}`))
+        console.log(formData)
     }
 
     return (
         <Router>
             <Formik className="formik"
                 validationSchema={schema}
-                onSubmit={handleSubmit}
-                validateOnChange
+                onSubmit={handlerEnviar}
+                validateOnMount
+                initialTouched={{
+                    field: true,
+                }}
                 initialValues={{
                     nome: '',
                     email: '',
@@ -63,35 +58,35 @@ export default function Cadastro() {
                       <div className="parte1">
                         <div className="inputdiv">
                             <label>Nome:</label>
-                                <Field value={nome} onChange={e => setnome(e.target.value)} className="input" type="text" name="nome"/>
+                                <Field className="input" type="text" name="nome"/>
                             <div className="Form-erro">
                                 <ErrorMessage className="erro" name="nome" component="spam" />
                             </div>
                         </div> 
                         <div className="inputdiv">
                             <label>E-mail:</label>
-                            <Field value={email} onChange={e => setemail(e.target.value)} className="input" type="email" name="email"/>
+                            <Field className="input" type="email" name="email"/>
                             <div className="Form-erro">
                                 <ErrorMessage className="erro" name="email" component="spam" />
                             </div>
                         </div > 
                         <div className="inputdiv"> 
                             <label>CPF:</label>  
-                                <Field value={cpf} onChange={e => setcpf(e.target.value)} className="input" type="text" name="cpf"/>
+                                <Field className="input" type="text" name="cpf"/>
                             <div className="Form-erro">
                                 <ErrorMessage className="erro" name="cpf" component="spam" />
                             </div>
                         </div>
                         <div className="inputdiv">
                             <label>RG:</label>
-                            <Field value={rg} onChange={e => setrg(e.target.value)} className="input" type="text" name="rg"/>
+                            <Field className="input" type="text" name="rg"/>
                             <div className="Form-erro">
                                 <ErrorMessage className="erro" name="rg" component="spam" />
                             </div>
                         </div>
                         <div className="inputdiv">
                             <label>CEP:</label>
-                            <Field value={cep} onChange={e => setcep(e.target.value)} className="input" type="text" name="cep"/>
+                            <Field className="input" type="text" name="cep"/>
                             <div className="Form-erro">
                                 <ErrorMessage className="erro" name="cep" component="spam" />
                             </div>
@@ -100,26 +95,26 @@ export default function Cadastro() {
                    <div className="parte2">
                         <div className="inputdiv">
                             <label>Endereço:</label>
-                            <Field value={endereco} onChange={e => setendereco(e.target.value)} className="input" type="text" name="endereco"/>
+                            <Field className="input" type="text" name="endereco"/>
                             <div className="Form-erro">
                                 <ErrorMessage className="erro" name="endereco" component="spam" />
                             </div>
                         </div>
                         <div className="inputdiv">
                             <label>Cargo:</label>
-                            <Field value={cargo} onChange={e => setcargo(e.target.value)} className="input" type="text" name="cargo"/>
+                            <Field className="input" type="text" name="cargo"/>
                             <div className="Form-erro">
                                 <ErrorMessage className="erro" name="cargo" component="spam" />
                             </div>
                             </div>
                         <div className="inputdiv">
                             <label>Senha:</label>
-                            <Field value={password} onChange={e => setpassword(e.target.value)} className="input" type="password" name="password" />
+                            <Field className="input" type="password" name="password" />
                             <div className="Form-erro">
-                                <ErrorMessage className="erro" name="password" component="spam" />
+                            <ErrorMessage className="erro" name="password" component="spam" />
                             </div>
                         </div>
-                        <button variant="contained" className="Submit" type="submit" onClick={handleSubmit}>Cadastrar</button>
+                        <button className="Submit" type="submit" onClick={handlerEnviar}>Cadastrar</button>
                  </div>
                 </div>
 
