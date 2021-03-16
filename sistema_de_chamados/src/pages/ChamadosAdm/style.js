@@ -2,8 +2,10 @@ import styled from "styled-components";
 import { darken } from 'polished';
 
 export const Container = styled.div`
+    margin: 0 auto;
     padding: 24px;
     background: #f8f9fa;
+    max-width: 1100px;
 
     @media (max-width: 576px) {
         padding: 12px;

@@ -137,19 +137,6 @@ export const ButtonExit = styled.button`
     }
 `;
 
-export const Title = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    width: 90%;
-
-    @media (max-width: 576px) {
-        font-size: 14px;
-    }
-`;
-
 export const CallsBox = styled.div`
     width: 100%;
     height: 70vh;
@@ -245,7 +232,8 @@ export const CallType = styled.div`
     border-right: 1px solid #eee;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    margin-left: 8px;
 
     @media (max-width: 576px) {
         span {

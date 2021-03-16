@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+
+import { useAuth } from '../../hooks/auth';
+
+
 
 import {
     Container,
@@ -23,11 +27,37 @@ import {
 } from './style';
 
 import logo from '../../assets/logo.png'
+import api from '../../services/api';
 
 export default function EdicaoChamadosAdm() {
     const history = useHistory();
+    const { admEmail, name, id } = useAuth();
+
     const goToChamadosAdm = () => {
         history.push('/chamados-adm')
+    }
+
+    const handleSubmit = useCallback((data) => {
+        try {
+            const idChamado = 1;
+            const updateCall = async() => {
+
+
+                const response = await api.put(`/resolucao/resposta/${idChamado}/${id}`);
+            }
+
+            // Toast de sucesso
+
+            // Redireciona para lista de chamados
+        } catch (error) {
+            // Toast de erro
+            // Mantém os dados em tela? Permance na mesma tela.
+        }
+    }, [])
+
+    const cancelUpdate = () => {
+        // Limpa os campos
+        // Redireciona para lista de chamados
     }
 
     return (
@@ -42,7 +72,7 @@ export default function EdicaoChamadosAdm() {
                         <p>Meus dados</p>
                     </ButtonHeader>
                 </HeaderContent>
-                <p>Usuário Logado</p>
+                <p>{!name || name != undefined ? admEmail : name}</p>
             </Header>
 
             <CallsBox>
@@ -90,10 +120,10 @@ export default function EdicaoChamadosAdm() {
 
             <ButtonArea>
                 <>
-                    <SubmitButton>
+                    <SubmitButton onClick={cancelUpdate}>
                         <p>Cancelar</p>
                     </SubmitButton>
-                    <SubmitButton>
+                    <SubmitButton onClick={handleSubmit}>
                         <p>Atualizar</p>
                     </SubmitButton>
                 </>

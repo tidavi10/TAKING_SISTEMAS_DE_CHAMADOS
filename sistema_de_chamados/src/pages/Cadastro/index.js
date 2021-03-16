@@ -17,7 +17,7 @@ export default function Cadastro() {
 
     const  [nome, setnome] = useState('')
     const  [email, setemail]  = useState('')
-    const  [senha, setsenha]  = useState('')
+    const  [senha, setSenha]  = useState('')
     const  [cep, setcep]  = useState('')
     const  [endereco, setendereco]  = useState('')
     const  [cpf, setcpf]  = useState('')

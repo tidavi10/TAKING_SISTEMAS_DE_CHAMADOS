@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: "http://testetaking.herokuapp.com/",
+    baseURL: "https://projetochamadosbackendtaking.herokuapp.com/",
     headers: {
-        'Authorization':'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYUBnbWFpbC5jb20iLCJpYXQiOjE2MTU0MTgyMzgsImV4cCI6MTYxNTQzNjIzOH0.Z5UocX8zh-EmMnx0PTnlwTljwzQvg9_EppQatmiLy3k'
+        'Authorization':'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYUBnbWFpbC5jb20iLCJpYXQiOjE2MTU3MzEzNjIsImV4cCI6MTYxNTc0OTM2Mn0.Rj7cBM8O0sXZvyMWGDH7NYvZjaSxinGKcl3O_jlIzKM'
     }
 });
 
@@ -26,10 +26,15 @@ const listarChamados = function (numeroPagina) {
     return api.get(`chamados/usuario/${10}/${numeroPagina}`)
 }
 
+const listarChamadosMock = function (numeroPagina) {
+    return axios.get('http://localhost:3001/chamados/'+ numeroPagina)
+}
+
+
 const listarChamadosAdm = function (numeroPagina) {
     return api.get(`chamados/adm/${10}/${numeroPagina}`)
 }
 
 export default api;
 
-export {listarPossiveisProblemas, listarChamados, cadastro, listarChamadosAdm, cadastrarChamado};
+export {listarPossiveisProblemas,listarChamadosMock, listarChamados, cadastro, listarChamadosAdm, cadastrarChamado};
