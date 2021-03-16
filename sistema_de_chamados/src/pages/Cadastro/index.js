@@ -1,5 +1,6 @@
 import React from 'react';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import schema from './schema'
 import './index.css'
@@ -22,17 +23,19 @@ export default function Cadastro() {
     const  [cpf, setcpf]  = useState('')
     const  [rg, setrg]  = useState('')
     const  [cargo, setcargo]  = useState('')
+    const [estados, setEstados] = useState([]);
 
-     const handlerEnviar = (dados) =>{
+     const handlerEnviar = (dados, response, req) =>{
         cadastro(dados)
-            .then(d => console.log(`Criado o item ${JSON.stringify(d)}`))
+            .then(dados => console.log(`Criado o item ${JSON.stringify(dados)}`)) 
     }
+    
 
 
     return (
         <Router>
             <Formik className="formik"
-                validationSchema={schema}
+               // validationSchema={schema}
                 onSubmit={handlerEnviar}
                 validateOnMount
                 initialTouched={{
