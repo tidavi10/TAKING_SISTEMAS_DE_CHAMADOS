@@ -23,11 +23,11 @@ export default function Cadastro() {
     const  [rg, setrg]  = useState('')
     const  [cargo, setcargo]  = useState('')
 
-
      const handlerEnviar = (dados) =>{
         cadastro(dados)
             .then(d => console.log(`Criado o item ${JSON.stringify(d)}`))
     }
+
 
     return (
         <Router>
@@ -110,7 +110,7 @@ export default function Cadastro() {
                             <label>Senha:</label>
                             <Field className="input" type="password" name="senha" />
                             <div className="Form-erro">
-                            <ErrorMessage className="erro" name="password" component="spam" />
+                            <ErrorMessage className="erro" name="senha" component="spam" />
                             </div>
                         </div>
                         <button className="Submit" type="submit" onClick={handlerEnviar}>Cadastrar</button>
