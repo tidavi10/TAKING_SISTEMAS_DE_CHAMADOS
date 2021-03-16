@@ -6,6 +6,8 @@ import { FiEdit } from 'react-icons/fi';
 import Pagination from './components/Pagination';
 import {listarChamados} from '../../services/api'
 
+import { useAuth } from '../../hooks/auth';
+
 import logo from '../../assets/logo.png';
 
 import {
@@ -26,6 +28,7 @@ import {
 
 export default function ChamadosAdm() {
     const history = useHistory();
+    const { admEmail, name } = useAuth();
 
     const [state, setState] = useState({ 
         activePage: 1,
@@ -119,7 +122,7 @@ export default function ChamadosAdm() {
                         <p>Meus dados</p>
                     </ButtonHeader>
                 </HeaderContent>
-                <p>Usuário Logado</p>
+                <p>{!name || name != undefined ? admEmail : name}</p>
             </Header>
 
             { renderCallBox() }
