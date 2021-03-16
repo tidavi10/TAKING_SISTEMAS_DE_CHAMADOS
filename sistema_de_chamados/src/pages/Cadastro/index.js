@@ -16,18 +16,18 @@ export default function Cadastro() {
 
     const  [nome, setnome] = useState('')
     const  [email, setemail]  = useState('')
-    const  [password, setpassword]  = useState('')
+    const  [senha, setsenha]  = useState('')
     const  [cep, setcep]  = useState('')
     const  [endereco, setendereco]  = useState('')
     const  [cpf, setcpf]  = useState('')
     const  [rg, setrg]  = useState('')
     const  [cargo, setcargo]  = useState('')
 
-
      const handlerEnviar = (dados) =>{
         cadastro(dados)
             .then(d => console.log(`Criado o item ${JSON.stringify(d)}`))
     }
+
 
     return (
         <Router>
@@ -46,7 +46,7 @@ export default function Cadastro() {
                     cep: '',
                     endereco: '',
                     cargo: '',
-                    password: '',
+                    senha: '',
                 }}
             >
                 {({ isValid, errors }) => (
@@ -108,9 +108,9 @@ export default function Cadastro() {
                             </div>
                         <div className="inputdiv">
                             <label>Senha:</label>
-                            <Field className="input" type="password" name="password" />
+                            <Field className="input" type="password" name="senha" />
                             <div className="Form-erro">
-                            <ErrorMessage className="erro" name="password" component="spam" />
+                            <ErrorMessage className="erro" name="senha" component="spam" />
                             </div>
                         </div>
                         <button className="Submit" type="submit" onClick={handlerEnviar}>Cadastrar</button>
