@@ -1,4 +1,4 @@
-package taking.api.service;
+/*package taking.api.service;
 
 import java.util.ArrayList;
 
@@ -33,3 +33,4 @@ public class AdmDetailsService implements UserDetailsService {
 	}
 
 }
+*/

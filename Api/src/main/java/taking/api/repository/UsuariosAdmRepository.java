@@ -1,4 +1,4 @@
-package taking.api.repository;
+/*package taking.api.repository;
 
 import java.util.Optional;
 
@@ -16,4 +16,4 @@ public interface UsuariosAdmRepository extends JpaRepository<UsuariosAdm, Long> 
 	boolean existsByEmail(String email);
 	
 	Optional<UsuariosAdm> findById(Long id);
-}
+}*/

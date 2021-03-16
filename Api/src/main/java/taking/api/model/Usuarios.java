@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,11 +15,10 @@ import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"email", "cpf"})})
+@Table(uniqueConstraints={@UniqueConstraint(columnNames = "email"), @UniqueConstraint(columnNames = "cpf")})
 public class Usuarios implements Serializable {
 	
 	
@@ -72,6 +70,9 @@ public class Usuarios implements Serializable {
 	@NotBlank (message = "RG inválido")
 	@ApiModelProperty(notes = "RG do usuário", required = true, position = 6)
 	private String rg;
+	
+	@ApiModelProperty(notes = "verifica se é Adm", hidden= true)
+	private boolean isAdm;
 
 	public Long getId() {
 		return id;
@@ -143,6 +144,14 @@ public class Usuarios implements Serializable {
 
 	public void setRg(String rg) {
 		this.rg = rg;
+	}
+	
+	public boolean getIsAdm() {
+		return isAdm;
+	}
+	
+	public void setIsAdm(boolean isAdm) {
+		this.isAdm = isAdm;
 	}
 	
 	public void JwtRequest()

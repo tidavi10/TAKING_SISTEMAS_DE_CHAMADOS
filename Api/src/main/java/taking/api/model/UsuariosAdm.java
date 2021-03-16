@@ -1,4 +1,4 @@
-package taking.api.model;
+/*package taking.api.model;
 
 import java.io.Serializable;
 
@@ -17,6 +17,7 @@ import io.swagger.annotations.ApiModelProperty;
 @Table(name = "usuariosadm")
 public class UsuariosAdm implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,13 +25,18 @@ public class UsuariosAdm implements Serializable {
 	@Column(name = "idAdm")
 	private Long ID;
 	
+	@NotBlank (message = "Nome inválido")
+	@ApiModelProperty(notes = "Nome do usuário", required = true, position = 2)
+	private String nome;
+	
+	
 	@NotBlank (message = "E-mail inválido")
-	@ApiModelProperty(notes = "E-mail do usuário", required = true, position = 2)
+	@ApiModelProperty(notes = "E-mail do usuário", required = true, position = 3)
 	@Column(unique = true)
 	private String email;
 	
 	@NotBlank (message = "Senha inválida")
-	@ApiModelProperty(notes = "Senha do usuário", required = true, position = 3)
+	@ApiModelProperty(notes = "Senha do usuário", required = true, position = 4)
 	private String senha;
 
 	public Long getID() {
@@ -44,6 +50,10 @@ public class UsuariosAdm implements Serializable {
 	
 	public UsuariosAdm() {
 		
+	}
+	
+	public String getNome() {
+		return nome;
 	}
 
 	public String getEmail() {
@@ -70,5 +80,10 @@ public class UsuariosAdm implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
 }
+*/

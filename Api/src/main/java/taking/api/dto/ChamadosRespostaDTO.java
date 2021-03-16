@@ -3,6 +3,7 @@ package taking.api.dto;
 import java.io.Serializable;
 
 import taking.api.model.Chamados;
+import taking.api.model.UsuariosAdmChamados;
 
 public class ChamadosRespostaDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -18,6 +19,12 @@ public class ChamadosRespostaDTO implements Serializable{
 		this.id = chamado.getId();
 		this.descricao = chamado.getDescricao();
 		this.status = chamado.getStatus();
+	}
+	
+	public ChamadosRespostaDTO(UsuariosAdmChamados chamado) {
+		this.id = chamado.getChamados().getId();
+		this.descricao = chamado.getChamados().getDescricao();
+		this.status = chamado.getChamados().getStatus();
 	}
 
 	public Long getId() {

@@ -21,7 +21,7 @@ import taking.api.dto.TokenDTO;
 import taking.api.exceptions.AutenticacaoException;
 import taking.api.model.JwtRequest;
 import taking.api.model.Usuarios;
-import taking.api.repository.UsuariosAdmRepository;
+//import taking.api.repository.UsuariosAdmRepository;
 import taking.api.repository.UsuariosRepository;
 import taking.api.service.AuthenticateService;
 import taking.api.service.JwtUserDetailsService;
@@ -46,23 +46,19 @@ public class JwtAuthenticationController {
 	@Autowired
 	private UsuariosRepository usuariosRepository;
 
-	@Autowired
-	private UsuariosAdmRepository usuariosAdmRepository;
+	/*@Autowired
+	private UsuariosAdmRepository usuariosAdmRepository;*/
 
 	@ApiOperation(value = "Login Usuário")
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
-	public ResponseEntity<TokenDTO> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest)
-			throws Exception {
-
+	public ResponseEntity<TokenDTO> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 		return authenticateService.UserAuth(authenticationRequest.getEmail(), authenticationRequest.getSenha());
-
 	}
 
 	@ApiOperation(value = "Login ADM")
 	@RequestMapping(value = "/admAuth", method = RequestMethod.POST)
 	public ResponseEntity<TokenDTO> createAdmToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 		return authenticateService.AdmAuth(authenticationRequest.getEmail(), authenticationRequest.getSenha());
-
 	}
 
 	// Exception autenticação

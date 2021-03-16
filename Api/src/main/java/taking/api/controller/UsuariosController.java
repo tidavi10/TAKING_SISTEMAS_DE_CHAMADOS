@@ -30,6 +30,7 @@ import taking.api.model.Usuarios;
 
 import taking.api.repository.UsuariosRepository;
 import taking.api.service.AuthenticateService;
+import taking.api.service.UsuariosService;
 
 @Api(tags="Usuarios")
 @RestController
@@ -43,12 +44,9 @@ public class UsuariosController {
 	
 	@Autowired
 	private UsuariosRepository usuariosRepository;
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	public UsuariosController(UsuariosRepository usuariosRepository, BCryptPasswordEncoder bCryptPasswordEncoder)
-	{
-		this.usuariosRepository = usuariosRepository;
-		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-	}
+	
+	@Autowired
+	private UsuariosService usuariosService;
 	
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Retorna a lista de usuarios"),
@@ -62,13 +60,15 @@ public class UsuariosController {
 	
 	@PostMapping("/cadastro")
 	@ApiOperation(value = "Cadastra um Usuário")
-	public ResponseEntity<TokenDTO> signUp(@Valid @RequestBody Usuarios usuarios)
-	{
-		String senha = usuarios.getSenha();
-		usuarios.setSenha(bCryptPasswordEncoder.encode(usuarios.getSenha()));
-		usuariosRepository.saveAndFlush(usuarios);
-		return authenticateService.UserAuth(usuarios.getEmail(), senha);
+	public ResponseEntity<TokenDTO> cadastroUsuario(@Valid @RequestBody Usuarios usuarios) {
+		return usuariosService.salvarUsuarioERetornarToken(usuarios);
 	}
+	
+	/*@PostMapping("/cadastro")
+	@ApiOperation(value = "Cadastra um ADM", hidden = true, authorizations = { @Authorization(value = "jwtToken") })
+	public ResponseEntity<TokenDTO> cadastroAdm(@Valid @RequestBody Usuarios usuarios){
+		return usuariosService.salvarAdmERetornarToken(usuarios);
+	}*/
 	
 	
 /**	

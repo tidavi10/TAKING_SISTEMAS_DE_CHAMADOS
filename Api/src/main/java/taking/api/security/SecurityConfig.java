@@ -23,15 +23,14 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import taking.api.config.JwtAuthenticationEntryPoint;
-import taking.api.controller.Filter.AdmJwtRequestFilter;
+//import taking.api.controller.Filter.AdmJwtRequestFilter;
 import taking.api.controller.Filter.JwtRequestFilter;
 import taking.api.oauth2.CustomAuthenticationSuccessHandler;
-import taking.api.service.AdmDetailsService;
+//import taking.api.service.AdmDetailsService;
 import taking.api.service.JwtUserDetailsService;
 
-@Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter{
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
@@ -40,8 +39,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		return source;
 	}
 
-	@Configuration 
-	@Order(1) 
+	@Configuration
+	@Order(1)
 	public static class UserSecurityConfiguration extends WebSecurityConfigurerAdapter
 			implements ApplicationContextAware {
 
@@ -53,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 		@Autowired
 		private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-		
+
 		@Autowired
 		private JwtRequestFilter jwtRequestFilter;
 
@@ -72,10 +71,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		@Override
 		protected void configure(HttpSecurity httpSecurity) throws Exception {
 			httpSecurity.cors().and().csrf().disable().authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll()
-					.antMatchers(HttpMethod.POST, "/usuarios/cadastro", "/usuariosadm/cadastro").permitAll()
+					//.antMatchers("/chamados/adm/**", "/resolucao/**").hasRole("ADM")
+					.antMatchers(HttpMethod.POST, "/usuarios/cadastro", "/usuariosadm/cadastro", 
+							"/authenticate", "/admAuth")
+					.permitAll()
 					.and()
-					.antMatcher("/authenticate")
-					.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+					.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
+					.authorizeRequests()
+					.anyRequest().authenticated();
 
 			// .and()
 			// .oauth2Login()
@@ -105,10 +108,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		 **/
 
 		public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-			authenticationManagerBuilder.userDetailsService(this.userDetailsService)
+			authenticationManagerBuilder.userDetailsService(userDetailsService)
 					.passwordEncoder(bCryptPasswordEncoder);
 		}
-		
+
 		@Bean
 		@Override
 		protected AuthenticationManager authenticationManager() throws Exception {
@@ -116,13 +119,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		}
 	}
 
-	@Configuration
+	/*@Configuration
 	@Order(2)
 	public static class AdmSecurityConfiguration extends WebSecurityConfigurerAdapter
 			implements ApplicationContextAware {
 
 		private BCryptPasswordEncoder bCryptPasswordEncoder;
 		private AdmDetailsService admDetailsService;
+		private JwtUserDetailsService userDetailsService;
 
 		@Autowired
 		private AdmJwtRequestFilter admJwtRequestFilter;
@@ -136,23 +140,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		@Override
 		protected void configure(HttpSecurity httpSecurity) throws Exception {
 
-			httpSecurity.antMatcher("/admAuth").addFilterBefore(admJwtRequestFilter,
-					UsernamePasswordAuthenticationFilter.class);
+			httpSecurity
+			.addFilterBefore(admJwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		}
 
 		public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
 			authenticationManagerBuilder.userDetailsService(admDetailsService).passwordEncoder(bCryptPasswordEncoder);
 		}
-	}
 
-	@Configuration
-	@Order(3)
-	public static class AllEndpoints extends WebSecurityConfigurerAdapter implements ApplicationContextAware {
-
-		@Override
-		protected void configure(HttpSecurity httpSecurity) throws Exception {
-			httpSecurity.authorizeRequests().anyRequest().authenticated();
-		}
-
-	}
+	}*/
 }

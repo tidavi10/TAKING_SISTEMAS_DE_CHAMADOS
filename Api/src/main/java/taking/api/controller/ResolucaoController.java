@@ -49,9 +49,10 @@ public class ResolucaoController {
 							+ "passando na URL o ID do Chamado e o ID do ADM",
 					authorizations = { @Authorization(value = "jwtToken") })
 	public ResponseEntity<Resolucao> respostaChamado(@PathVariable Long IdChamado, @PathVariable Long IdAdm,
-			@RequestBody Resolucao resolucao) throws TransactionRequiredException{
+			@RequestBody Resolucao resolucao) throws TransactionRequiredException {
+		return resolucaoService.respostaChamado(IdChamado, IdAdm, resolucao);
 		
-		if (resolucaoService.idAndAdmExists(IdChamado, IdAdm)) { 
+		/*if (resolucaoService.idAndAdmExists(IdChamado, IdAdm)) {
 			resolucao.setId(IdChamado);
 			resolucao.setTimestamp(new Date());
 			resolucaoRepository.save(resolucao);
@@ -59,7 +60,7 @@ public class ResolucaoController {
 			return new ResponseEntity<Resolucao>(HttpStatus.OK);
 		}
 
-		return new ResponseEntity<Resolucao>(HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<Resolucao>(HttpStatus.BAD_REQUEST);*/
 
 	}
 
