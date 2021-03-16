@@ -1,0 +1,11 @@
+{
+    "chamados" : {
+        "totalChamados": 10,
+        "conteudo" : [
+            {"id": 4, "descricao": "Chamado 4", "status": "pendente"},
+            {"id": 5, "descricao": "Chamado 5", "status": "pendente"},
+            {"id": 6, "descricao": "Chamado 6", "status": "pendente"},
+            {"id": 7, "descricao": "Chamado 7", "status": "pendente"}
+        ] 
+    }
+}

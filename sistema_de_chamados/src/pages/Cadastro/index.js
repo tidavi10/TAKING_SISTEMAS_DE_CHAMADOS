@@ -16,7 +16,7 @@ export default function Cadastro() {
 
     const  [nome, setnome] = useState('')
     const  [email, setemail]  = useState('')
-    const  [password, setpassword]  = useState('')
+    const  [senha, setSenha]  = useState('')
     const  [cep, setcep]  = useState('')
     const  [endereco, setendereco]  = useState('')
     const  [cpf, setcpf]  = useState('')
@@ -46,7 +46,7 @@ export default function Cadastro() {
                     cep: '',
                     endereco: '',
                     cargo: '',
-                    password: '',
+                    senha: '',
                 }}
             >
                 {({ isValid, errors }) => (
@@ -108,7 +108,7 @@ export default function Cadastro() {
                             </div>
                         <div className="inputdiv">
                             <label>Senha:</label>
-                            <Field className="input" type="password" name="password" />
+                            <Field className="input" type="password" name="senha" />
                             <div className="Form-erro">
                             <ErrorMessage className="erro" name="password" component="spam" />
                             </div>

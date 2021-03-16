@@ -230,55 +230,6 @@ export const FilterSelector = styled.div`
     }
 `;
 
-export const Dropzone = styled.div`
-    width: 300px;
-    height: 50px;
-    font-size: 1rem;
-    border-radius: 4px;
-    margin-top: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-
-    border-style: dashed;
-    border-width: 2px;
-    border-color: #dee2e6;
-
-    .dropzone {
-        align-items: center;
-    }
-
-    @media (max-width: 576px) {
-        margin: auto;
-        font-size: 1rem;
-        margin-top: 10px;
-        width: 50%;
-        text-align: center;
-    }
-
-    @media (min-width: 577px) and (max-width: 768px){
-        margin: auto;
-        font-size: 1rem;
-        margin-top: 10px;
-        width: 40%;
-        text-align: center;
-    }
-
-    @media (min-width: 769px) and (max-width: 992px){
-        width: 70%;
-    }
-`;
-
-export const CloudUpStyle = styled.div`
-    margin-right: 5px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-`;
-
 export const EditionText = styled.div`
     width: 60%;
     margin-left: 10px;

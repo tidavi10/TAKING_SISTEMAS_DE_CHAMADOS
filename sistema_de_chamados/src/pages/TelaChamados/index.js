@@ -1,13 +1,18 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     BrowserRouter as Router
 } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import { useDropzone } from 'react-dropzone';
 import Select from 'react-select';
 
-import { listarPossiveisProblemas } from '../../services/api';
-import { cadastrarChamado } from '../../services/api';
+import { uniqueId } from 'lodash';
+import filesize from 'filesize';
+
+import FileList from './components/FileList';
+import Upload from './components/Upload';
+
+import api, { listarPossiveisProblemas, cadastrarChamado } from '../../services/api';
+
 import {
     Container,
     Header,
@@ -19,39 +24,16 @@ import {
     FilterSelector,
     Footer,
     ButtonFinish,
-    Dropzone,
     EditionText,
     ButtonExit,
-    CloudUpStyle,
 } from '../TelaChamados/style';
-
-import { BiCloudUpload } from "react-icons/bi";
-
-
-function MyDropzone(props) {
-
-    const onDrop = useCallback(acceptedFiles => {
-        props.onFileSelected(acceptedFiles[0])
-    }, [])
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
-
-    return (
-        <div {...getRootProps()}>
-            <input {...getInputProps()} />
-            {
-                isDragActive ?
-                    <p>Solte os arquivos aqui...</p> :
-                    <p>Adicionar arquivos</p>
-            }
-        </div>
-    )
-}
 
 export default function TelaChamados() {
     const history = useHistory();
     const [selectedOption, setSelectedOption] = useState(null);
     const [possiveisProblemas, setPossiveisProblemas] = useState([]);
     const [fileSelect, setFileSelect] = useState(null)
+
     useEffect(() => {
         listarPossiveisProblemas().then(d => d.data).then(d => {
             const ordenados = d.map(c => (
@@ -70,6 +52,29 @@ export default function TelaChamados() {
     const handlerChangeText = ({ target: { value }}) => {
         setText(value);
     }
+
+    
+    const handlerUpload = files => {
+        const fileToUpload = files.map(file => ({
+            file,
+            id: uniqueId(),
+            name: file.name,
+            readableSize: filesize(file.size),
+            preview: URL.createObjectURL(file),
+            progress: 0,
+            uploaded: false,
+            error: false,
+            url: null,
+        }))[0]
+        
+        setFileSelect(fileToUpload)
+        
+    }
+
+    const handleDeleteFile = () => {
+        setFileSelect(null)
+    }
+
 
     const handlerEnviar = () => {
         const formData = new FormData();
@@ -114,14 +119,10 @@ export default function TelaChamados() {
                                 onChange={problemaSelectedHandler}
                                 placeholder="Selecione"/>
                         </FilterSelector>
-                        <Dropzone>
-                            <CloudUpStyle>
-                                <BiCloudUpload />
-                            </CloudUpStyle>
-                            <MyDropzone onFileSelected={file => {
-                                setFileSelect(file)
-                            }}/>
-                        </Dropzone>
+                        <Upload onUpload={handlerUpload} />
+                        { !!fileSelect && (
+                            <FileList files={[fileSelect]} onDelete={handleDeleteFile} />
+                        ) }
                     </InputArea>
                     <EditionText>
                         <EditionDescription>
