@@ -35,6 +35,17 @@ const AuthProvider =  ({ children }) => {
         return {};
     });
 
+    //teste
+    const [userAuthData, setUserAuthData] = useState(() => {
+        const data = localStorage.getItem('@chamadosTaking:usuario');
+        if (data) {
+            const parsedData = JSON.parse(data)
+            return { userToken: parsedData.userToken };
+        }
+
+        return {};
+    });
+
     const [authData, setAuthData] = useState(() => {
         const token = localStorage.getItem('@chamadosTaking:userAdmToken');
 
@@ -45,14 +56,36 @@ const AuthProvider =  ({ children }) => {
         return {};
     });
 
+    const loginUser = useCallback(async({ email, senha }) => {
+        const response = await api().post('authenticate', {
+            email,
+            senha
+        });
+
+        const usuarioEmail = JSON.parse(response.config.data).email
+
+        const userToken = response.data.token;
+        const userId = response.data.id;
+        const nameUsuario = response.data.nome;
+        const data = JSON.stringify({email:usuarioEmail, nome: nameUsuario, userId,token: userToken })
+        localStorage.setItem('@chamadosTaking:usuario', data);
+
+        setUserAuthData({ userToken });
+    }, []);
+
+    const userLogout = useCallback(() => {
+        localStorage.setItem('@chamadosTaking:usuario');
+
+        setUserAuthData({});
+    }, []);
+    
     const loginAdm = useCallback(async({ email, senha }) => {
-        const response = await api.post('admAuth', {
+        const response = await api().post('admAuth', {
             email,
             senha
         });
 
         const convertDataEmail = JSON.parse(response.config.data).email
-
         const { token } = response.data;
         const { id } = response.data;
         const { name } = response.data;
@@ -87,7 +120,16 @@ const AuthProvider =  ({ children }) => {
             token: authData.token,
             id: userId.id,
             name: userName?.name,
-            admEmail: userEmail?.admEmail
+            admEmail: userEmail?.admEmail,
+            loginUser,
+            userLogout,
+            usuario: {
+                userToken: userAuthData?.userToken,
+                userId: userAuthData?.userId,
+                nameUsuario: userAuthData?.nameUsuario,
+                usuarioEmail: userAuthData?.usuarioEmail,
+            }
+
         }}>
             {children}
         </AuthContext.Provider>
@@ -104,4 +146,4 @@ function useAuth() {
     return context;
 }
 
-export { AuthProvider, useAuth };
+export { AuthProvider, useAuth, AuthContext };

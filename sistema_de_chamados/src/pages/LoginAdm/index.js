@@ -15,9 +15,9 @@ export default function LoginAdm() {
 
     const { loginAdm, token, id, name, admEmail } = useAuth();
      
-    const handleSubmit = useCallback(async (data) => {
+    const handleSubmit = useCallback(async (data, actions) => {
         try {
-             loginAdm({
+             await loginAdm({
                 email: data.email,
                 senha: data.senha
             });
@@ -29,7 +29,7 @@ export default function LoginAdm() {
             alert('Não foi possível logar.')
         }
         
-    }, [loginAdm]);
+    });
 
     return (
         <>
@@ -60,7 +60,7 @@ export default function LoginAdm() {
                                 <ErrorMessage name="password" component="spam" />
                             </div>
                         </div>
-                        <button className="button-adm" type="submit" disabled={!isValid} onClick={handleSubmit}>Login</button>
+                        <button className="button-adm" type="submit" disabled={!isValid} >Login</button>
                         
                     </Form>
                     )}          

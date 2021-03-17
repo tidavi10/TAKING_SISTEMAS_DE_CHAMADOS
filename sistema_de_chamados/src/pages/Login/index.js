@@ -1,15 +1,34 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
+
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import schema from './schema'
 import './index.css'
 import logo from '../../assets/logo.png'
-import { useHistory } from 'react-router-dom';
+
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import LoginSocial from './social'
+import { useAuth } from '../../hooks/auth';
 
 
 export default function Login() {
+
+    const { loginUser, userToken, userId, nameUsuario, usuarioEmail } = useAuth();
+
+    const handleSubmit = useCallback(async (data, actions) => {
+        try {
+            console.log(data)
+            await loginUser({
+                email: data.email,
+                senha: data.senha
+            });
+
+            history.push('/chamados')
+        } catch (error) {
+            alert('Não foi possível logar!')
+        }
+    });
 
     const successToast = () => {
         toast.success("Login efetuado com sucesso",{
@@ -47,18 +66,20 @@ export default function Login() {
             sessionStorage.clear();
         }, 3000);
     ;}
+
     return (
     <>
         <div className="container-login">
             <Formik className="formik"
                 validationSchema={schema}
                 successToast={successToast}
+                onSubmit={handleSubmit}
                 validateOnMount
                 initialValues={{
                 email: '',
-                password: '',
+                senha: '',
                     }}
-                    render={({isValid}) => (
+                render={({isValid}) => (
                 <Form className="form-login">
                             <img src={logo} />
                     <h1 className="title-login">Login</h1>
@@ -71,9 +92,9 @@ export default function Login() {
                     </div>
                     <div className="input-div">
                         <label>Senha:</label>   
-                        <Field className="input" type="password" name="password"/>
+                        <Field className="input" type="password" name="senha"/>
                         <div className="Form-erro">
-                            <ErrorMessage  name="password" component="spam" /> 
+                            <ErrorMessage  name="senha" component="spam" /> 
                         </div>                                     
                     </div>
 

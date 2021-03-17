@@ -38,7 +38,7 @@ export const Header = styled.div`
     margin-bottom: 1rem;
 
     > p {
-        color: #fff;
+        color: #ffecd1;
         margin-right: 24px;
         margin-bottom: 0 
     }
@@ -118,7 +118,7 @@ export const Button = styled.button`
     transition: background 0.2s;
     transition: border 0.2s;
     padding: 0 3px;
-    color: #fff;
+    color: #ffecd1;
     margin-left: 6px;
 
     > p {
@@ -155,7 +155,7 @@ export const ButtonExit = styled.button`
     transition: background 0.2s;
     transition: border 0.2s;
     padding: 0 3px;
-    color: #fff;
+    color: #ffecd1;
     margin-left: 6px;
 
     > p {
@@ -419,7 +419,7 @@ export const ButtonFinish = styled.button`
     transition: background-color 0.2s;
 
     span {
-        color: #fff;
+        color: #ffecd1;
     }
 
     :hover {

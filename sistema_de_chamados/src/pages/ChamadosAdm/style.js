@@ -144,7 +144,7 @@ export const ButtonHeader = styled.button`
     transition: background 0.2s;
     transition: border 0.2s;
     padding: 0 3px;
-    color: #fff;
+    color: #ffecd1;
     margin-left: 6px;
 
     > p {
@@ -454,5 +454,11 @@ export const InvisibleElement = styled.div`
     height: 30px;
     border-radius: 50%;
     margin-right: -50px;
+`;
+
+export const Page = styled.div`
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
 `;
 

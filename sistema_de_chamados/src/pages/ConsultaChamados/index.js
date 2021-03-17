@@ -35,6 +35,7 @@ export default function ChamadosAdm() {
     postsPerPage: 5, 
   });
 
+  //mudar para email do usuário
   const { admEmail, name } = useAuth();
 
   const [totalDeChamdos, setTotalDeChamados] = useState(0);
@@ -68,8 +69,8 @@ export default function ChamadosAdm() {
   
 
   const onPageChanged = data => {
-      setLoading(true)
-      setCurrentPage(data.currentPage - 1)
+    setLoading(true)
+    setCurrentPage(data.currentPage - 1)
   }
 
   const goToChamados = () => {

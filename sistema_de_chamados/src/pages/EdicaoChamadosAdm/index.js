@@ -27,7 +27,7 @@ import {
 } from './style';
 
 import logo from '../../assets/logo.png'
-import api from '../../services/api';
+import {listarRespostasChamado} from '../../services/api';
 
 export default function EdicaoChamadosAdm() {
     const history = useHistory();
@@ -43,7 +43,7 @@ export default function EdicaoChamadosAdm() {
             const updateCall = async() => {
 
 
-                const response = await api.put(`/resolucao/resposta/${idChamado}/${id}`);
+                const response = await listarRespostasChamado(`/resolucao/resposta/${idChamado}/${id}`);
             }
 
             // Toast de sucesso

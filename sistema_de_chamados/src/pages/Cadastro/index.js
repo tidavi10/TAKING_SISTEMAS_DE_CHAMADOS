@@ -8,30 +8,17 @@ import {
     BrowserRouter as Router } from 'react-router-dom';
 import logo from '../../assets/logo.png'
 import { useHistory } from 'react-router-dom';
-import api, {cadastro} from '../../services/api'
+import { cadastro } from '../../services/api'
 
 export default function Cadastro() {
 
     const history = useHistory();
 
-
-    const  [nome, setnome] = useState('')
-    const  [email, setemail]  = useState('')
-    const  [senha, setSenha]  = useState('')
-    const  [cep, setcep]  = useState('')
-    const  [endereco, setendereco]  = useState('')
-    const  [cpf, setcpf]  = useState('')
-    const  [rg, setrg]  = useState('')
-    const  [cargo, setcargo]  = useState('')
-    const [estados, setEstados] = useState([]);
-
-     const handlerEnviar = (dados, response, req) =>{
+    const handlerEnviar = (dados, response, req) =>{
         cadastro(dados)
             .then(dados => console.log(`Criado o item ${JSON.stringify(dados)}`)) 
     }
     
-
-
     return (
         <Router>
             <Formik className="formik"

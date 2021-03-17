@@ -13,7 +13,7 @@ import logo from '../../assets/logo.png';
 import FileList from './components/FileList';
 import Upload from './components/Upload';
 
-import api, { listarPossiveisProblemas, cadastrarChamado } from '../../services/api';
+import { listarPossiveisProblemas, cadastrarChamado } from '../../services/api';
 
 import {
     Container,
@@ -30,9 +30,14 @@ import {
     ButtonExit,
     Img,
 } from '../TelaChamados/style';
+import { useAuth } from '../../hooks/auth';
 
 export default function TelaChamados() {
+    //TODO mudar para email do usuário
+    const { email, name, usuario } = useAuth();
+    console.log(email)
     const history = useHistory();
+
     const [selectedOption, setSelectedOption] = useState(null);
     const [possiveisProblemas, setPossiveisProblemas] = useState([]);
     const [fileSelect, setFileSelect] = useState(null)
@@ -55,7 +60,6 @@ export default function TelaChamados() {
     const handlerChangeText = ({ target: { value }}) => {
         setText(value);
     }
-
     
     const handlerUpload = files => {
         const fileToUpload = files.map(file => ({
@@ -111,7 +115,7 @@ export default function TelaChamados() {
                             <p>Sair</p>
                         </ButtonExit>
                     </HeaderContent>
-                    <p>username</p>
+                    <p>{!name || name != undefined ? email : name}</p>
                 </Header>
                 <EditionArea>
                     <InputArea>

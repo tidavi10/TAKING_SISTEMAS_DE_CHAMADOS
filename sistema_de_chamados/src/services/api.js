@@ -1,40 +1,51 @@
 import axios from 'axios';
 
-const api = axios.create({
-    baseURL: "https://projetochamadosbackendtaking.herokuapp.com/",
-    headers: {
-        'Authorization':'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtYXJpYUBnbWFpbC5jb20iLCJpYXQiOjE2MTU5MDMzNTUsImV4cCI6MTYxNTkyMTM1NX0.9g1uSPJBNwF0hNCCqAS15J6NJPqQPWrMGH1Vb-fa5UE'
+const getBaseAPI = () => {
+    const data = localStorage.getItem('@chamadosTaking:usuario');
+    const parsedData = JSON.parse(data);
+    let headers = {}
+    if (parsedData) {
+        headers['Authorization'] = parsedData.token
     }
-});
+    return axios.create({
+        baseURL: "https://projetochamadosbackendtaking.herokuapp.com/",
+        headers
+    });
+}
+
 
 const cadastro = function (body) {
-    return api.post('usuarios/cadastro', body)
+    return getBaseAPI().post('usuarios/cadastro', body)
 }
 
 const listarPossiveisProblemas = function () {
-    return api.get('problema')
+    return getBaseAPI().get('problema')
 }
 
 const cadastrarChamado = function (descricaoProblema, formData) {
-    return api.post(`chamados/${10}/${2}/${6}?descricaoProblema=${descricaoProblema}`, formData,
+    return getBaseAPI().post(`chamados/${10}/${2}/${6}?descricaoProblema=${descricaoProblema}`, formData,
     {
         headers: { 'Content-Type': 'multipart/form-data' }
     })
 }
 
 const getTotalDeChamados = function () {
-    return api.get(`chamados/usuario/${10}`)
+    return getBaseAPI().get(`chamados/usuario/${10}`)
 }
 
 const listarChamados = function (numeroPagina) {
-    return api.get(`chamados/usuario/${10}/${numeroPagina}`)
+    return getBaseAPI().get(`chamados/usuario/${10}/${numeroPagina}`)
 }
 
 const listarChamadosAdm = function (numeroPagina) {
-    return api.get(`chamados/adm/${10}/${numeroPagina}`)
+    return getBaseAPI().get(`chamados/adm/${2}/${numeroPagina}`)
 }
 
-export default api;
+const listarRespostasChamado = function (idChamado, id) {
+    return getBaseAPI().put(`/resolucao/resposta/${idChamado}/${id}`)
+}
+
+export default getBaseAPI
 
 export {
     listarPossiveisProblemas,
@@ -42,5 +53,6 @@ export {
     cadastro, 
     listarChamadosAdm, 
     getTotalDeChamados,
-    cadastrarChamado
+    cadastrarChamado,
+    listarRespostasChamado
 };

@@ -39,7 +39,7 @@ export const Header = styled.div`
 
 
     > p {
-        color: #fff;
+        color: #ffecd1;
         margin-right: 24px;
         margin-bottom: 0 
     }
@@ -119,7 +119,7 @@ export const ButtonHeader = styled.button`
     transition: background 0.2s;
     transition: border 0.2s;
     padding: 0 3px;
-    color: #fff;
+    color: #ffecd1;
     margin-left: 6px;
 
     > p {
@@ -156,7 +156,7 @@ export const ButtonExit = styled.button`
     transition: background 0.2s;
     transition: border 0.2s;
     padding: 0 3px;
-    color: #fff;
+    color: #ffecd1;
     margin-left: 6px;
 
     > p {
