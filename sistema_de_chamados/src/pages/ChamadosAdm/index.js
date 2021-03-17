@@ -4,9 +4,10 @@ import { useHistory } from 'react-router-dom';
 import { FiEdit } from 'react-icons/fi';
 
 import Pagination from './components/Pagination';
-import {listarChamados} from '../../services/api'
 
 import { useAuth } from '../../hooks/auth';
+
+import api from '../../services/api';
 
 import logo from '../../assets/logo.png';
 
@@ -28,7 +29,11 @@ import {
 
 export default function ChamadosAdm() {
     const history = useHistory();
-    const { admEmail, name } = useAuth();
+    const { admEmail, name, id } = useAuth();
+
+    const listarChamadosAdm = function (numeroPagina) {
+        return api.get(`chamados/adm/${id}/${numeroPagina}`)
+    }
 
     const [state, setState] = useState({ 
         activePage: 1,
@@ -36,7 +41,7 @@ export default function ChamadosAdm() {
         loading: false,
         totalChamados: 5,
         currentPage: 0,
-        postsPerPage: 2, 
+        postsPerPage: 2,
       });
 
     const [listaDeChamados, setlistaDeChamados] = useState([]);
@@ -44,7 +49,7 @@ export default function ChamadosAdm() {
     useEffect(() => {
         setState({ ...state, loading: true });
     
-        listarChamados(state.activePage - 1).then(call => call.data).then(call => {
+        listarChamadosAdm(state.activePage - 1).then(call => call.data).then(call => {
             console.log(call)
           setlistaDeChamados(call)
           setState({ ...state, loading: false });
@@ -58,7 +63,7 @@ export default function ChamadosAdm() {
 
     const paginate = pageNum => {
         setState({ ...state, loading: true });
-        listarChamados(pageNum).then(call => call.data).then(call => {
+        listarChamadosAdm(pageNum).then(call => call.data).then(call => {
         setlistaDeChamados(call)
         setState({ ...state, loading: false, currentPage: pageNum });
         });
@@ -74,8 +79,10 @@ export default function ChamadosAdm() {
     }
     
 
-    const goToEditCall = () => {
-        history.push('/edicao-chamados-adm')
+    const goToEditCall = (callId) => {
+        localStorage.setItem('@chamadosTaking:idChamado', callId);
+
+        history.push('/edicao-chamados-adm');
     }
 
     function renderCallBox () {
@@ -101,7 +108,7 @@ export default function ChamadosAdm() {
                         <CallStatus>
                             <p>{call.status}</p>
                         </CallStatus>
-                        <CallEditButton onClick={goToEditCall}>
+                        <CallEditButton onClick={() => goToEditCall(call.id)}>
                             <FiEdit />
                         </CallEditButton>
                     </CallItem>

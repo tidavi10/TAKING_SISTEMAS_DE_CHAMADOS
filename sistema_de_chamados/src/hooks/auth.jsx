@@ -51,11 +51,10 @@ const AuthProvider =  ({ children }) => {
             senha
         });
 
+        console.log(response.data)
         const convertDataEmail = JSON.parse(response.config.data).email
 
-        const { token } = response.data;
-        const { id } = response.data;
-        const { name } = response.data;
+        const { token, id, name } = response.data;
         const admEmail = convertDataEmail;        
 
         localStorage.setItem('@chamadosTaking:userAdmToken', token);
@@ -78,8 +77,6 @@ const AuthProvider =  ({ children }) => {
         setAuthData({});
     }, []);
 
-    const updateCall = useCallback(({ }) => {}, []);
-
     return (
         <AuthContext.Provider value={{
             loginAdm,
@@ -87,7 +84,7 @@ const AuthProvider =  ({ children }) => {
             token: authData.token,
             id: userId.id,
             name: userName?.name,
-            admEmail: userEmail?.admEmail
+            admEmail: userEmail?.admEmail,
         }}>
             {children}
         </AuthContext.Provider>

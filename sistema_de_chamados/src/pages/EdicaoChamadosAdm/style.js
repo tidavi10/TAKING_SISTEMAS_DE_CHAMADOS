@@ -589,7 +589,8 @@ export const DescriptionArea = styled.div`
         margin-bottom: 8px;
     }
 
-    textarea {
+
+    div {
         margin-top: 8px;
         width: 100%;
         height: 80%;
@@ -597,6 +598,13 @@ export const DescriptionArea = styled.div`
         border: 2px solid #eee;
         padding: 0 4px;
         border-radius: 4px;
+        background: #fff; 
+    }
+
+    textarea {
+        width: 100%;
+        height: 100%;
+        resize: none;
         background: #fff;   
     }
 

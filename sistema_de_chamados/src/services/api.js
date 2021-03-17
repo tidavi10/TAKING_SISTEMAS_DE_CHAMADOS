@@ -30,11 +30,6 @@ const listarChamadosMock = function (numeroPagina) {
     return axios.get('http://localhost:3001/chamados/'+ numeroPagina)
 }
 
-
-const listarChamadosAdm = function (numeroPagina) {
-    return api.get(`chamados/adm/${10}/${numeroPagina}`)
-}
-
 export default api;
 
-export {listarPossiveisProblemas,listarChamadosMock, listarChamados, cadastro, listarChamadosAdm, cadastrarChamado};
+export {listarPossiveisProblemas,listarChamadosMock, listarChamados, cadastro, cadastrarChamado};

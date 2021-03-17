@@ -13,16 +13,16 @@ import { useHistory } from 'react-router-dom';
 export default function LoginAdm() {
     const history = useHistory();
 
-    const { loginAdm, token, id, name, admEmail } = useAuth();
+    const { loginAdm } = useAuth();
      
-    const handleSubmit = useCallback(async (data) => {
+    const handleSubmit = useCallback((data) => {
         try {
              loginAdm({
                 email: data.email,
                 senha: data.senha
             });
 
-            history.push('/chamados-adm')
+            // history.push('/chamados-adm')
 
 
         } catch (error) {
