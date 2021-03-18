@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,18 +11,24 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
-@ApiModel(description = "Modelo do usuário")
-@Table(uniqueConstraints={@UniqueConstraint(columnNames={"email", "cpf"})})
+@Table(uniqueConstraints={@UniqueConstraint(columnNames = "email"), @UniqueConstraint(columnNames = "cpf")})
 public class Usuarios implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@ApiModelProperty(notes = "ID do usuário", position = 1)
@@ -34,13 +39,13 @@ public class Usuarios implements Serializable {
 	private List<Chamados> chamados = new ArrayList<>();
 
 	@NotBlank (message = "E-mail inválido")
-//	@Column(unique = true)
+
 	@ApiModelProperty(notes = "E-mail do usuário", required = true, position = 3)
+	@Email
 	private String email;
 	
 	@NotBlank (message = "Senha inválido")
 	@ApiModelProperty(notes = "Senha do usuário", required = true, position = 4)
-	@Column(name = "senha")
 	private String senha;
 	
 	@NotBlank (message = "Nome inválido")
@@ -53,6 +58,7 @@ public class Usuarios implements Serializable {
 	
 	@NotBlank (message = "CEP inválido")
 	@ApiModelProperty(notes = "CEP do usuário", required = true, position = 7)
+	@Pattern(regexp = "^1?(\\d{8})")
 	private String cep;
 
 	@NotBlank (message = "Cargo inválido")
@@ -61,12 +67,15 @@ public class Usuarios implements Serializable {
 	
 	@NotBlank (message = "CPF inválido")
 	@ApiModelProperty(notes = "CPF do usuário", required = true, position = 5)
-//	@Column (unique = true)
+	@Pattern(regexp = "^1?(\\d{11})")
 	private String cpf;
 	
 	@NotBlank (message = "RG inválido")
 	@ApiModelProperty(notes = "RG do usuário", required = true, position = 6)
 	private String rg;
+	
+	@ApiModelProperty(notes = "verifica se é Adm", hidden= true)
+	private boolean isAdm;
 
 	public Long getId() {
 		return id;
@@ -138,6 +147,14 @@ public class Usuarios implements Serializable {
 
 	public void setRg(String rg) {
 		this.rg = rg;
+	}
+	
+	public boolean getIsAdm() {
+		return isAdm;
+	}
+	
+	public void setIsAdm(boolean isAdm) {
+		this.isAdm = isAdm;
 	}
 	
 	public void JwtRequest()

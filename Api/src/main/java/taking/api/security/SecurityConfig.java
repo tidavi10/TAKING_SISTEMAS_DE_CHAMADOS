@@ -1,9 +1,11 @@
 package taking.api.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -21,12 +23,14 @@ import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import taking.api.config.JwtAuthenticationEntryPoint;
-import taking.api.controller.Filter.AdmJwtRequestFilter;
+//import taking.api.controller.Filter.AdmJwtRequestFilter;
 import taking.api.controller.Filter.JwtRequestFilter;
 import taking.api.oauth2.CustomAuthenticationSuccessHandler;
+//import taking.api.service.AdmDetailsService;
+import taking.api.service.JwtUserDetailsService;
 
 @EnableWebSecurity
-public class SecurityConfig {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
@@ -34,7 +38,7 @@ public class SecurityConfig {
 		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
 		return source;
 	}
-	
+
 	@Configuration
 	@Order(1)
 	public static class UserSecurityConfiguration extends WebSecurityConfigurerAdapter
@@ -47,18 +51,18 @@ public class SecurityConfig {
 		private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
 		@Autowired
-		private JwtRequestFilter jwtRequestFilter;
-
-		@Autowired
 		private JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
 
+		@Autowired
+		private JwtRequestFilter jwtRequestFilter;
+
 		private BCryptPasswordEncoder bCryptPasswordEncoder;
-		private UserDetailsService userDetailsService;
+		private JwtUserDetailsService userDetailsService;
 		private static final String[] AUTH_WHITELIST = { "/v2/api-docs", "/auth/**", "/swagger-resources",
 				"/swagger-resources/**", "/configuration/ui", "/configuration/security", "/swagger-ui.html",
 				"/webjars/**" };
 
-		public UserSecurityConfiguration(UserDetailsService userDetailsService,
+		public UserSecurityConfiguration(JwtUserDetailsService userDetailsService,
 				BCryptPasswordEncoder bCryptPasswordEncoder) {
 			this.bCryptPasswordEncoder = bCryptPasswordEncoder;
 			this.userDetailsService = userDetailsService;
@@ -66,10 +70,16 @@ public class SecurityConfig {
 
 		@Override
 		protected void configure(HttpSecurity httpSecurity) throws Exception {
-			httpSecurity.cors().and().csrf().disable().authorizeRequests()
-						.antMatchers(AUTH_WHITELIST).permitAll()
-					.antMatchers(HttpMethod.POST, "/usuarios/cadastro", "/authenticate").permitAll()
-					.and().addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+			httpSecurity.cors().and().csrf().disable().authorizeRequests().antMatchers(AUTH_WHITELIST).permitAll()
+					//.antMatchers("/chamados/adm/**", "/resolucao/**").hasRole("ADM")
+					.antMatchers(HttpMethod.POST, "/usuarios/cadastro", "/usuariosadm/cadastro", 
+							"/authenticate", "/admAuth")
+					.permitAll()
+					.and()
+					.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
+					.authorizeRequests()
+					.anyRequest().authenticated();
+
 			// .and()
 			// .oauth2Login()
 			// .redirectionEndpoint()
@@ -98,49 +108,45 @@ public class SecurityConfig {
 		 **/
 
 		public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-			authenticationManagerBuilder.userDetailsService(this.userDetailsService)
+			authenticationManagerBuilder.userDetailsService(userDetailsService)
 					.passwordEncoder(bCryptPasswordEncoder);
 		}
-		
+
 		@Bean
 		@Override
 		protected AuthenticationManager authenticationManager() throws Exception {
 			return super.authenticationManager();
 		}
 	}
-	
-	@Configuration
+
+	/*@Configuration
 	@Order(2)
 	public static class AdmSecurityConfiguration extends WebSecurityConfigurerAdapter
-	implements ApplicationContextAware {
-		
+			implements ApplicationContextAware {
+
 		private BCryptPasswordEncoder bCryptPasswordEncoder;
-		private UserDetailsService userDetailsService;
-		
+		private AdmDetailsService admDetailsService;
+		private JwtUserDetailsService userDetailsService;
+
 		@Autowired
 		private AdmJwtRequestFilter admJwtRequestFilter;
-		
-		public AdmSecurityConfiguration(UserDetailsService userDetailsService,
+
+		public AdmSecurityConfiguration(AdmDetailsService userDetailsService,
 				BCryptPasswordEncoder bCryptPasswordEncoder) {
 			this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-			this.userDetailsService = userDetailsService;
+			this.admDetailsService = userDetailsService;
 		}
-		
+
 		@Override
-	    protected void configure(HttpSecurity httpSecurity) throws Exception {
-			httpSecurity.authorizeRequests()
-						.antMatchers(HttpMethod.POST, "/admAuth", "/usuariosadm/cadastro").permitAll()
-						.and()
-						.addFilterBefore(admJwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
-						.authorizeRequests()
-						.anyRequest().authenticated();
+		protected void configure(HttpSecurity httpSecurity) throws Exception {
+
+			httpSecurity
+			.addFilterBefore(admJwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 		}
-		
+
 		public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-			authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder);
+			authenticationManagerBuilder.userDetailsService(admDetailsService).passwordEncoder(bCryptPasswordEncoder);
 		}
-		
-		
-	}
-	
+
+	}*/
 }

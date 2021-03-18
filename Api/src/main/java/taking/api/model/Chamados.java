@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -47,16 +48,18 @@ public class Chamados implements Serializable{
 	
 	@ManyToOne
 	private TipoProblema problema;
+	
 	@ManyToOne
 	private Usuarios usuario;
-	@ManyToOne
-	private UsuariosAdm adm;
+	
+	/*@ManyToOne
+	private UsuariosAdm adm;*/
 	
 	public Chamados() {
 	}
 	
-	public Chamados(String descricao, byte[] anexo, String nomeAnexo, String tipoAnexo,
-			Date dataCriacao, TipoProblema problema, Usuarios usuario, UsuariosAdm adm) {
+	public Chamados(String descricao, byte[] anexo, String nomeAnexo, String tipoAnexo, String status,
+			Date dataCriacao, TipoProblema problema, Usuarios usuario/*, UsuariosAdm adm*/) {
 		super();
 		this.descricao = descricao;
 		this.anexo = anexo;
@@ -66,7 +69,7 @@ public class Chamados implements Serializable{
 		this.dataCriacao = dataCriacao;
 		this.problema = problema;
 		this.usuario = usuario;
-		this.adm = adm;
+		//this.adm = adm;
 	}
 
 	public Long getId() {
@@ -141,11 +144,11 @@ public class Chamados implements Serializable{
 		this.usuario = usuario;
 	}
 
-	public UsuariosAdm getAdm() {
+	/*public UsuariosAdm getAdm() {
 		return adm;
 	}
 
 	public void setAdm(UsuariosAdm adm) {
 		this.adm = adm;
-	}
+	}*/
 }
