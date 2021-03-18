@@ -79,7 +79,8 @@ export default function Login() {
                 email: '',
                 senha: '',
                     }}
-                render={({isValid}) => (
+                >  
+                {({isValid}) => (
                 <Form className="form-login">
                             <img src={logo} />
                     <h1 className="title-login">Login</h1>
@@ -108,7 +109,7 @@ export default function Login() {
                     </div>
                 </Form>  
                 )} 
-            />       
+            </Formik>
         </div>
     </>
 )

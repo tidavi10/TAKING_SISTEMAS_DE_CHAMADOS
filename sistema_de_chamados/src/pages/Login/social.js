@@ -9,7 +9,6 @@ export class Social extends Component {
         console.log(response.profile);
         const token = response.tokenId;
         localStorage.setItem("Token:id", token)
-
     }
     render() {
         return (
