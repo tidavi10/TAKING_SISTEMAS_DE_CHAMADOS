@@ -24,7 +24,6 @@ import io.swagger.annotations.ApiModelProperty;
 @Table(uniqueConstraints={@UniqueConstraint(columnNames = "email"), @UniqueConstraint(columnNames = "cpf")})
 public class Usuarios implements Serializable {
 	
-	
 	/**
 	 * 
 	 */

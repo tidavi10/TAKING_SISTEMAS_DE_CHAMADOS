@@ -62,13 +62,5 @@ public class JwtAuthenticationController {
 	public ResponseEntity<TokenDTO> createAdmToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 		return authenticateService.AdmAuth(authenticationRequest.getEmail(), authenticationRequest.getSenha());
 	}
-
-	// Exception autenticação
-	private void authenticate(String username, String password) {
-		try {
-			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-		} catch (BadCredentialsException e) {
-			throw new AutenticacaoException("Usuário e/ ou senha inválidos");
-		}
-	}
+	
 }

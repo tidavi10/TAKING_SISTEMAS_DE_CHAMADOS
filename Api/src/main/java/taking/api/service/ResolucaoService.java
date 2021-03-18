@@ -35,7 +35,7 @@ public class ResolucaoService{
 	
 	public List<Resolucao> findResolucaoPaginated(int pageNo) {
 		
-		Pageable paginacao = PageRequest.of(pageNo, 4);
+		Pageable paginacao = PageRequest.of(pageNo, 5);
 		Page<Resolucao> resultado = resolucaoRepository.findAll(paginacao);
 		
 		return resultado.toList();

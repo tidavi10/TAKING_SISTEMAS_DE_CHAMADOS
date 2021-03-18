@@ -1,6 +1,5 @@
 package taking.api.service;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -76,7 +75,7 @@ public class ChamadosService {
 
 	public List<Chamados> findChamadosPaginated(int pageNo) {
 
-		Pageable paginacao = PageRequest.of(pageNo, 4);
+		Pageable paginacao = PageRequest.of(pageNo, 5);
 		Page<Chamados> resultado = chamadosRepository.findAll(paginacao);
 
 		return resultado.toList();
@@ -109,7 +108,6 @@ public class ChamadosService {
 				return dto;
 			}
 		});
-
 		chamadosPaginados = chamadosAdm.getContent();
 
 		return chamadosPaginados;

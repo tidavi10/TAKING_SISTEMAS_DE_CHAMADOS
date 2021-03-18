@@ -65,7 +65,7 @@ public class Chamados implements Serializable{
 		this.anexo = anexo;
 		this.nomeAnexo = nomeAnexo;
 		this.tipoAnexo = tipoAnexo;
-		this.status = status;
+		this.status = "Pendente";
 		this.dataCriacao = dataCriacao;
 		this.problema = problema;
 		this.usuario = usuario;
