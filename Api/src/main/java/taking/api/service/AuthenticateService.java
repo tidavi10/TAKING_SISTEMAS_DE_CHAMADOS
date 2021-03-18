@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import taking.api.config.JwtTokenUtil;
 import taking.api.dto.TokenDTO;
+import taking.api.exceptions.AutenticacaoException;
 import taking.api.model.Usuarios;
 //import taking.api.model.UsuariosAdm;
 //import taking.api.repository.UsuariosAdmRepository;
