@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
@@ -8,22 +8,24 @@ import {
     BrowserRouter as Router } from 'react-router-dom';
 import logo from '../../assets/logo.png'
 import { useHistory } from 'react-router-dom';
-import { cadastro } from '../../services/api'
+import { cadastrarUsuario } from '../../services/api'
+
 
 export default function Cadastro() {
 
     const history = useHistory();
 
-    const handlerEnviar = (dados, response, req) =>{
-        cadastro(dados)
+    const handleEnviar = (dados, response, req) =>{
+        cadastrarUsuario(dados)
             .then(dados => console.log(`Criado o item ${JSON.stringify(dados)}`)) 
+            console.log(dados)
     }
     
     return (
         <Router>
             <Formik className="formik"
                // validationSchema={schema}
-                onSubmit={handlerEnviar}
+                onSubmit={handleEnviar}
                 validateOnMount
                 initialTouched={{
                     field: true,
@@ -103,7 +105,7 @@ export default function Cadastro() {
                             <ErrorMessage className="erro" name="senha" component="spam" />
                             </div>
                         </div>
-                        <button className="Submit" type="submit" onClick={handlerEnviar}>Cadastrar</button>
+                        <button className="Submit" type="submit" onClick={handleEnviar}>Cadastrar</button>
                  </div>
                 </div>
 

@@ -36,7 +36,7 @@ export default function ChamadosAdm() {
   });
 
   //mudar para email do usuário
-  const { admEmail, name } = useAuth();
+  //const { admEmail, name } = useAuth();
 
   const [totalDeChamdos, setTotalDeChamados] = useState(0);
 
@@ -124,7 +124,7 @@ export default function ChamadosAdm() {
                 <p>Sair</p>
               </ButtonExit>
           </HeaderContent>
-          <p>{!name || name != undefined ? admEmail : name}</p>
+          {/* <p>{!name || name != undefined ? admEmail : name}</p> */}
         </Header>
         { renderCallBox() }
         <Page>

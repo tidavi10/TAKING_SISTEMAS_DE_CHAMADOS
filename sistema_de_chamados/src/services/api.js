@@ -13,8 +13,7 @@ const getBaseAPI = () => {
     });
 }
 
-
-const cadastro = function (body) {
+const cadastrarUsuario = function (body) {
     return getBaseAPI().post('usuarios/cadastro', body)
 }
 
@@ -50,9 +49,9 @@ export default getBaseAPI
 export {
     listarPossiveisProblemas,
     listarChamados, 
-    cadastro, 
     listarChamadosAdm, 
     getTotalDeChamados,
     cadastrarChamado,
+    cadastrarUsuario,
     listarRespostasChamado
 };

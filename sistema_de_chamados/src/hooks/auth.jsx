@@ -35,7 +35,7 @@ const AuthProvider =  ({ children }) => {
         return {};
     });
 
-    //teste
+    //Vanessa
     const [userAuthData, setUserAuthData] = useState(() => {
         const data = localStorage.getItem('@chamadosTaking:usuario');
         if (data) {
@@ -56,6 +56,7 @@ const AuthProvider =  ({ children }) => {
         return {};
     });
 
+    //Vanessa
     const loginUser = useCallback(async({ email, senha }) => {
         const response = await api().post('authenticate', {
             email,
@@ -129,7 +130,6 @@ const AuthProvider =  ({ children }) => {
                 nameUsuario: userAuthData?.nameUsuario,
                 usuarioEmail: userAuthData?.usuarioEmail,
             }
-
         }}>
             {children}
         </AuthContext.Provider>

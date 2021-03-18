@@ -4,13 +4,13 @@ body{
 
 .container{
     width: 100%;
-    height: 110vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     background: #219ebc;
-    }
+}
     
 @media (max-width: 576px) {
     .container{
