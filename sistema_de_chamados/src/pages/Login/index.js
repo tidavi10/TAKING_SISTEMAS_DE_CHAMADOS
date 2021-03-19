@@ -32,40 +32,21 @@ export default function Login() {
 
     const successToast = () => {
         toast.success("Login efetuado com sucesso",{
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            })
-        }
-
-
-    function onSubmit(values, actions) {
-        history.push('/chamados')
-    }   
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        })
+    }
 
     const history = useHistory();
 
     const gotoCadastro = () => {
         history.push('/cadastro')
     }
-
-    const gotoChamados = () => {
-        history.push('/chamados')
-    }
-
-    const armazenaTokenSession = () => {
-        let token = 'ahushaushaushuas';
-
-        sessionStorage.setItem('token', token);
-
-        setTimeout(() => {
-            sessionStorage.clear();
-        }, 3000);
-    ;}
 
     return (
     <>

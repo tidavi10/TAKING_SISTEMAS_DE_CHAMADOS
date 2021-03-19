@@ -36,12 +36,13 @@ const AuthProvider =  ({ children }) => {
         return {};
     });
 
-    //teste
+    //Vanessa
     const [userAuthData, setUserAuthData] = useState(() => {
         const data = localStorage.getItem('@chamadosTaking:usuario');
         if (data) {
             const parsedData = JSON.parse(data)
-            return { userToken: parsedData.userToken };
+            console.log(parsedData)
+            return parsedData;
         }
 
         return {};
@@ -57,6 +58,7 @@ const AuthProvider =  ({ children }) => {
         return {};
     });
 
+    //Vanessa
     const loginUser = useCallback(async({ email, senha }) => {
         const response = await api().post('authenticate', {
             email,
@@ -71,7 +73,7 @@ const AuthProvider =  ({ children }) => {
         const data = JSON.stringify({email:usuarioEmail, nome: nameUsuario, userId,token: userToken })
         localStorage.setItem('@chamadosTaking:usuario', data);
 
-        setUserAuthData({ userToken });
+        setUserAuthData({ userToken,userId, nameUsuario, usuarioEmail  });
     }, []);
 
     const userLogout = useCallback(() => {
@@ -130,7 +132,6 @@ const AuthProvider =  ({ children }) => {
                 nameUsuario: userAuthData?.nameUsuario,
                 usuarioEmail: userAuthData?.usuarioEmail,
             }
-
         }}>
             {children}
         </AuthContext.Provider>

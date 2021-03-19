@@ -34,8 +34,8 @@ import { useAuth } from '../../hooks/auth';
 
 export default function TelaChamados() {
     //TODO mudar para email do usuário
-    const { email, name, usuario } = useAuth();
-    console.log(email)
+    const { usuario } = useAuth();
+    console.log(usuario)
     const history = useHistory();
 
     const [selectedOption, setSelectedOption] = useState(null);
@@ -85,8 +85,9 @@ export default function TelaChamados() {
 
     const handlerEnviar = () => {
         const formData = new FormData();
-        formData.append('file', fileSelect);
-        cadastrarChamado(text, formData).then(d => console.log(`Criado o item ${JSON.stringify(d)}`))
+        formData.append('file', fileSelect.file);
+        console.log('handlerEnviar')
+        cadastrarChamado(usuario.userId, selectedOption.value, text, formData).then(d => console.log(`Criado o item ${JSON.stringify(d)}`))
     }
 
     const gotoConsultaChamados = () => {
@@ -115,7 +116,7 @@ export default function TelaChamados() {
                             <p>Sair</p>
                         </ButtonExit>
                     </HeaderContent>
-                    <p>{!name || name != undefined ? email : name}</p>
+                    <p>{!usuario.nameUsuario || usuario.nameUsuario != undefined ? usuario.usuarioEmail : usuario.nameUsuario}</p>
                 </Header>
                 <EditionArea>
                     <InputArea>

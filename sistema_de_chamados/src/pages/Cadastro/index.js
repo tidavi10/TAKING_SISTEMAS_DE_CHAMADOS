@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
@@ -8,15 +8,17 @@ import {
     BrowserRouter as Router } from 'react-router-dom';
 import logo from '../../assets/logo.png'
 import { useHistory } from 'react-router-dom';
-import { cadastro } from '../../services/api'
+import { cadastrarUsuario } from '../../services/api'
+
 
 export default function Cadastro() {
 
     const history = useHistory();
 
     const handlerEnviar = (dados, response, req) =>{
-        cadastro(dados)
+        cadastrarUsuario(dados)
             .then(dados => console.log(`Criado o item ${JSON.stringify(dados)}`)) 
+            console.log(dados)
     }
     
     return (

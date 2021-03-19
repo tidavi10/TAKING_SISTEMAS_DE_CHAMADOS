@@ -27,6 +27,7 @@ import {
 import { Img } from '../ChamadosAdm/style';
 
 export default function ChamadosAdm() {
+  const { usuarioEmail, nameUsuario, usuario } = useAuth();
   const history = useHistory();
   const [ state, setState] = useState({ 
     activePage: 1,
@@ -36,7 +37,7 @@ export default function ChamadosAdm() {
   });
 
   //mudar para email do usuário
-  const { admEmail, name } = useAuth();
+  //const { admEmail, name } = useAuth();
 
   const [totalDeChamdos, setTotalDeChamados] = useState(0);
 
@@ -57,7 +58,7 @@ export default function ChamadosAdm() {
 
   useEffect(() => {
     setLoading(true)
-    listarChamados(currentPage).then(d => d.data).then(d => {
+    listarChamados(usuario.userId, currentPage).then(d => d.data).then(d => {
       setlistaDeChamados(d)
       console.log(d)
       setState({
@@ -124,7 +125,7 @@ export default function ChamadosAdm() {
                 <p>Sair</p>
               </ButtonExit>
           </HeaderContent>
-          <p>{!name || name != undefined ? admEmail : name}</p>
+          {/* <p>{!name || name != undefined ? admEmail : name}</p> */}
         </Header>
         { renderCallBox() }
         <Page>

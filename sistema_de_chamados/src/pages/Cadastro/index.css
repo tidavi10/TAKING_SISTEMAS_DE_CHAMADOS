@@ -10,8 +10,8 @@
     justify-content: center;
     flex-direction: column;
     background: #219ebc;
-    }
-
+}
+    
 @media (max-width: 576px) {
     .container{
     padding: 30px;   

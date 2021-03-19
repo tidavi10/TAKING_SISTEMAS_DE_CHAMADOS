@@ -32,6 +32,7 @@ import {listarRespostasChamado} from '../../services/api';
 export default function EdicaoChamadosAdm() {
     const history = useHistory();
     const { admEmail, name, id } = useAuth();
+    console.log(admEmail)
 
     const goToChamadosAdm = () => {
         history.push('/chamados-adm')
