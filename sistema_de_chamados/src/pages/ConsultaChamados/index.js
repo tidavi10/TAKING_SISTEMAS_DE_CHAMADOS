@@ -9,7 +9,7 @@ import { useAuth } from '../../hooks/auth';
 import logo from '../../assets/logo.png';
 
 import Pagination from './components/Pagination';
-import {listarChamados, getTotalDeChamados } from '../../services/api';
+import {listarChamados, getTotalDeChamados, getTotalPaginas } from '../../services/api';
 import {
   Container,
   Header,
@@ -27,17 +27,13 @@ import {
 import { Img } from '../ChamadosAdm/style';
 
 export default function ChamadosAdm() {
-  const { usuarioEmail, nameUsuario, usuario } = useAuth();
+  const { usuario } = useAuth();
   const history = useHistory();
   const [ state, setState] = useState({ 
     activePage: 1,
     posts: [],
-    totalChamados: 0,
     postsPerPage: 5, 
   });
-
-  //mudar para email do usuário
-  //const { admEmail, name } = useAuth();
 
   const [totalDeChamdos, setTotalDeChamados] = useState(0);
 
@@ -47,9 +43,20 @@ export default function ChamadosAdm() {
 
   const [listaDeChamados, setlistaDeChamados] = useState([]);
 
+  const [totalDePaginas, setTotalDePaginas] = useState(-1);
+
   useEffect(() => {
     setLoading(true)
-    getTotalDeChamados().then(d => d.data).then(d => {
+    getTotalPaginas(usuario.userId, totalDePaginas).then(d => d.data).then(d => {
+      setTotalDePaginas(d)
+      console.log(d)
+      setLoading(false)
+    })
+  }, []);
+
+  useEffect(() => {
+    setLoading(true)
+    getTotalDeChamados(usuario.userId, currentPage).then(d => d.data).then(d => {
       setTotalDeChamados(d)
       console.log(d)
       setLoading(false)
@@ -125,13 +132,13 @@ export default function ChamadosAdm() {
                 <p>Sair</p>
               </ButtonExit>
           </HeaderContent>
-          {/* <p>{!name || name != undefined ? admEmail : name}</p> */}
+          <p>{!usuario.nameUsuario || usuario.nameUsuario != undefined ? usuario.usuarioEmail : usuario.nameUsuario}</p>
         </Header>
         { renderCallBox() }
         <Page>
           <Pagination
             pageLimit={state.postsPerPage} 
-            totalRecords={totalDeChamdos} 
+            totalRecords={totalDePaginas * state.postsPerPage} 
             onPageChanged={onPageChanged}
             pageNeighbours={1}
           />

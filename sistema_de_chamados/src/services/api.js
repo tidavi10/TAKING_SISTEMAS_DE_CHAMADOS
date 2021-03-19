@@ -28,16 +28,24 @@ const cadastrarChamado = function (userId, problemId, descricaoProblema, formDat
     })
 }
 
-const getTotalDeChamados = function () {
-    return getBaseAPI().get(`chamados/usuario/${10}`)
+const getTotalDeChamados = function (userId) {
+    return getBaseAPI().get(`chamados/totalPaginas/usuario/${userId}`)
 }
 
-const listarChamados = function (usuarioId, numeroPagina) {
-    return getBaseAPI().get(`chamados/usuario/${usuarioId}/${numeroPagina}`)
+const getTotalPaginas = function (userId) {
+    return getBaseAPI().get(`chamados/totalPaginas/usuario/${userId}`)
+}
+
+const listarChamados = function (userId, numeroPagina) {
+    return getBaseAPI().get(`chamados/usuario/${userId}/${numeroPagina}`)
 }
 
 const listarChamadosAdm = function (numeroPagina) {
-    return getBaseAPI().get(`chamados/adm/${2}/${numeroPagina}`)
+    return getBaseAPI().get(`chamados/adm/all/${numeroPagina}`)
+}
+
+const totalPaginasAdm = function () {
+    return getBaseAPI().get('chamados/totalPaginas/adm')
 }
 
 const listarRespostasChamado = function (idChamado, id) {
@@ -49,9 +57,11 @@ export default getBaseAPI
 export {
     listarPossiveisProblemas,
     listarChamados, 
+    getTotalPaginas,
     listarChamadosAdm, 
     getTotalDeChamados,
     cadastrarChamado,
     cadastrarUsuario,
+    totalPaginasAdm,
     listarRespostasChamado
 };
