@@ -83,7 +83,7 @@ public class ChamadosService {
 
 	public List<ChamadosRespostaDTO> findChamadosUsuarioPaginated(int pageNo, Long id) {
 		List<ChamadosRespostaDTO> chamadosPaginados = new ArrayList<ChamadosRespostaDTO>();
-		Pageable paginacao = PageRequest.of(pageNo, 4);
+		Pageable paginacao = PageRequest.of(pageNo, 5);
 
 		Page<ChamadosRespostaDTO> chamadosUsuario = chamadosRepository.findByUsuario(usuariosRepository.findById(id),
 				paginacao);
@@ -95,7 +95,7 @@ public class ChamadosService {
 
 	public List<ChamadosRespostaDTO> findChamadosAdmPaginated(int pageNo) {
 		List<ChamadosRespostaDTO> chamadosPaginados = new ArrayList<ChamadosRespostaDTO>();
-		Pageable paginacao = PageRequest.of(pageNo, 4);
+		Pageable paginacao = PageRequest.of(pageNo, 5);
 
 		Page<Chamados> chamados = chamadosRepository.findAll(paginacao);
 		Page<ChamadosRespostaDTO> chamadosAdm = chamados.map(new Function<Chamados, ChamadosRespostaDTO>() {
@@ -114,7 +114,7 @@ public class ChamadosService {
 	}
 
 	public long paginasAdm() {
-		Pageable paginacao = PageRequest.of(0, 4);
+		Pageable paginacao = PageRequest.of(0, 5);
 
 		Page<Chamados> chamados = chamadosRepository.findAll(paginacao);
 		
@@ -122,7 +122,7 @@ public class ChamadosService {
 	}
 	
 	public long paginasUsuairo(Long id) {
-		Pageable paginacao = PageRequest.of(0, 4);
+		Pageable paginacao = PageRequest.of(0, 5);
 
 		Page<ChamadosRespostaDTO> chamados = chamadosRepository.findByUsuario(usuariosRepository.findById(id),
 				paginacao);
