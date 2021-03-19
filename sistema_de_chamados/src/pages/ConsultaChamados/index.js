@@ -27,6 +27,7 @@ import {
 import { Img } from '../ChamadosAdm/style';
 
 export default function ChamadosAdm() {
+  const { usuarioEmail, nameUsuario, usuario } = useAuth();
   const history = useHistory();
   const [ state, setState] = useState({ 
     activePage: 1,
@@ -57,7 +58,7 @@ export default function ChamadosAdm() {
 
   useEffect(() => {
     setLoading(true)
-    listarChamados(currentPage).then(d => d.data).then(d => {
+    listarChamados(usuario.userId, currentPage).then(d => d.data).then(d => {
       setlistaDeChamados(d)
       console.log(d)
       setState({

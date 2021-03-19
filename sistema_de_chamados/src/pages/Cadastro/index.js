@@ -15,7 +15,7 @@ export default function Cadastro() {
 
     const history = useHistory();
 
-    const handleEnviar = (dados, response, req) =>{
+    const handlerEnviar = (dados, response, req) =>{
         cadastrarUsuario(dados)
             .then(dados => console.log(`Criado o item ${JSON.stringify(dados)}`)) 
             console.log(dados)
@@ -25,7 +25,7 @@ export default function Cadastro() {
         <Router>
             <Formik className="formik"
                // validationSchema={schema}
-                onSubmit={handleEnviar}
+                onSubmit={handlerEnviar}
                 validateOnMount
                 initialTouched={{
                     field: true,
@@ -105,7 +105,7 @@ export default function Cadastro() {
                             <ErrorMessage className="erro" name="senha" component="spam" />
                             </div>
                         </div>
-                        <button className="Submit" type="submit" onClick={handleEnviar}>Cadastrar</button>
+                        <button className="Submit" type="submit" onClick={handlerEnviar}>Cadastrar</button>
                  </div>
                 </div>
 

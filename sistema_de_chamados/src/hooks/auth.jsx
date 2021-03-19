@@ -40,7 +40,8 @@ const AuthProvider =  ({ children }) => {
         const data = localStorage.getItem('@chamadosTaking:usuario');
         if (data) {
             const parsedData = JSON.parse(data)
-            return { userToken: parsedData.userToken };
+            console.log(parsedData)
+            return parsedData;
         }
 
         return {};
@@ -71,7 +72,7 @@ const AuthProvider =  ({ children }) => {
         const data = JSON.stringify({email:usuarioEmail, nome: nameUsuario, userId,token: userToken })
         localStorage.setItem('@chamadosTaking:usuario', data);
 
-        setUserAuthData({ userToken });
+        setUserAuthData({ userToken,userId, nameUsuario, usuarioEmail  });
     }, []);
 
     const userLogout = useCallback(() => {
