@@ -4,6 +4,7 @@ import api from '../services/api';
 const AuthContext = createContext({});
 
 
+
 const AuthProvider =  ({ children }) => {
     const [userEmail, setUserEmail] = useState(() => {
         const admEmail = localStorage.getItem('@chamadosTaking:userAdmEmail');

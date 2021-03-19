@@ -6,7 +6,7 @@ export class Social extends Component {
 
     responseGoogle = (response) => {
         console.log(response);
-        console.log(response.profile);
+        console.log(response.profile); 
         const token = response.tokenId;
         localStorage.setItem("Token:id", token)
     }
