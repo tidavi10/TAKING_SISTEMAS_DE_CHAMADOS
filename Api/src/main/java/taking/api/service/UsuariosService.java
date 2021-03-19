@@ -30,6 +30,14 @@ public class UsuariosService {
 		return authenticateService.UserAuth(usuarios.getEmail(), senha);
 	}
 	
+	public ResponseEntity<TokenDTO> salvarUsuarioGmailERetornarId(Usuarios usuarios){
+		String senha = usuarios.getSenha();
+		//usuarios.setSenha(bCryptPasswordEncoder.encode(usuarios.getSenha()));
+		usuarios.setIsAdm(false);
+		usuariosRepository.saveAndFlush(usuarios);
+		return authenticateService.UserAuth(usuarios.getEmail(), senha);
+	}
+	
 	public ResponseEntity<TokenDTO> salvarAdmERetornarToken(Usuarios usuarios) {
 		String senha = usuarios.getSenha();
 		usuarios.setSenha(bCryptPasswordEncoder.encode(usuarios.getSenha()));
