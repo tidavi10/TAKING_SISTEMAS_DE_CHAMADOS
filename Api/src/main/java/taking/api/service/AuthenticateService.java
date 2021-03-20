@@ -55,6 +55,7 @@ public class AuthenticateService {
 			tokenResponse.setId(usuario.getId());
 			tokenResponse.setNome(usuario.getNome());
 			tokenResponse.setToken(token);
+			tokenResponse.setEmail(usuario.getEmail());
 			
 			return ResponseEntity.ok(tokenResponse);
 		}
@@ -81,6 +82,31 @@ public class AuthenticateService {
 		tokenResponse.setId(usuario.getId());
 		tokenResponse.setNome(usuario.getNome());
 		tokenResponse.setToken(token);
+		tokenResponse.setEmail(usuario.getEmail());
+
+		return ResponseEntity.ok(tokenResponse);
+	
+	}
+	
+	public ResponseEntity<TokenDTO> UserGmailAuth(String email, String senha) {
+
+		//try {
+		//Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+		//		email, senha));
+		//} catch (BadCredentialsException e) {
+		//	throw new AutenticacaoException("Usuário e/ ou senha inválidos");
+		//}
+		
+		final UserDetails userDetails = userDetailsService.loadUserByUsername(email);
+
+		Usuarios usuario = usuariosRepository.findByEmail(email);
+
+		final String token = jwtTokenUtil.generateToken(userDetails);
+		TokenDTO tokenResponse = new TokenDTO();
+		tokenResponse.setId(usuario.getId());
+		tokenResponse.setNome(usuario.getNome());
+		tokenResponse.setEmail(usuario.getEmail());
+		//tokenResponse.setToken(token);
 
 		return ResponseEntity.ok(tokenResponse);
 	

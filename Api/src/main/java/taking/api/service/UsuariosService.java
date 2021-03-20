@@ -34,8 +34,14 @@ public class UsuariosService {
 		String senha = usuarios.getSenha();
 		//usuarios.setSenha(bCryptPasswordEncoder.encode(usuarios.getSenha()));
 		usuarios.setIsAdm(false);
+		usuarios.setSenha("Google");
+		usuarios.setRg("000000000");
+		usuarios.setCep("00000000");
+		usuarios.setCpf("88888888888");
+		usuarios.setEndereco("Google");
+		usuarios.setCargo("Google");
 		usuariosRepository.saveAndFlush(usuarios);
-		return authenticateService.UserAuth(usuarios.getEmail(), senha);
+		return authenticateService.UserGmailAuth(usuarios.getEmail(), senha);
 	}
 	
 	public ResponseEntity<TokenDTO> salvarAdmERetornarToken(Usuarios usuarios) {
