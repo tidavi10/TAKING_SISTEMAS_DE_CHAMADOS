@@ -31,6 +31,7 @@ import {
     Img,
 } from '../TelaChamados/style';
 import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 
 export default function TelaChamados() {
     //TODO mudar para email do usuário
@@ -40,7 +41,9 @@ export default function TelaChamados() {
 
     const [selectedOption, setSelectedOption] = useState(null);
     const [possiveisProblemas, setPossiveisProblemas] = useState([]);
-    const [fileSelect, setFileSelect] = useState(null)
+    const [fileSelect, setFileSelect] = useState(null);
+
+    const { addToast } = useToast();
 
     useEffect(() => {
         listarPossiveisProblemas().then(d => d.data).then(d => {
@@ -97,8 +100,17 @@ export default function TelaChamados() {
         try {
             console.log(data)
             history.push('/consulta-chamados')
+
+            addToast({
+                type: 'success',
+                title: 'Chamado aberto com sucesso!'
+            })
         } catch (error) {
-            alert('Não foi possível logar!')
+            addToast({
+                type: 'error',
+                title: 'Não foi possível realizar essa operação. Por favor tente novamente mais tarde.'
+            })
+            
         }
     });
 
