@@ -39,9 +39,6 @@ public class UsuariosGmailController {
 
 	private JwtAuthenticationController loginController;
 	
-	//@Autowired
-	//private AuthenticateService authenticateService;
-	
 	@Autowired
 	private UsuariosService usuariosService;
 	
@@ -49,9 +46,7 @@ public class UsuariosGmailController {
 	@ApiOperation(value = "Cadastra um Usuário do Gmail")
 	public ResponseEntity<TokenDTO> cadastroUsuario(@RequestBody Usuarios usuarios) {
 		return usuariosService.salvarUsuarioGmailERetornarId(usuarios);
-	
-		//verificar se email já está cadastro, caso sim retorna só retornar ID.
-	}
 
+	}
 
 }

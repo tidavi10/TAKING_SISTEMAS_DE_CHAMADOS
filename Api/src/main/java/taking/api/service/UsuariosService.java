@@ -30,19 +30,25 @@ public class UsuariosService {
 		return authenticateService.UserAuth(usuarios.getEmail(), senha);
 	}
 	
-	public ResponseEntity<TokenDTO> salvarUsuarioGmailERetornarId(Usuarios usuarios){
+	public ResponseEntity<TokenDTO> salvarUsuarioGmailERetornarId(Usuarios usuarios) {
 		String senha = usuarios.getSenha();
-		//usuarios.setSenha(bCryptPasswordEncoder.encode(usuarios.getSenha()));
+
+		Usuarios usuarioExistente = usuariosRepository.findByEmail(usuarios.getEmail());
+		if(usuarioExistente != null) {
+			usuarios = usuarioExistente;
+		}
+		
 		usuarios.setIsAdm(false);
 		usuarios.setSenha("Google");
 		usuarios.setRg("000000000");
 		usuarios.setCep("00000000");
-		usuarios.setCpf("88888888888");
+		usuarios.setCpf("12345678998");
 		usuarios.setEndereco("Google");
 		usuarios.setCargo("Google");
 		usuariosRepository.saveAndFlush(usuarios);
 		return authenticateService.UserGmailAuth(usuarios.getEmail(), senha);
 	}
+	
 	
 	public ResponseEntity<TokenDTO> salvarAdmERetornarToken(Usuarios usuarios) {
 		String senha = usuarios.getSenha();
