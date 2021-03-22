@@ -37,12 +37,12 @@ public class UsuariosService {
 		if(usuarioExistente != null) {
 			usuarios = usuarioExistente;
 		}
-		
+
 		usuarios.setIsAdm(false);
 		usuarios.setSenha("Google");
 		usuarios.setRg("000000000");
 		usuarios.setCep("00000000");
-		usuarios.setCpf("12345678998");
+		usuarios.setCpf("01001010101");
 		usuarios.setEndereco("Google");
 		usuarios.setCargo("Google");
 		usuariosRepository.saveAndFlush(usuarios);
