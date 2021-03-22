@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
     BrowserRouter as Router
 } from 'react-router-dom';
@@ -13,7 +13,7 @@ import logo from '../../assets/logo.png';
 import FileList from './components/FileList';
 import Upload from './components/Upload';
 
-import { listarPossiveisProblemas, cadastrarChamado } from '../../services/api';
+import { listarPossiveisProblemas, cadastrarChamado, listarChamados } from '../../services/api';
 
 import {
     Container,
@@ -34,7 +34,7 @@ import { useAuth } from '../../hooks/auth';
 
 export default function TelaChamados() {
     //TODO mudar para email do usuário
-    const { usuario } = useAuth();
+    const { usuario, userId, numeroPagina } = useAuth();
     console.log(usuario)
     const history = useHistory();
 
@@ -57,11 +57,11 @@ export default function TelaChamados() {
 
     const [text, setText] = useState("");
 
-    const handlerChangeText = ({ target: { value }}) => {
+    const handleChangeText = ({ target: { value }}) => {
         setText(value);
     }
     
-    const handlerUpload = files => {
+    const handleUpload = files => {
         const fileToUpload = files.map(file => ({
             file,
             id: uniqueId(),
@@ -83,13 +83,24 @@ export default function TelaChamados() {
     }
 
 
-    const handlerEnviar = () => {
+    const handleEnviar = () => {
         const formData = new FormData();
-        formData.append('file', fileSelect.file);
-        console.log('handlerEnviar')
+        if (fileSelect) {
+            formData.append('file', fileSelect.file)
+        };    
+        console.log('handleEnviar')
         cadastrarChamado(usuario.userId, selectedOption.value, text, formData)
             .then(d => console.log(`Criado o item ${JSON.stringify(d)}`))
     }
+
+    const handleSubmit = useCallback(async (data, actions) => {
+        try {
+            console.log(data)
+            history.push('/consulta-chamados')
+        } catch (error) {
+            alert('Não foi possível logar!')
+        }
+    });
 
     const gotoConsultaChamados = () => {
         history.push('/consulta-chamados')
@@ -100,7 +111,7 @@ export default function TelaChamados() {
         window.location.href= '/'
     }
 
-    function problemaSelectedHandler(selectedOption) {
+    function problemaSelectedHandle(selectedOption) {
         setSelectedOption(selectedOption)
     }
 
@@ -126,10 +137,10 @@ export default function TelaChamados() {
                             <Select
                                 value={selectedOption}
                                 options={possiveisProblemas}
-                                onChange={problemaSelectedHandler}
+                                onChange={problemaSelectedHandle}
                                 placeholder="Selecione"/>
                         </FilterSelector>
-                        <Upload onUpload={handlerUpload} />
+                        <Upload onUpload={handleUpload} />
                         { !!fileSelect && (
                             <FileList files={[fileSelect]} onDelete={handleDeleteFile} />
                         ) }
@@ -139,7 +150,7 @@ export default function TelaChamados() {
                             <textarea
                                 className="text"
                                 value={text}
-                                onChange={handlerChangeText}
+                                onChange={handleChangeText}
                                 alt="Descreva o problema"
                                 placeholder="Descreva o problema"
                                 maxLength={2000} >
@@ -148,7 +159,10 @@ export default function TelaChamados() {
                     </EditionText>
                 </EditionArea>
                 <Footer>
-                    <ButtonFinish type="submit" onClick={handlerEnviar}>
+                    <ButtonFinish type="submit" onClick={() => {
+                        handleEnviar();
+                        handleSubmit();
+                    }}>
                         <span>Abrir chamado</span>
                     </ButtonFinish>
                 </Footer>

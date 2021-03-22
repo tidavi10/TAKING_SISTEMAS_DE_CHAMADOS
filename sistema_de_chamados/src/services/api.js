@@ -13,18 +13,15 @@ const getBaseAPI = () => {
     });
 }
 
-<<<<<<< HEAD
 //TODO fazer rotina pra autenticar adm
 
 
-=======
 
 
 const LoginSocial = function (body){
     return getBaseAPI().post('loginsocial/cadastrogmail', body)
 }
 
->>>>>>> 6476e811c33a296c64b0453d8e7f2ade1d79e887
 const cadastrarUsuario = function (body) {
     return getBaseAPI().post('usuarios/cadastro', body)
 }
