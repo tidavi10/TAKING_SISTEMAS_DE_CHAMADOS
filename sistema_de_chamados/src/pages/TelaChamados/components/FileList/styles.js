@@ -26,7 +26,7 @@ export const Container = styled.ul`
 
   @media (max-width: 576px) {
     margin: auto;
-    font-size: 1rem;
+    font-size: 81,25%;
     margin-top: 10px;
     width: 50%;
     text-align: center;

@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import GoogleLogin from 'react-google-login'
 import { useHistory } from 'react-router-dom';
+import api from '../../services/api'
 
 export class Social extends Component {
 
     responseGoogle = (response) => {
-        console.log(response);
-        console.log(response.profile);
-        const token = response.tokenId;
+        const token = response.tokenId
+        const {email, name} = response.profileObj
+        const form = {email, name}
+        api.post('loginsocial/cadastrogmail', form)
         localStorage.setItem("Token:id", token)
-
     }
     render() {
         return (

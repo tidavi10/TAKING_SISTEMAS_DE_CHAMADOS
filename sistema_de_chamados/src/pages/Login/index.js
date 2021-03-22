@@ -14,6 +14,7 @@ import { useAuth } from '../../hooks/auth';
 
 export default function Login() {
 
+
     const { loginUser, userToken, userId, nameUsuario, usuarioEmail } = useAuth();
 
     const handleSubmit = useCallback(async (data, actions) => {
@@ -23,13 +24,14 @@ export default function Login() {
                 email: data.email,
                 senha: data.senha
             });
-
+            
             history.push('/chamados')
         } catch (error) {
             alert('Não foi possível logar!')
         }
     });
 
+<<<<<<< HEAD
     const successToast = () => {
         toast.success("Login efetuado com sucesso",{
             position: "top-right",
@@ -46,6 +48,8 @@ export default function Login() {
     function onSubmit(values, actions) {
         history.push('/chamados')
     }   
+=======
+>>>>>>> 6476e811c33a296c64b0453d8e7f2ade1d79e887
 
     const history = useHistory();
 
@@ -53,33 +57,19 @@ export default function Login() {
         history.push('/cadastro')
     }
 
-    const gotoChamados = () => {
-        history.push('/chamados')
-    }
-
-    const armazenaTokenSession = () => {
-        let token = 'ahushaushaushuas';
-
-        sessionStorage.setItem('token', token);
-
-        setTimeout(() => {
-            sessionStorage.clear();
-        }, 3000);
-    ;}
-
     return (
     <>
         <div className="container-login">
             <Formik className="formik"
                 validationSchema={schema}
-                successToast={successToast}
                 onSubmit={handleSubmit}
                 validateOnMount
                 initialValues={{
                 email: '',
                 senha: '',
                     }}
-                render={({isValid}) => (
+                >  
+                {({isValid}) => (
                 <Form className="form-login">
                             <img src={logo} />
                     <h1 className="title-login">Login</h1>
@@ -98,7 +88,7 @@ export default function Login() {
                         </div>                                     
                     </div>
 
-                    <button className="login" type="submit" disabled={!isValid} onClick={successToast}>Login</button>
+                    <button className="login" type="submit" disabled={!isValid}>Login</button>
                     <ToastContainer/>
                     <button className="cadast" type="submit" onClick={gotoCadastro}>Cadastro</button>
                     <p className="par">OU</p>
@@ -108,7 +98,7 @@ export default function Login() {
                     </div>
                 </Form>  
                 )} 
-            />       
+            </Formik>
         </div>
     </>
 )

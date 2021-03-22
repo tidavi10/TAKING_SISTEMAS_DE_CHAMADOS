@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { FiEdit } from 'react-icons/fi';
 
 import Pagination from './components/Pagination';
-import { listarChamadosAdm, getTotalDeChamados } from '../../services/api'
+import { listarChamadosAdm, totalPaginasAdm } from '../../services/api'
 
 import { useAuth } from '../../hooks/auth';
 
@@ -41,7 +41,6 @@ export default function ChamadosAdm(props) {
     const [state, setState] = useState({ 
         activePage: 1,
         posts: [],
-        totalChamados: 0,
         postsPerPage: 5,
     });
 
@@ -50,14 +49,16 @@ export default function ChamadosAdm(props) {
     const [totalDeChamdos, setTotalDeChamados] = useState(0);
 
     const [currentPage, setCurrentPage] = useState(0);
+
+    const [totalDePaginas, setTotalDePaginas] = useState(-1);
   
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         setLoading(true)
-        getTotalDeChamados().then(call => call.data).then(call => {
+        totalPaginasAdm().then(call => call.data).then(call => {
             console.log(call)
-          setTotalDeChamados(call)
+          setTotalDePaginas(call)
           console.log(call)
           setLoading(false)
         })
@@ -75,9 +76,9 @@ export default function ChamadosAdm(props) {
         })
     }, [currentPage]);
 
-        const onPageChanged = data => {
-            setLoading(true)
-            setCurrentPage(data.currentPage - 1)
+    const onPageChanged = data => {
+        setLoading(true)
+        setCurrentPage(data.currentPage - 1)
     }
 
     const goToEditCall = (callId) => {
@@ -137,7 +138,7 @@ export default function ChamadosAdm(props) {
             <Page>
                 <Pagination
                     pageLimit={state.postsPerPage} 
-                    totalRecords={totalDeChamdos} 
+                    totalRecords={totalDePaginas * state.postsPerPage} 
                     onPageChanged={onPageChanged}
                     pageNeighbours={1}
                 />

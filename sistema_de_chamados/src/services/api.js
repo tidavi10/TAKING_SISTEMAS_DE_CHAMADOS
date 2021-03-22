@@ -14,7 +14,12 @@ const getBaseAPI = () => {
 }
 const api = axios.create({baseURL: "https://projetochamadosbackendtaking.herokuapp.com/",});
 
-const cadastro = function (body) {
+
+const LoginSocial = function (body){
+    return getBaseAPI().post('loginsocial/cadastrogmail', body)
+}
+
+const cadastrarUsuario = function (body) {
     return getBaseAPI().post('usuarios/cadastro', body)
 }
 
@@ -22,19 +27,31 @@ const listarPossiveisProblemas = function () {
     return getBaseAPI().get('problema')
 }
 
-const cadastrarChamado = function (descricaoProblema, formData) {
-    return getBaseAPI().post(`chamados/${10}/${2}/${6}?descricaoProblema=${descricaoProblema}`, formData,
+const cadastrarChamado = function (userId, problemId, descricaoProblema, formData) {
+    return getBaseAPI().post(`chamados/${userId}/${problemId}?descricaoProblema=${descricaoProblema}`, formData,
     {
         headers: { 'Content-Type': 'multipart/form-data' }
     })
 }
 
-const getTotalDeChamados = function () {
-    return getBaseAPI().get(`chamados/usuario/${10}`)
+const getTotalDeChamados = function (userId) {
+    return getBaseAPI().get(`chamados/totalPaginas/usuario/${userId}`)
 }
 
-const listarChamados = function (numeroPagina) {
-    return getBaseAPI().get(`chamados/usuario/${10}/${numeroPagina}`)
+const getTotalPaginas = function (userId) {
+    return getBaseAPI().get(`chamados/totalPaginas/usuario/${userId}`)
+}
+
+const listarChamados = function (userId , numeroPagina) {
+    return getBaseAPI().get(`chamados/usuario/${userId}/${numeroPagina}`)
+}
+
+const listarChamadosAdm = function (numeroPagina) {
+    return getBaseAPI().get(`chamados/adm/all/${numeroPagina}`)
+}
+
+const totalPaginasAdm = function () {
+    return getBaseAPI().get('chamados/totalPaginas/adm')
 }
 
 const listarRespostasChamado = function (idChamado, id) {
@@ -46,9 +63,11 @@ export default getBaseAPI
 export {
     listarPossiveisProblemas,
     listarChamados, 
-    cadastro, 
+    getTotalPaginas,
+    listarChamadosAdm, 
     getTotalDeChamados,
     cadastrarChamado,
-    listarRespostasChamado,
-    api
+    cadastrarUsuario,
+    totalPaginasAdm,
+    listarRespostasChamado
 };

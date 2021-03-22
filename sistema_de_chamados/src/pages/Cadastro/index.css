@@ -1,20 +1,16 @@
-body{
-    background: #219ebc;
-}
-
-.container{
+.container-cadastro{
     width: 100%;
-    height: 110vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     background: #219ebc;
-    }
+}
     
 @media (max-width: 576px) {
     .container{
-    padding: 10px;   
+    padding: 30px;   
     font-size: 14px;
     display: flex;
     justify-content: center;  
@@ -62,8 +58,8 @@ body{
 }
 
 
-Form.form{
-    margin-top: 50px;
+Form.form-cadastro{
+    margin-top: -50px;
     width: 50%;
     height: auto; 
     display: flex;
@@ -71,14 +67,23 @@ Form.form{
     flex-direction: column;
     background: #f8f9fa; 
     border-radius: 10px;
-    padding: 32px 0px;
+    padding: 10px 0px;
     border: 1px solid #eee;
     box-shadow: 1px 3px 6px rgba(0, 0, 0, 0.3);
     color: #000000;
 }
-@media (max-width: 576px) {
+@media (max-width: 760px) {
     Form.form{
+        margin-top: 5px;
         width: 100%;
+        height: auto;
+        align-items: center;
+    }
+}
+@media (min-width: 760px) {
+    Form.form{
+        margin-top: 5px;
+        width: 75%;
         height: auto;
         align-items: center;
     }

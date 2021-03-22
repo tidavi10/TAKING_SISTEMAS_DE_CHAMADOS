@@ -233,7 +233,7 @@ export const EditionArea = styled.div`
         margin: auto;
         padding: 10px;
         border: none;
-        font-size: 75%;
+        font-size: 81,25%;
     }
 
     @media (min-width: 577px) and (max-width: 768px){
@@ -241,7 +241,7 @@ export const EditionArea = styled.div`
         align-items: center;
         margin: auto;
         padding: 10px;
-        font-size: 87.5%;
+        font-size: 87.25%;
     }
 `;
 
@@ -294,7 +294,7 @@ export const FilterSelector = styled.div`
 
     @media (max-width: 576px) {
         margin: auto;
-        font-size: 75%;
+        font-size: 81.25%;
         margin-top: 10px;
         width: 50%;
         text-align: center;
@@ -325,7 +325,7 @@ export const EditionText = styled.div`
         flex-direction: column;
         width: 100%;
         height: 100%;
-        font-size: 75%;
+        font-size: 81.25%;
         margin-left: 0px;
 
         .text {
@@ -375,7 +375,6 @@ export const EditionDescription = styled.div`
 
     @media (max-width: 576px) {
         margin: auto;
-        font-size: 1rem;
         margin-top: 10px;
         width: 100%;
 
@@ -386,7 +385,6 @@ export const EditionDescription = styled.div`
 
     @media (min-width: 577px) and (max-width: 768px){
         margin: auto;
-        font-size: 1rem;
         margin-top: 10px;
         width: 100%;
 
@@ -409,7 +407,6 @@ export const ButtonFinish = styled.button`
     background: #ffb703;
     width: 200px;
     height: 40px;
-    font-size: 18px;
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -431,7 +428,7 @@ export const ButtonFinish = styled.button`
 
     @media (max-width: 576px) {
         margin: auto;
-        font-size: 75%;
+        font-size: 81.25%;
     }
 
     @media (min-width: 577px) and (max-width: 768px){

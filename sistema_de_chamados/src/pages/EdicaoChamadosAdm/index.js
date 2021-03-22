@@ -36,6 +36,7 @@ export default function EdicaoChamadosAdm() {
 
     const { admEmail, name, id } = useAuth();
     const { addToast } = useToast();
+    console.log(admEmail)
 
     const callId = localStorage.getItem('@chamadosTaking:idChamado');
     
