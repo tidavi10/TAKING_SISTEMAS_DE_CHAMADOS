@@ -1,5 +1,5 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
-import { api } from '../services/api';
+import getBaseAPI, { api } from '../services/api';
 
 const AuthContext = createContext({});
 
@@ -66,7 +66,7 @@ const AuthProvider =  ({ children }) => {
 
         const payload = { email, senha }
 
-        const response = tipoUsuario === 'ADMIN' ?  await  api().post('admAuth', payload)  : await  api().post('authenticate', payload);
+        const response = tipoUsuario === 'ADMIN' ?  await  getBaseAPI().post('admAuth', payload)  : await  getBaseAPI().post('authenticate', payload);
 
         const usuarioEmail = JSON.parse(response.config.data).email
 

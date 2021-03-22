@@ -15,9 +15,9 @@ export default function LoginAdm() {
 
     const { loginUser } = useAuth();
      
-    const handleSubmit = useCallback((data) => {
+    const handleSubmit = useCallback(async (data) => {
         try {
-            loginUser({
+            await loginUser({
                 email: data.email,
                 senha: data.senha,
                 tipoUsuario: 'ADMIN'

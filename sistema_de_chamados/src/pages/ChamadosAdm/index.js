@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { FiEdit } from 'react-icons/fi';
 
 import Pagination from './components/Pagination';
-import { listarChamadosAdm, totalPaginasAdm } from '../../services/api'
+import getBaseAPI, { listarChamadosAdm, totalPaginasAdm } from '../../services/api'
 
 import { useAuth } from '../../hooks/auth';
 
@@ -29,15 +29,10 @@ import {
     Page
 } from './style';
 
-export default function ChamadosAdm(props) {
-    const authContext = useContext(AuthContext)
+export default function ChamadosAdm() {
     const history = useHistory();
-    const { nome, id } = useAuth();
-
-    const listarChamadosAdm = function (numeroPagina) {
-        return api.get(`chamados/adm/${id}/${numeroPagina}`)
-    }
-
+    const { nome} = useAuth();
+    
     const [state, setState] = useState({ 
         activePage: 1,
         posts: [],
@@ -45,8 +40,6 @@ export default function ChamadosAdm(props) {
     });
 
     const [listaDeChamados, setlistaDeChamados] = useState([]);
-
-    const [totalDeChamdos, setTotalDeChamados] = useState(0);
 
     const [currentPage, setCurrentPage] = useState(0);
 
@@ -72,29 +65,6 @@ export default function ChamadosAdm(props) {
           setLoading(false)
         })
       }, [currentPage]);
-
-
-    // useEffect(() => {
-    //     setLoading(true)
-    //     totalPaginasAdm(totalDePaginas).then(call => call.data).then(call => {
-    //         console.log(call)
-    //       setTotalDePaginas(call)
-    //       console.log(call)
-    //       setLoading(false)
-    //     })
-    //   },[0]);
-
-    // useEffect(() => {
-    //     setLoading(true);    
-    //     listarChamadosAdm(currentPage).then(call => call.data).then(call => {
-    //         console.log(call)
-    //         setlistaDeChamados(call)
-    //         setState({ ...state, 
-    //             totalChamados: Number.parseInt(call.totalChamados)
-    //         });
-    //         setLoading(false)
-    //     })
-    // }, [currentPage]);
 
     const onPageChanged = data => {
         setLoading(true)
