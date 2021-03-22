@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 
 @Entity
-@Table(uniqueConstraints={@UniqueConstraint(columnNames = "email"), @UniqueConstraint(columnNames = "cpf")})
+@Table(uniqueConstraints={@UniqueConstraint(columnNames = "email")})
 public class Usuarios implements Serializable {
 	
 	/**
