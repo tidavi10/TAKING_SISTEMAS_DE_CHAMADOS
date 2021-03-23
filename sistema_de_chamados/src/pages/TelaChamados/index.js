@@ -13,7 +13,7 @@ import logo from '../../assets/logo.png';
 import FileList from './components/FileList';
 import Upload from './components/Upload';
 
-import { listarPossiveisProblemas, cadastrarChamado, listarChamados } from '../../services/api';
+import { listarPossiveisProblemas, cadastrarChamado } from '../../services/api';
 
 import {
     Container,
@@ -35,8 +35,8 @@ import { useToast } from '../../hooks/toast';
 
 export default function TelaChamados() {
     //TODO mudar para email do usuário
-    const { usuario, userId, numeroPagina } = useAuth();
-    console.log(usuario)
+    const { usuario } = useAuth();
+    //console.log(usuario)
     const history = useHistory();
 
     const [selectedOption, setSelectedOption] = useState(null);
@@ -91,14 +91,14 @@ export default function TelaChamados() {
         if (fileSelect) {
             formData.append('file', fileSelect.file)
         };    
-        console.log('handleEnviar')
+        //console.log('handleEnviar')
         cadastrarChamado(usuario.userId, selectedOption.value, text, formData)
             .then(d => console.log(`Criado o item ${JSON.stringify(d)}`))
     }
 
-    const handleSubmit = useCallback(async (data, actions) => {
+    const handleSubmit = useCallback(async (data) => {
         try {
-            console.log(data)
+            //console.log(data)
             history.push('/consulta-chamados')
 
             addToast({

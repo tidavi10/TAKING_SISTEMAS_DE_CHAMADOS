@@ -41,7 +41,7 @@ const AuthProvider =  ({ children }) => {
         const data = localStorage.getItem('@chamadosTaking:usuario');
         if (data) {
             const parsedData = JSON.parse(data)
-            console.log(parsedData)
+            //console.log(parsedData)
             return parsedData;
         }
 
@@ -91,7 +91,7 @@ const AuthProvider =  ({ children }) => {
             senha
         });
 
-        console.log(response.data)
+        //console.log(response.data)
         const convertDataEmail = JSON.parse(response.config.data).email
 
         const { token, id, nome } = response.data;
@@ -108,7 +108,7 @@ const AuthProvider =  ({ children }) => {
         setUserEmail({ admEmail });
     }, []);
 
-    console.log(userName.nome)
+    //console.log(userName.nome)
 
     const logout = useCallback(() => {
         localStorage.removeItem('@chamadosTaking:userAdmToken');

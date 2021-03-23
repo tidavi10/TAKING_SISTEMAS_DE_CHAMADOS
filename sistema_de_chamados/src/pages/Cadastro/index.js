@@ -17,7 +17,7 @@ export default function Cadastro() {
     const handlerEnviar = (dados, response, req) =>{
         cadastrarUsuario(dados)
             .then(dados => console.log(`Criado o item ${JSON.stringify(dados)}`)) 
-            console.log(dados)
+            //console.log(dados)
     }
     
     return (

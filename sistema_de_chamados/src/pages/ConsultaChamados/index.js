@@ -49,7 +49,7 @@ export default function ChamadosAdm() {
     setLoading(true)
     getTotalPaginas(usuario.userId, totalDePaginas).then(d => d.data).then(d => {
       setTotalDePaginas(d)
-      console.log(d)
+      //console.log(d)
       setLoading(false)
     })
   }, []);
@@ -58,7 +58,7 @@ export default function ChamadosAdm() {
     setLoading(true)
     getTotalDeChamados(usuario.userId, currentPage).then(d => d.data).then(d => {
       setTotalDeChamados(d)
-      console.log(d)
+      //console.log(d)
       setLoading(false)
     })
   },[0]);
@@ -67,7 +67,7 @@ export default function ChamadosAdm() {
     setLoading(true)
     listarChamados(usuario.userId, currentPage).then(d => d.data).then(d => {
       setlistaDeChamados(d)
-      console.log(d)
+      //console.log(d)
       setState({
         ...state
       });
