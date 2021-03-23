@@ -1,4 +1,4 @@
-app_host: localhost:3000
-driver: selenium
-selenium_browser: chrome
+app_host: projetochamadosfrontendtaking.herokuapp.com
+driver: webkit
+selenium_browser: safari
 debug_mode: true

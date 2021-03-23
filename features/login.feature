@@ -1,10 +1,9 @@
-
 #language:pt
-
+@wip
 Funcionalidade: Login
-Para validar a autenticação no sistema de chamados da Taking 
+Para validar a autenticação no sistema de chamados da Taking
 Como usuário do sistema
-Eu quero logar e validar as permissões de tenico e cliente 
+Eu quero logar e validar as permissões de tenico e cliente
 
 Contexto: possibilidade de acessar o sistema
 
