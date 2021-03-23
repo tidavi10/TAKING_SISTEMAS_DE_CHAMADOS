@@ -83,7 +83,7 @@ public class ChamadosService {
 			Chamados obj = chamadosRepository.save(chamados);
 			return obj;
 		}
-		throw new IOException("Failed to acess the file: " + file);
+		throw new IOException("Failed to access the file: " + file);
 	}
 
 	public List<Chamados> findChamadosPaginated(int pageNo) {
