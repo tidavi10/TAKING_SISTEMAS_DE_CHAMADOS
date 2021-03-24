@@ -39,7 +39,7 @@ public class UsuariosService {
 		}
 
 		usuarios.setIsAdm(false);
-		usuarios.setSenha("Google");
+		usuarios.setSenha("Google@123");
 		usuarios.setRg("000000000");
 		usuarios.setCep("00000000");
 		usuarios.setCpf("01001010101");
