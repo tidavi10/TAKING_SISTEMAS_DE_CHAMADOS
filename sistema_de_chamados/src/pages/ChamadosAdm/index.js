@@ -8,11 +8,8 @@ import getBaseAPI, { listarChamadosAdm, totalPaginasAdm } from '../../services/a
 
 import { useAuth } from '../../hooks/auth';
 
-import { api } from '../../services/api';
-
 import logo from '../../assets/logo.png';
 
-import { AuthContext } from '../../hooks/auth';
 import {
     Container,
     Header,
@@ -31,8 +28,7 @@ import {
 
 export default function ChamadosAdm() {
     const history = useHistory();
-    const { userEmail, name } = useAuth();
-    console.log(name)
+    const { usuario } = useAuth();
     
     const [state, setState] = useState({ 
         activePage: 1,
@@ -122,7 +118,7 @@ export default function ChamadosAdm() {
                         <p>Meus dados</p>
                     </ButtonHeader>
                 </HeaderContent>
-                {/* <p>{name}</p> */}
+                <p>{usuario.name ? usuario.name : usuario.email}</p>
             </Header>
 
             { renderCallBox() }

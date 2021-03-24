@@ -1,7 +1,6 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
 import getBaseAPI from "../services/api";
 
-
 const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
@@ -18,26 +17,11 @@ const AuthProvider = ({ children }) => {
         const data = JSON.stringify({ email, name, id, token, tipoUsuario });
         localStorage.setItem('@chamadosTaking:usuario', data);
 
+        console.log(name);
         setAuthData({ token, id, name, email, tipoUsuario });
     }, []);
+    
 
-    const loginAdm = useCallback(async({ email, senha, name }) => {
-        const response = await getBaseAPI.post('admAuth', {
-            email,
-            senha, 
-            name
-        });
-
-        const admEmail = JSON.parse(response.config.data).email
-
-        const { usuario } = response.data; 
-        
-        console.log(response.data)
-
-        localStorage.setItem('@chamadosTaking:usuario');
-
-        setAuthData({ usuario });
-    }, []);
 
     const userLogout = useCallback(() => {
         localStorage.setItem('@chamadosTaking:usuario');
@@ -55,16 +39,16 @@ const AuthProvider = ({ children }) => {
 
     return {};
 });
+console.log(authData.name);
 
     return (
         <AuthContext.Provider value={{
             loginUser,
             userLogout,
-            loginAdm,
             usuario: {
                 token: authData?.token,
                 id: authData?.id,
-                name: authData?.nome,
+                name: authData?.name,
                 email: authData?.email,
             }
         }}>

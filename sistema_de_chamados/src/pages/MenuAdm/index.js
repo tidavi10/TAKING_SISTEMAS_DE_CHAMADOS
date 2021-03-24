@@ -13,7 +13,7 @@ import { useAuth } from '../../hooks/auth';
 
 export default function MenuAdm() {
     const history = useHistory();
-    const { nome } = useAuth();
+    const { usuario } = useAuth();
 
     const gotoadm = () => {
         history.push('/chamados-adm')
@@ -28,7 +28,7 @@ export default function MenuAdm() {
                                 <p>Tela de Chamados</p>
                             </ButtonHeader>
                     </HeaderContent>
-                    <p>{nome}</p>
+                    <p>{usuario.name ? usuario.name : usuario.email}</p>
                 </Header>
                 
             </Container>

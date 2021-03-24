@@ -24,8 +24,6 @@ export default function LoginAdm() {
             });
 
             history.push('/menu-adm')
-
-
         } catch (error) {
             console.error(error)
             alert('Não foi possível logar.')
@@ -63,7 +61,6 @@ export default function LoginAdm() {
                             </div>
                         </div>
                         <button className="button-adm" type="submit" disabled={!isValid} >Login</button>
-                        
                     </Form>
                     )}          
                 />
