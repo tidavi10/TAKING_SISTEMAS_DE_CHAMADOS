@@ -64,8 +64,8 @@ const AuthProvider = ({ children }) => {
             usuario: {
                 token: authData?.token,
                 id: authData?.id,
-                name: authData?.nome,
-                email: authData?.email,
+                nome: authData?.name,
+                userEmail: authData?.email,
             }
         }}>
             {children}

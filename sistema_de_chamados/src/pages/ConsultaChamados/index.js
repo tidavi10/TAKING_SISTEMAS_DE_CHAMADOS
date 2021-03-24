@@ -47,7 +47,7 @@ export default function ChamadosAdm() {
 
   useEffect(() => {
     setLoading(true)
-    getTotalPaginas(usuario.userId, totalDePaginas).then(d => d.data).then(d => {
+    getTotalPaginas(usuario.id, totalDePaginas).then(d => d.data).then(d => {
       setTotalDePaginas(d)
       //console.log(d)
       setLoading(false)
@@ -56,7 +56,7 @@ export default function ChamadosAdm() {
 
   useEffect(() => {
     setLoading(true)
-    getTotalDeChamados(usuario.userId, currentPage).then(d => d.data).then(d => {
+    getTotalDeChamados(usuario.id, currentPage).then(d => d.data).then(d => {
       setTotalDeChamados(d)
       //console.log(d)
       setLoading(false)
@@ -65,7 +65,7 @@ export default function ChamadosAdm() {
 
   useEffect(() => {
     setLoading(true)
-    listarChamados(usuario.userId, currentPage).then(d => d.data).then(d => {
+    listarChamados(usuario.id, currentPage).then(d => d.data).then(d => {
       setlistaDeChamados(d)
       //console.log(d)
       setState({
@@ -132,7 +132,7 @@ export default function ChamadosAdm() {
                 <p>Sair</p>
               </ButtonExit>
           </HeaderContent>
-          <p>{!usuario.nameUsuario || usuario.nameUsuario != undefined ? usuario.nameUsuario : usuario.usuarioEmail}</p>
+          <p>{!usuario.nome || usuario.nome != undefined ? usuario.nome : usuario.userEmail}</p>
         </Header>
         { renderCallBox() }
         <Page>
