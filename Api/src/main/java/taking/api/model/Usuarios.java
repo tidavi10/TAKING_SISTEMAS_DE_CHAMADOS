@@ -69,6 +69,7 @@ public class Usuarios implements Serializable {
 	private String cpf;
 	
 	@NotBlank (message = "RG inválido")
+	@Pattern(regexp = "^1?(\\d{10})")
 	@ApiModelProperty(notes = "RG do usuário", required = true, position = 6)
 	private String rg;
 	

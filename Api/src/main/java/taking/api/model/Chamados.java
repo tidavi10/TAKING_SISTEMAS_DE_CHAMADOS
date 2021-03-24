@@ -28,16 +28,16 @@ public class Chamados implements Serializable{
 	private String descricao;
 	
 	@Lob
-	@ApiModelProperty(notes = "Anexo do problema", required = true, position = 3)
+	@ApiModelProperty(notes = "Anexo do problema", position = 3)
 	private byte[] anexo;
 	
-	@ApiModelProperty(notes = "Nome do arquivo do anexo", required = true, position = 4)
+	@ApiModelProperty(notes = "Nome do arquivo do anexo", position = 4)
 	private String nomeAnexo;
 	
-	@ApiModelProperty(notes = "extensão do anexo", required = true, position = 5)
+	@ApiModelProperty(notes = "Extensão do anexo", position = 5)
 	private String tipoAnexo;
 	
-	@ApiModelProperty(notes = "ID da resolução", required = true, position = 6)
+	@ApiModelProperty(notes = "Status da resolução", position = 6)
 	private String status;
 	
 	@Column(name = "dataChamado", updatable = false)

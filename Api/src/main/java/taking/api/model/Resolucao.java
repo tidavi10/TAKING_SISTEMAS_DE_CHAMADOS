@@ -21,7 +21,7 @@ public class Resolucao {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@ApiModelProperty(notes = "ID da resolução", required = true, position = 1)
+	@ApiModelProperty(notes = "ID da resolução", position = 1)
 	private Long id;
 
 	@ManyToOne
@@ -34,7 +34,7 @@ public class Resolucao {
 
 	@Column(name = "dataResolucao", updatable = false)
 	@Temporal(TemporalType.TIMESTAMP)
-	@ApiModelProperty(notes = "Horário em que foi enviado a resolução", required = true, position = 3)
+	@ApiModelProperty(notes = "Horário em que foi enviado a resolução", position = 3)
 	private Date timestamp;
 
 	@ApiModelProperty(notes = "Tempo gasto para resolução", required = true, position = 4)
