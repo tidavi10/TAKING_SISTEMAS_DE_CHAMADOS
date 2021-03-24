@@ -23,7 +23,7 @@ export default function Cadastro() {
     return (
         <Router>
             <Formik className="formik"
-               validationSchema={schema}
+                validationSchema={schema}
                 onSubmit={handlerEnviar}
                 validateOnMount
                 initialTouched={{
@@ -104,7 +104,7 @@ export default function Cadastro() {
                             <ErrorMessage className="erro" name="senha" component="spam" />
                             </div>
                         </div>
-                        <button className="Submit" type="submit" onClick={handlerEnviar}>Cadastrar</button>
+                        <button className="Submit" type="submit" disabled={!isValid} onClick={handlerEnviar}>Cadastrar</button>
                  </div>
                 </div>
 
