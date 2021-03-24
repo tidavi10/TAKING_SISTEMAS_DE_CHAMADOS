@@ -42,9 +42,8 @@ public class Usuarios implements Serializable {
 	@Email
 	private String email;
 	
-	@NotBlank (message = "Senha inválida")
+	@NotBlank (message = "Senha inválido")
 	@ApiModelProperty(notes = "Senha do usuário", required = true, position = 4)
-	@Pattern(regexp = "^(?=.*[a-z])(?=.*[0-9])(?=.*[@?!#$%^&_]).{8,}$")
 	private String senha;
 	
 	@NotBlank (message = "Nome inválido")
@@ -71,7 +70,6 @@ public class Usuarios implements Serializable {
 	private String cpf;
 	
 	@NotBlank (message = "RG inválido")
-	@Pattern(regexp = "^1?(\\d{10})")
 	@ApiModelProperty(notes = "RG do usuário", required = true, position = 6)
 	@Pattern(regexp = "^1?(\\d{9})")
 	private String rg;

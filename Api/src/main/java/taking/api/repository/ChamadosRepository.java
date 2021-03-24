@@ -25,6 +25,11 @@ public interface ChamadosRepository extends JpaRepository<Chamados, Long> {
 	@Query("update Chamados c set c.status = :status where c.id = :id")
 	void updateStatus(@Param("status") String status, @Param("id") Long id);
 	
+	@Transactional
+	@Modifying(clearAutomatically = true)
+	@Query("update Chamados c set c.descricao = :descricao where c.id = :id")
+	void updateDescricao(@Param("descricao") String descricao, @Param("id") Long id);
+	
 	@Query(value = "select * from Chamados where usuario_id = ?", nativeQuery = true)
 	List<Chamados> listaTodos(@Param("id") Long id);
 	

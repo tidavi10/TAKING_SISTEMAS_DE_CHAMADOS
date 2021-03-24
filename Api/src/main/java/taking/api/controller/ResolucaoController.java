@@ -11,8 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import io.swagger.annotations.ApiOperation;
@@ -43,24 +45,12 @@ public class ResolucaoController {
 	}
 
 	//Insere a resposta do chamado na tabela e atualiza o status do chamado
-	@PostMapping("/resposta/{IdChamado}")
+	@PutMapping("/resposta/{IdChamado}")
 	@ApiOperation(value = "Cadastra a resposta do chamado", 
 					notes = "Cadastra a resposta do chamado e atualiza o status do chamado para Finalizado, "
 							+ "passando na URL o ID do Chamado.",
 					authorizations = { @Authorization(value = "jwtToken") })
 	public ResponseEntity<Resolucao> respostaChamado(@PathVariable Long IdChamado, @RequestBody Resolucao resolucao) throws TransactionRequiredException {
 		return resolucaoService.respostaChamado(IdChamado, resolucao);
-		
-		/*if (resolucaoService.idAndAdmExists(IdChamado, IdAdm)) {
-			resolucao.setId(IdChamado);
-			resolucao.setTimestamp(new Date());
-			resolucaoRepository.save(resolucao);
-			chamadosRepository.updateStatus("Finalizado", IdChamado);
-			return new ResponseEntity<Resolucao>(HttpStatus.OK);
-		}
-
-		return new ResponseEntity<Resolucao>(HttpStatus.BAD_REQUEST);*/
-
 	}
-
 }

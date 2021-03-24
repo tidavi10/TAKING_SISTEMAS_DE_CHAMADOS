@@ -12,7 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import taking.api.exceptions.ResourceNotFoundException;
+import taking.api.exceptions.BadRequestException;
+//import taking.api.exceptions.excluir.ResourceNotFoundException;
 import taking.api.model.Chamados;
 import taking.api.model.Resolucao;
 import taking.api.repository.ChamadosRepository;
@@ -46,12 +47,17 @@ public class ResolucaoService{
 	}*/
 	
 	public ResponseEntity<Resolucao> respostaChamado(Long id, Resolucao resolucao) {
-			Chamados chamados = chamadosRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("chamado não encontrado"));
+			Chamados chamados = chamadosRepository.findById(id).orElseThrow(() -> new BadRequestException("chamado não encontrado com id: " + id));
 			resolucao.setChamados(chamados);
 			resolucao.setTimestamp(new Date());
-			resolucaoRepository.save(resolucao);
-			chamadosRepository.updateStatus(resolucao.getStatus(), id);
-			return new ResponseEntity<Resolucao>(HttpStatus.OK);
+			try {
+				resolucaoRepository.save(resolucao);
+				chamadosRepository.updateStatus(resolucao.getStatus(), id);
+				chamadosRepository.updateDescricao(resolucao.getResolucao(), id);
+				return new ResponseEntity<Resolucao>(HttpStatus.OK);
+			}catch(BadRequestException e) {
+				throw new BadRequestException("Não foi possível salvar resolução");
+			}
 	}
 	
 	/*private String mudarStatus(String status) {

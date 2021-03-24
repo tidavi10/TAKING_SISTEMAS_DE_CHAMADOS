@@ -12,7 +12,8 @@ import org.springframework.stereotype.Service;
 
 import taking.api.config.JwtTokenUtil;
 import taking.api.dto.TokenDTO;
-import taking.api.exceptions.AutenticacaoException;
+import taking.api.exceptions.BadRequestException;
+//import taking.api.exceptions.excluir.AutenticacaoException;
 import taking.api.model.Usuarios;
 //import taking.api.model.UsuariosAdm;
 //import taking.api.repository.UsuariosAdmRepository;
@@ -49,7 +50,7 @@ public class AuthenticateService {
 				Authentication authentication = authenticationManager
 						.authenticate(new UsernamePasswordAuthenticationToken(email, senha));
 			} catch (BadCredentialsException e) {
-				throw new AutenticacaoException("Usuário e/ ou senha inválidos");
+				throw new BadRequestException("Usuário e/ ou senha inválidos");
 			}
 
 			final UserDetails userDetails = userDetailsService.loadUserByUsername(email);
@@ -76,7 +77,7 @@ public class AuthenticateService {
 			Authentication authentication = authenticationManager
 					.authenticate(new UsernamePasswordAuthenticationToken(email, senha));
 		} catch (BadCredentialsException e) {
-			throw new AutenticacaoException("Usuário e/ ou senha inválidos");
+			throw new BadRequestException("Usuário e/ ou senha inválidos");
 		}
 
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(email);

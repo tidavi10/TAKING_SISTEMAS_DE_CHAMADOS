@@ -20,7 +20,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.Authorization;
 import taking.api.config.JwtTokenUtil;
 import taking.api.dto.TokenDTO;
-import taking.api.exceptions.AutenticacaoException;
+//import taking.api.exceptions.excluir.AutenticacaoException;
 import taking.api.model.JwtRequest;
 import taking.api.model.Usuarios;
 //import taking.api.repository.UsuariosAdmRepository;
