@@ -1,139 +1,71 @@
-import React, { createContext, useCallback, useContext, useState } from 'react';
-import getBaseAPI, { api } from '../services/api';
+import React, { createContext, useCallback, useContext, useState } from "react";
+import getBaseAPI from "../services/api";
+
 
 const AuthContext = createContext({});
 
-
-
-const AuthProvider =  ({ children }) => {
-    const [userEmail, setUserEmail] = useState(() => {
-        const admEmail = localStorage.getItem('@chamadosTaking:userAdmEmail');
-
-        if (admEmail) {
-            return { admEmail };
-        }
-
-        return {};
-    });
-
-    const [userName, setUserName] = useState(() => {
-        const nome = localStorage.getItem('@chamadosTaking:userAdmName');
-
-        if (nome) {
-            return { nome };
-        }
-
-        return {};
-    });
-
-    const [userId, setUserId] = useState(() => {
-        const id = localStorage.getItem('@chamadosTaking:userAdmId');
-
-        if (id) {
-            return { id };
-        }
-
-        return {};
-    });
-
-    //Vanessa
-    const [userAuthData, setUserAuthData] = useState(() => {
-        const data = localStorage.getItem('@chamadosTaking:usuario');
-        if (data) {
-            const parsedData = JSON.parse(data)
-            //console.log(parsedData)
-            return parsedData;
-        }
-
-        return {};
-    });
-
-    const [authData, setAuthData] = useState(() => {
-        const token = localStorage.getItem('@chamadosTaking:userAdmToken');
-
-        if (token) {
-            return { token };
-        }
-
-        return {};
-    });
-
-    /**
-     * { email, senha, tipo }
-     * tipo =  ADMIN, USUARIO
-     */
+const AuthProvider = ({ children }) => {
     const loginUser = useCallback(async({ email, senha, tipoUsuario }) => {
+        const payload = { email, senha}
 
-        const payload = { email, senha }
+        const response = tipoUsuario === 'ADMIN' ? await getBaseAPI().post('admAuth', payload) : await getBaseAPI().post('authenticate', payload);
 
-        const response = tipoUsuario === 'ADMIN' ?  await  getBaseAPI().post('admAuth', payload)  : await  getBaseAPI().post('authenticate', payload);
+        const userEmail = JSON.parse(response.config.data).email
 
-        const usuarioEmail = JSON.parse(response.config.data).email
-
-        const userToken = response.data.token;
-        const userId = response.data.id;
-        const nameUsuario = response.data.nome;
-        const data = JSON.stringify({email:usuarioEmail, nome: nameUsuario, userId,token: userToken, tipoUsuario })
+        const token = response.data.token;
+        const id = response.data.id;
+        const name = response.data.nome;
+        const data = JSON.stringify({ email, name, id, token, tipoUsuario });
         localStorage.setItem('@chamadosTaking:usuario', data);
 
-        setUserAuthData({ userToken,userId, nameUsuario, usuarioEmail, tipoUsuario });
+        setAuthData({ token, id, name, email, tipoUsuario });
+    }, []);
+
+    const loginAdm = useCallback(async({ email, senha, name }) => {
+        const response = await getBaseAPI.post('admAuth', {
+            email,
+            senha, 
+            name
+        });
+
+        const admEmail = JSON.parse(response.config.data).email
+
+        const { usuario } = response.data; 
+        
+        console.log(response.data)
+
+        localStorage.setItem('@chamadosTaking:usuario');
+
+        setAuthData({ usuario });
     }, []);
 
     const userLogout = useCallback(() => {
         localStorage.setItem('@chamadosTaking:usuario');
 
-        setUserAuthData({});
-    }, []);
-    
-    const loginAdm = useCallback(async({ email, senha }) => {
-        const response = await api.post('admAuth', {
-            email,
-            senha
-        });
-
-        //console.log(response.data)
-        const convertDataEmail = JSON.parse(response.config.data).email
-
-        const { token, id, nome } = response.data;
-        const admEmail = convertDataEmail;        
-
-        localStorage.setItem('@chamadosTaking:userAdmToken', token);
-        localStorage.setItem('@chamadosTaking:userAdmId', id);
-        localStorage.setItem('@chamadosTaking:userAdmName', nome);
-        localStorage.setItem('@chamadosTaking:userAdmEmail', admEmail);
-
-        setAuthData({ token });
-        setUserId({ id });
-        setUserName({ nome });
-        setUserEmail({ admEmail });
-    }, []);
-
-    //console.log(userName.nome)
-
-    const logout = useCallback(() => {
-        localStorage.removeItem('@chamadosTaking:userAdmToken');
-        localStorage.removeItem('@chamadosTaking:userAdmId');
-        localStorage.removeItem('@chamadosTaking:userAdmName');
-        localStorage.removeItem('@chamadosTaking:userAdmEmail');
-
         setAuthData({});
     }, []);
 
+
+    const [authData, setAuthData] = useState(() => {
+    const data = localStorage.getItem('@chamadosTaking:usuario');
+    if (data) {
+        const parsedData = JSON.parse(data)
+        return parsedData;
+    }
+
+    return {};
+});
+
     return (
         <AuthContext.Provider value={{
-            loginAdm,
-            logout,
-            token: authData.token,
-            id: userId.id,
-            name: userName?.nome,
-            admEmail: userEmail?.admEmail,
             loginUser,
             userLogout,
+            loginAdm,
             usuario: {
-                userToken: userAuthData?.userToken,
-                userId: userAuthData?.userId,
-                nameUsuario: userAuthData?.nameUsuario,
-                usuarioEmail: userAuthData?.usuarioEmail,
+                token: authData?.token,
+                id: authData?.id,
+                name: authData?.nome,
+                email: authData?.email,
             }
         }}>
             {children}
@@ -142,13 +74,13 @@ const AuthProvider =  ({ children }) => {
 };
 
 function useAuth() {
-    const context = useContext(AuthContext);
+    const contex = useContext(AuthContext);
 
-    if (!context) {
+    if (!contex) {
         throw new Error('useAuth deve ser utilizado com um AuthProvider');
     }
 
-    return context;
+    return contex
 }
 
 export { AuthProvider, useAuth, AuthContext };

@@ -31,7 +31,8 @@ import {
 
 export default function ChamadosAdm() {
     const history = useHistory();
-    const { nome} = useAuth();
+    const { userEmail, name } = useAuth();
+    console.log(name)
     
     const [state, setState] = useState({ 
         activePage: 1,
@@ -71,10 +72,10 @@ export default function ChamadosAdm() {
         setCurrentPage(data.currentPage - 1)
     }
 
-    const goToEditCall = (callId) => {
-        localStorage.setItem('@chamadosTaking:idChamado', callId);
+    const goToEditCall = (call) => {
+        localStorage.setItem('@chamadosTaking:idChamado', call.id);
 
-        history.push('/edicao-chamados-adm');
+        history.push('/edicao-chamados-adm', call);
     }
 
     function renderCallBox () {
@@ -100,7 +101,7 @@ export default function ChamadosAdm() {
                         <CallStatus>
                             <p>{call.status}</p>
                         </CallStatus>
-                        <CallEditButton onClick={() => goToEditCall(call.id)}>
+                        <CallEditButton onClick={() => goToEditCall(call)}>
                             <FiEdit />
                         </CallEditButton>
                     </CallItem>
@@ -121,7 +122,7 @@ export default function ChamadosAdm() {
                         <p>Meus dados</p>
                     </ButtonHeader>
                 </HeaderContent>
-                <p>{nome}</p>
+                {/* <p>{name}</p> */}
             </Header>
 
             { renderCallBox() }
