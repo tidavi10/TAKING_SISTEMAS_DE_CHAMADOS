@@ -26,7 +26,7 @@ import {
 } from './style';
 
 import logo from '../../assets/logo.png'
-import api from '../../services/api';
+import getBaseAPI from '../../services/api';
 
 export default function EdicaoChamadosAdm() {
     const history = useHistory();
@@ -34,9 +34,11 @@ export default function EdicaoChamadosAdm() {
     const [loading, setLoading] = useState(false);
     const [runTime, setRunTime] = useState('');
 
-    const { admEmail, name, id } = useAuth();
+    const { usuario } = useAuth();
     const { addToast } = useToast();
-    console.log(admEmail)
+    console.log(usuario)
+
+    
 
     const callId = localStorage.getItem('@chamadosTaking:idChamado');
     
@@ -47,13 +49,11 @@ export default function EdicaoChamadosAdm() {
     useEffect(async() => {
         setLoading(true);
 
-        const response = await api.get(`/chamados/${callId}`);
+        const response = await getBaseAPI().get(`/chamados/${callId}`);
         
         setCallItem(response.data[0]);
         setLoading(false);
     }, []);
-
-    
 
     const handleChangeDescription = (e) => {
         setCallItem({...callItem, descricao: e.target.value});;
@@ -69,10 +69,10 @@ export default function EdicaoChamadosAdm() {
 
     const submitResponse = async(data) => {
         try {
-        const response = await api.post(`resolucao/resposta/${callId}/${id}`, {
+        const response = await getBaseAPI().post(`resolucao/resposta/${callId}`, {
             status: callItem.status,
             tempoGasto: runTime,
-            resolucao: callItem.descricao,
+            descricao: callItem.descricao,
         }); 
 
         addToast({

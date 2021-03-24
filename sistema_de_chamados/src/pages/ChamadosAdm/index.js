@@ -31,7 +31,7 @@ import {
 
 export default function ChamadosAdm() {
     const history = useHistory();
-    const { nome} = useAuth();
+    const { nome } = useAuth();
     
     const [state, setState] = useState({ 
         activePage: 1,
