@@ -42,8 +42,9 @@ public class Usuarios implements Serializable {
 	@Email
 	private String email;
 	
-	@NotBlank (message = "Senha inválido")
+	@NotBlank (message = "Senha inválida")
 	@ApiModelProperty(notes = "Senha do usuário", required = true, position = 4)
+	@Pattern(regexp = "^(?=.*[a-z])(?=.*[0-9])(?=.*[@?!#$%^&_]).{8,}$")
 	private String senha;
 	
 	@NotBlank (message = "Nome inválido")
