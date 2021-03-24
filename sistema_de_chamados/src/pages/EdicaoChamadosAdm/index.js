@@ -26,19 +26,17 @@ import {
 } from './style';
 
 import logo from '../../assets/logo.png'
+import api from '../../services/api';
 import getBaseAPI from '../../services/api';
 
-export default function EdicaoChamadosAdm() {
+export default function EdicaoChamadosAdm(props) {
     const history = useHistory();
-    const [callItem, setCallItem] = useState([]);
+    const [callItem, setCallItem] = useState(props.location.state);
     const [loading, setLoading] = useState(false);
     const [runTime, setRunTime] = useState('');
-
-    const { usuario } = useAuth();
+    // const { usuario } = useAuth();
     const { addToast } = useToast();
-    console.log(usuario)
-
-    
+    // console.log(usuario)
 
     const callId = localStorage.getItem('@chamadosTaking:idChamado');
     
@@ -46,14 +44,14 @@ export default function EdicaoChamadosAdm() {
         history.push('/chamados-adm')
     }
 
-    useEffect(async() => {
-        setLoading(true);
+    // useEffect(async() => {
+    //     setLoading(true);
 
-        const response = await getBaseAPI().get(`/chamados/${callId}`);
+    //     const response = await api.get(`/chamados/${callId}`);
         
-        setCallItem(response.data[0]);
-        setLoading(false);
-    }, []);
+    //     setCallItem(response.data[0]);
+    //     setLoading(false);
+    // }, []);
 
     const handleChangeDescription = (e) => {
         setCallItem({...callItem, descricao: e.target.value});;
@@ -69,7 +67,7 @@ export default function EdicaoChamadosAdm() {
 
     const submitResponse = async(data) => {
         try {
-        const response = await getBaseAPI().post(`resolucao/resposta/${callId}`, {
+        const response = await getBaseAPI.post(`resolucao/resposta/${callId}`, {
             status: callItem.status,
             tempoGasto: runTime,
             descricao: callItem.descricao,
@@ -86,6 +84,7 @@ export default function EdicaoChamadosAdm() {
             });
         }
     };
+
 
     // const cancelUpdate = () => {
     //     // Limpa os campos
@@ -104,7 +103,7 @@ export default function EdicaoChamadosAdm() {
                         <p>Meus dados</p>
                     </ButtonHeader>
                 </HeaderContent>
-                <p>{!name || name != undefined ? admEmail : name}</p>
+                {/* <p>{!name || name != undefined ? email : name}</p> */}
             </Header>
 
             <CallsBox>
@@ -119,7 +118,7 @@ export default function EdicaoChamadosAdm() {
                         <p>{callItem.id}</p>
                     </CallCod>
                     <CallType>
-                        <p>{callItem?.problema?.tipoDoProblema}</p>
+                        <p>{callItem.tipoProblema}</p>
                     </CallType>
                     <CallStatus>
                         <p>{callItem.status}</p>
@@ -157,7 +156,7 @@ export default function EdicaoChamadosAdm() {
                     <SubmitButton onClick={() => {}}>
                         <p>Cancelar</p>
                     </SubmitButton>
-                    <SubmitButton onClick={submitResponse}>
+                    <SubmitButton onClick={() => submitResponse(callItem.id)}>
                         <p>Atualizar</p>
                     </SubmitButton>
                 </>

@@ -6,15 +6,16 @@ import {LoginSocial} from '../../services/api'
 
 export class Social extends Component {
 
-    responseGoogle = async(response) => {
-            const token = response.tokenId
-            const {name} = response.Qs.Se
-            const {email} = response.Qs.zt
-            const form = {email, nome: name}
-            console.log(response.Qs.Se)
-            await LoginSocial(form)
-            localStorage.setItem("@chamadosTaking:usuario", token)
+    responseGoogle = async (response) => {
+        const token = response.tokenId
+        console.log(response)
+        const {name} = response.profileObj
+        const {email} = response.Qs.zt
+        const form = {email, nome: name}
+        await LoginSocial(form)
+        localStorage.setItem("Token:id", token)
     }
+
     render() {
         return (
             <div>

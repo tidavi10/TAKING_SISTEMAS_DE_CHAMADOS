@@ -14,7 +14,7 @@ import { useAuth } from '../../hooks/auth';
 
 export default function Login() {
 
-    const { loginUser, userToken, userId, nameUsuario, usuarioEmail } = useAuth();
+    const { loginUser } = useAuth();
 
     const handleSubmit = useCallback(async (data, actions) => {
         try {
@@ -22,6 +22,7 @@ export default function Login() {
             await loginUser({
                 email: data.email,
                 senha: data.senha,
+                nome: data.nome,
                 tipoUsuario: 'USUARIO'
             });
             
