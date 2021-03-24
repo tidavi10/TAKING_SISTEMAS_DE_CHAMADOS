@@ -36,7 +36,7 @@ import { useToast } from '../../hooks/toast';
 export default function TelaChamados() {
     //TODO mudar para email do usuário
     const { usuario } = useAuth();
-    //console.log(usuario)
+    console.log(usuario)
     const history = useHistory();
 
     const [selectedOption, setSelectedOption] = useState(null);
@@ -92,7 +92,7 @@ export default function TelaChamados() {
             formData.append('file', fileSelect.file)
         };    
         //console.log('handleEnviar')
-        cadastrarChamado(usuario.userId, selectedOption.value, text, formData)
+        cadastrarChamado(usuario.id, selectedOption.value, text, formData)
             .then(d => console.log(`Criado o item ${JSON.stringify(d)}`))
     }
 
@@ -140,7 +140,7 @@ export default function TelaChamados() {
                             <p>Sair</p>
                         </ButtonExit>
                     </HeaderContent>
-                    <p>{!usuario.nameUsuario || usuario.nameUsuario != undefined ? usuario.nameUsuario : usuario.usuarioEmail}</p>
+                    <p>{!usuario.nome || usuario.nome != undefined ? usuario.nome : usuario.userEmail}</p>
                 </Header>
                 <EditionArea>
                     <InputArea>

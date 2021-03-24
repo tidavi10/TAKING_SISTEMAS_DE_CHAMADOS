@@ -1,6 +1,9 @@
 import { createGlobalStyle } from 'styled-components';
 
 export default createGlobalStyle`
+  #root {
+    background: #f8f9fa; 
+  }
   * {
     margin: 0;
     padding:0;

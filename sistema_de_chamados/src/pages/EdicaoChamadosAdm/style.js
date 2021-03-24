@@ -637,8 +637,7 @@ export const ButtonArea = styled.div`
     padding: 0 16px;
     display: flex;
     align-items: center;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
 
     @media (max-width: 576px) {
         width: 100%;
@@ -660,7 +659,7 @@ export const ButtonArea = styled.div`
         display: flex;
         align-items: center;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
     }
 
     @media (min-width: 992px) and (max-width: 1199px) {
@@ -669,12 +668,12 @@ export const ButtonArea = styled.div`
         display: flex;
         align-items: center;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: center;
     }
 `;
 
 export const SubmitButton = styled.button`
-    width: 40%;
+    width: 70%;
     height: 100%;
     border-radius: 4px;
     background: #ffb703;
@@ -719,7 +718,7 @@ export const SubmitButton = styled.button`
     }
 
     @media (min-width: 768px) {
-        width: 48%;
+        width: 70%;
         height: 100%;
         border-radius: 4px;
         

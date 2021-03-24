@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/auth';
@@ -26,17 +26,14 @@ import {
 } from './style';
 
 import logo from '../../assets/logo.png'
-import api from '../../services/api';
 import getBaseAPI from '../../services/api';
 
 export default function EdicaoChamadosAdm(props) {
     const history = useHistory();
-    const [callItem, setCallItem] = useState(props.location.state);
+    const [callItem, setCallItem] = useState({});
     const [loading, setLoading] = useState(false);
-    const [runTime, setRunTime] = useState('');
-    // const { usuario } = useAuth();
+    const { usuario } = useAuth();
     const { addToast } = useToast();
-    // console.log(usuario)
 
     const callId = localStorage.getItem('@chamadosTaking:idChamado');
     
@@ -44,16 +41,14 @@ export default function EdicaoChamadosAdm(props) {
         history.push('/chamados-adm')
     }
 
-    // useEffect(async() => {
-    //     setLoading(true);
+    useEffect(async() => {
+        setLoading(true);
 
-    //     const response = await api.get(`/chamados/${callId}`);
+        const response = await getBaseAPI().get(`/chamados/adm/${callId}`);
+        setCallItem(response.data);
         
-    //     setCallItem(response.data[0]);
-    //     setLoading(false);
-    // }, []);
-
-    
+        setLoading(false);
+    }, []);
 
     const handleChangeDescription = (e) => {
         setCallItem({...callItem, descricao: e.target.value});;
@@ -64,17 +59,18 @@ export default function EdicaoChamadosAdm(props) {
     }
 
     const handleChangeRunTime = (e) => {
-        setRunTime(e.target.value);
+        setCallItem({...callItem, tempoGasto: e.target.value});
     }
 
     const submitResponse = async(data) => {
         try {
-        const response = await getBaseAPI.post(`resolucao/resposta/${callId}`, {
+        const response = await getBaseAPI().post(`resolucao/resposta/${callId}`, {
             status: callItem.status,
-            tempoGasto: runTime,
-            resolucao: callItem.descricao,
+            tempoGasto: callItem.tempoGasto,
+            descricao: callItem.descricao,
         }); 
 
+        console.log(response);
         addToast({
             type: 'success',
             title: 'Resposta enviada com sucesso!',
@@ -86,12 +82,6 @@ export default function EdicaoChamadosAdm(props) {
             });
         }
     };
-
-
-    // const cancelUpdate = () => {
-    //     // Limpa os campos
-    //     // Redireciona para lista de chamados
-    // }
 
     return (
         <Container>
@@ -105,7 +95,7 @@ export default function EdicaoChamadosAdm(props) {
                         <p>Meus dados</p>
                     </ButtonHeader>
                 </HeaderContent>
-                {/* <p>{!name || name != undefined ? email : name}</p> */}
+                <p>{usuario.name ? usuario.name : usuario.email}</p>
             </Header>
 
             <CallsBox>
@@ -133,16 +123,15 @@ export default function EdicaoChamadosAdm(props) {
                     <EditionStatus>
                         <label htmlFor="status">Status:</label>
                         <select value={callItem.status} onChange={handleChangeStatus} name="status" id="status">
-                            <option value="Aberto">Aberto</option>
                             <option value="Pendente">Pendente</option>
-                            <option value="Pausado">Pausado</option>
-                            <option value="Finalizado">Aberto</option>
+                            <option value="Em andamento">Em andamento</option>
+                            <option value="Finalizado">Finalizado</option>
                         </select>
                     </EditionStatus>
 
                     <EditionRunTime>
                         <label>Tempo gasto na execução:</label>
-                        <input type="text" value={runTime} onChange={handleChangeRunTime} />
+                        <input type="text" value={callItem.tempoGasto} onChange={handleChangeRunTime} />
                     </EditionRunTime>
                 </InputArea>
                 <DescriptionArea>
@@ -154,14 +143,9 @@ export default function EdicaoChamadosAdm(props) {
             </EditionArea>
 
             <ButtonArea>
-                <>
-                    <SubmitButton onClick={() => {}}>
-                        <p>Cancelar</p>
-                    </SubmitButton>
-                    <SubmitButton onClick={() => submitResponse(callItem.id)}>
+                    <SubmitButton onClick={submitResponse}>
                         <p>Atualizar</p>
                     </SubmitButton>
-                </>
             </ButtonArea>
         </Container>
     )
