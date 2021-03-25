@@ -54,6 +54,7 @@ public class JwtAuthenticationController {
 
 	@ApiOperation(value = "Login Usuário")
 	@RequestMapping(value = "/authenticate", method = RequestMethod.POST)
+	@CrossOrigin(origins = "*")
 	public ResponseEntity<TokenDTO> createAuthenticationToken(@RequestBody JwtRequest authenticationRequest) throws Exception {
 		return authenticateService.UserAuth(authenticationRequest.getEmail(), authenticationRequest.getSenha());
 	}
