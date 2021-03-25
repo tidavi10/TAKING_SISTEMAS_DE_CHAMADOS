@@ -23,50 +23,49 @@ import taking.api.repository.ResolucaoRepository;
 import taking.api.repository.UsuariosRepository;
 
 @Service
-public class ResolucaoService{
+public class ResolucaoService {
 
 	@Autowired
 	private ResolucaoRepository resolucaoRepository;
-	
+
 	@Autowired
 	private ChamadosRepository chamadosRepository;
-	
-	//@Autowired
-	//private UsuariosAdmChamadosRepository usuariosAdmChamadosRepository;
-	
+
+	// @Autowired
+	// private UsuariosAdmChamadosRepository usuariosAdmChamadosRepository;
+
 	public List<Resolucao> findResolucaoPaginated(int pageNo) {
-		
+
 		Pageable paginacao = PageRequest.of(pageNo, 5);
 		Page<Resolucao> resultado = resolucaoRepository.findAll(paginacao);
-		
+
 		return resultado.toList();
 	}
-	
-	/*public boolean idAndAdmExists(Long id, Long adm) {
-		return usuariosAdmChamadosRepository.existsByAdmsIdAndChamadosId(adm, id);
-	}*/
-	
+
+	/*
+	 * public boolean idAndAdmExists(Long id, Long adm) { return
+	 * usuariosAdmChamadosRepository.existsByAdmsIdAndChamadosId(adm, id); }
+	 */
+
 	public ResponseEntity<Resolucao> respostaChamado(Long id, Resolucao resolucao) {
-			Chamados chamados = chamadosRepository.findById(id).orElseThrow(() -> new BadRequestException("chamado não encontrado com id: " + id));
-			resolucao.setChamados(chamados);
-			resolucao.setTimestamp(new Date());
-			try {
-				resolucaoRepository.save(resolucao);
-				chamadosRepository.updateStatus(resolucao.getStatus(), id);
-				chamadosRepository.updateDescricao(resolucao.getResolucao(), id);
-				return new ResponseEntity<Resolucao>(HttpStatus.OK);
-			}catch(BadRequestException e) {
-				throw new BadRequestException("Não foi possível salvar resolução");
-			}
-	}
-	
-	/*private String mudarStatus(String status) {
-		if(status.equals("Pendente") || status.equals("Em andamento") || status.equals("Finalizado")) {
-			return status;
+		Chamados chamados = chamadosRepository.findById(id)
+				.orElseThrow(() -> new BadRequestException("chamado não encontrado com id: " + id));
+		resolucao.setChamados(chamados);
+		resolucao.setTimestamp(new Date());
+		try {
+			resolucaoRepository.save(resolucao);
+			chamadosRepository.updateStatus(resolucao.getStatus(), id);
+			chamadosRepository.updateDescricao(resolucao.getResolucao(), id);
+			return new ResponseEntity<Resolucao>(HttpStatus.OK);
+		} catch (BadRequestException e) {
+			throw new BadRequestException("Não foi possível salvar resolução");
 		}
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-	}*/
-	
-	
-	
+	}
+
+	/*
+	 * private String mudarStatus(String status) { if(status.equals("Pendente") ||
+	 * status.equals("Em andamento") || status.equals("Finalizado")) { return
+	 * status; } return new ResponseEntity<>(HttpStatus.BAD_REQUEST); }
+	 */
+
 }

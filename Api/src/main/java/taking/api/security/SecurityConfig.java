@@ -22,6 +22,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import com.google.common.collect.ImmutableList;
+
 import taking.api.config.JwtAuthenticationEntryPoint;
 //import taking.api.controller.Filter.AdmJwtRequestFilter;
 import taking.api.controller.Filter.JwtRequestFilter;
@@ -32,11 +34,25 @@ import taking.api.service.JwtUserDetailsService;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Bean
+	/*@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
 		return source;
+	}*/
+	
+	@Bean
+	public CorsConfigurationSource corsConfigurationSource() {
+	    final CorsConfiguration configuration = new CorsConfiguration();
+	    configuration.setAllowedOrigins(ImmutableList.of("*"));
+	    configuration.setAllowedMethods(ImmutableList.of("HEAD",
+	            "GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
+	    configuration.setAllowCredentials(true);
+	    configuration.setAllowedHeaders(ImmutableList.of("*"));
+	    configuration.setExposedHeaders(ImmutableList.of("X-Auth-Token","Authorization","Access-Control-Allow-Origin","Access-Control-Allow-Credentials"));
+	    final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+	    source.registerCorsConfiguration("/**", configuration);
+	    return source;
 	}
 
 	@Configuration
