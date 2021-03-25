@@ -24,15 +24,9 @@ public class TipoProblemaController {
 	private TipoProblemaRepository repository;
 	
 	@GetMapping
-	@CrossOrigin(origins = "*")
 	@ApiOperation(value = "Retorna uma lista com todos os tipos de problemas", authorizations = { @Authorization(value = "jwtToken") })
 	public ResponseEntity<List<TipoProblema>> listaDeProblemas() {
 		List<TipoProblema> list = repository.findAll();
 		return ResponseEntity.ok().body(list);
-	}
-	
-	@RequestMapping(value = "/**/**",method = RequestMethod.OPTIONS)
-	public ResponseEntity handle() {
-	    return new ResponseEntity(HttpStatus.OK);
 	}
 }

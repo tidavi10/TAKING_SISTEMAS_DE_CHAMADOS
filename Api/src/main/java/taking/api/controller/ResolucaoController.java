@@ -47,17 +47,11 @@ public class ResolucaoController {
 
 	//Insere a resposta do chamado na tabela e atualiza o status do chamado
 	@PutMapping("/resposta/{IdChamado}")
-	@CrossOrigin(origins = "*")
 	@ApiOperation(value = "Cadastra a resposta do chamado", 
 					notes = "Cadastra a resposta do chamado e atualiza o status do chamado para Finalizado, "
 							+ "passando na URL o ID do Chamado.",
 					authorizations = { @Authorization(value = "jwtToken") })
 	public ResponseEntity<Resolucao> respostaChamado(@PathVariable Long IdChamado, @RequestBody Resolucao resolucao) throws TransactionRequiredException {
 		return resolucaoService.respostaChamado(IdChamado, resolucao);
-	}
-	
-	@RequestMapping(value = "/**/**",method = RequestMethod.OPTIONS)
-	public ResponseEntity handle() {
-	    return new ResponseEntity(HttpStatus.OK);
 	}
 }

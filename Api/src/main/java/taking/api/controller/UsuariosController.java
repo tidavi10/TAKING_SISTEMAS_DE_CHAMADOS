@@ -55,21 +55,14 @@ public class UsuariosController {
 		})
 	@ApiOperation(value = "Retorna todos os usuários", hidden = true, authorizations = { @Authorization(value = "jwtToken") })
 	@RequestMapping(method=RequestMethod.GET, value="/cadastrados")
-	@CrossOrigin(origins = "*")
 	public @ResponseBody List<Usuarios> listausuarios() {
 		return usuariosRepository.findAll();
 	}
 	
 	@PostMapping("/cadastro")
-	@CrossOrigin(origins = "*")
 	@ApiOperation(value = "Cadastra um Usuário")
 	public ResponseEntity<TokenDTO> cadastroUsuario(@Valid @RequestBody Usuarios usuarios) {
 		return usuariosService.salvarUsuarioERetornarToken(usuarios);
-	}
-	
-	@RequestMapping(value = "/**/**",method = RequestMethod.OPTIONS)
-	public ResponseEntity handle() {
-	    return new ResponseEntity(HttpStatus.OK);
 	}
 	
 	/*@PostMapping("/cadastro")

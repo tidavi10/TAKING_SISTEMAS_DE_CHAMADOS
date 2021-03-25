@@ -22,13 +22,7 @@ public class StatusController {
 	private StatusService statusService;
 	
 	@GetMapping
-	@CrossOrigin(origins = "*")
 	public ResponseEntity<List<Status>> listaDeStatus(){
 		return statusService.getStatus();
-	}
-	
-	@RequestMapping(value = "/**/**",method = RequestMethod.OPTIONS)
-	public ResponseEntity handle() {
-	    return new ResponseEntity(HttpStatus.OK);
 	}
 }

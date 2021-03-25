@@ -44,16 +44,9 @@ public class UsuariosGmailController {
 	private UsuariosService usuariosService;
 	
 	@PostMapping("/cadastrogmail")
-	@CrossOrigin(origins = "*")
 	@ApiOperation(value = "Cadastra um Usuário do Gmail")
 	public ResponseEntity<TokenDTO> cadastroUsuario(@RequestBody Usuarios usuarios) {
 		return usuariosService.salvarUsuarioGmailERetornarId(usuarios);
 
 	}
-	
-	@RequestMapping(value = "/**/**",method = RequestMethod.OPTIONS)
-	public ResponseEntity handle() {
-	    return new ResponseEntity(HttpStatus.OK);
-	}
-
 }

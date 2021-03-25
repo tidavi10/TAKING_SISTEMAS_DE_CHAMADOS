@@ -81,14 +81,8 @@ public class UsuariosAdmController {
 	private UsuariosService usuariosService;
 	
 	@PostMapping("/cadastro")
-	@CrossOrigin(origins = "*")
 	@ApiOperation(value = "Cadastra um ADM", hidden = true, authorizations = { @Authorization(value = "jwtToken") })
 	public ResponseEntity<TokenDTO> cadastroAdm(@Valid @RequestBody Usuarios usuarios){
 		return usuariosService.salvarAdmERetornarToken(usuarios);
-	}
-	
-	@RequestMapping(value = "/**/**",method = RequestMethod.OPTIONS)
-	public ResponseEntity handle() {
-	    return new ResponseEntity(HttpStatus.OK);
 	}
 }
