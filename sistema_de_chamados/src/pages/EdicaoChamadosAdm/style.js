@@ -41,23 +41,11 @@ export const Header = styled.div`
     text-align: center;
     margin-bottom: 1rem;
 
-    > p {
-        color: #ffecd1;
-        margin-right: 24px;
-        margin-bottom: 0;
-    }
-
     @media (max-width: 576px) {
         height: 36px;
-        border-radius: 6px;
         padding: 0 6px;
+        border-radius: 6px;
         margin-bottom: 16px;
-
-        > p {
-            margin-right: 6px;
-            font-size: 75%;
-            font-weight: 500;
-        }
     }
 
     @media (min-width: 576.1px) {
@@ -65,12 +53,6 @@ export const Header = styled.div`
         border-radius: 6px;
         padding: 0 6px;
         margin-bottom: 20px;
-
-        > p {
-            margin-right: 6px;
-            font-size: 81.25%;
-            font-weight: 500;
-        }
     }
 
     @media (min-width: 768px) {
@@ -78,12 +60,6 @@ export const Header = styled.div`
         border-radius: 8px;
         padding: 0 8px;
         margin-bottom: 24px;
-
-        > p {
-            margin-right: 6px;
-            font-size: 87.5%;
-            font-weight: 500;
-        }
     }
 
     @media (min-width: 992px) and (max-width: 1199px) {
@@ -91,16 +67,10 @@ export const Header = styled.div`
         border-radius: 10px;
         padding: 0 10px;
         margin-bottom: 28px;
-
-        > p {
-            margin-right: 6px;
-            font-size: 93.75%;
-            font-weight: 500;
-        }
     }
 `;
 
-export const HeaderContent = styled.div`
+export const HeaderContentLeft = styled.div`
     width: 50%;
     height: 100%;
     display: flex;
@@ -135,6 +105,66 @@ export const Img =styled.img`
         width: 32px;
         height: 32px;
         margin-bottom: 26px;
+    }
+`;
+
+export const HeaderContentRight = styled.div`
+    display: flex;
+    align-items: center;
+    margin-right: 6px;
+
+    > p {
+        color: #ffecd1;
+        margin-right: 16px;
+        margin-bottom: 0;
+    }
+
+    @media (max-width: 576px) {
+        display: flex;
+        align-items: center;
+        margin-right: 6px;
+        
+        > p {
+            font-size: 75%;
+            margin-right: 10px;
+            font-weight: 500;
+        }
+    }
+
+    @media (min-width: 576.1px) {
+        display: flex;
+        align-items: center;
+        margin-right: 6px;
+        
+        > p {
+            font-size: 81.25%;
+            margin-right: 10px;
+            font-weight: 500;
+        }
+    }
+
+    @media (min-width: 768px) {
+        display: flex;
+        align-items: center;
+        margin-right: 6px;
+        
+        > p {
+            font-size: 87.5%;
+            margin-right: 12px;
+            font-weight: 500;
+        }
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        display: flex;
+        align-items: center;
+        margin-right: 6px;
+        
+        > p {
+            font-size: 93.75%;
+            margin-right: 14px;
+            font-weight: 500;
+        }
     }
 `;
 
@@ -177,6 +207,65 @@ export const ButtonHeader = styled.button`
         font-size: 93.75%;
         font-weight: 500;
     }
+`;
+
+export const Logout = styled.button`
+    width: 20px;
+    height: 20px;
+    background: none;
+    display: flex;
+    z-index: 1;
+    align-items: center;
+    
+    &:hover {
+        opacity: 0.8;
+    }
+
+    > svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    @media (max-width: 576px) {
+        width: 14px;
+        height: 14px;
+
+        > svg {
+            width: 14px;
+            height: 14px;
+        }
+    }
+
+    @media (min-width: 576.1px) {
+        width: 16px;
+        height: 16px;
+
+        > svg {
+            width: 16px;
+            height: 16px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        width: 18px;
+        height: 18px;
+
+        > svg {
+            width: 18px;
+            height: 18px;
+        }
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        width: 20px;
+        height: 20px;
+
+        > svg {
+            width: 20px;
+            height: 20px;
+        }
+    }
+    
 `;
 
 
@@ -637,7 +726,7 @@ export const ButtonArea = styled.div`
     padding: 0 16px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
 
     @media (max-width: 576px) {
         width: 100%;
@@ -659,7 +748,7 @@ export const ButtonArea = styled.div`
         display: flex;
         align-items: center;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-between;
     }
 
     @media (min-width: 992px) and (max-width: 1199px) {
@@ -668,12 +757,12 @@ export const ButtonArea = styled.div`
         display: flex;
         align-items: center;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-between;
     }
 `;
 
 export const SubmitButton = styled.button`
-    width: 70%;
+    width: 40%;
     height: 100%;
     border-radius: 4px;
     background: #ffb703;
@@ -681,27 +770,22 @@ export const SubmitButton = styled.button`
     align-items: center;
     justify-content: center;
     transition: background 0.3s;
-
-    p {
-            margin-bottom: 0;
-    }
     
     &:hover {
-        /* background: #4cd62b; */
-        background: ${darken(0.04, '#ffb703')};
+        background: ${darken(0.02, '#ffb703')};
+        box-shadow: 0.5px 0.5px 2px #000;
     }
 
     p {
         font-size: 87.5%;
         font-weight: 500;
         color: #333;
+        margin-bottom: 0;
     }
 
     @media (max-width: 576px) {
         width: 90%;
         height: 32px;
-
-        
 
         & + button {
             margin-top: 8px;
@@ -718,7 +802,7 @@ export const SubmitButton = styled.button`
     }
 
     @media (min-width: 768px) {
-        width: 70%;
+        width: 49%;
         height: 100%;
         border-radius: 4px;
         

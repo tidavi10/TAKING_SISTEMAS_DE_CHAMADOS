@@ -19,7 +19,7 @@ export default function MenuAdm() {
     const history = useHistory();
     const { usuario } = useAuth();
 
-    const gotoadm = () => {
+    const goToChamadosAdm = () => {
         history.push('/chamados-adm')
     }
 
@@ -35,7 +35,7 @@ export default function MenuAdm() {
                 <Header>
                     <HeaderContentLeft>
                             <Img src={logo}></Img>
-                            <ButtonHeader onClick={gotoadm}>
+                            <ButtonHeader onClick={goToChamadosAdm}>
                                 <p>Tela de Chamados</p>
                             </ButtonHeader>
                     </HeaderContentLeft>

@@ -10,10 +10,14 @@ import { useAuth } from '../../hooks/auth';
 
 import logo from '../../assets/logo.png';
 
+import { FiLogOut } from 'react-icons/fi';
+
 import {
     Container,
     Header,
-    HeaderContent,
+    HeaderContentLeft,
+    HeaderContentRight,
+    Logout,
     Img,
     ButtonHeader,
     CallsBox,
@@ -74,6 +78,16 @@ export default function ChamadosAdm() {
         history.push('/edicao-chamados-adm');
     }
 
+    const goToChamadosAdm = () => {
+        history.push('/chamados-adm')
+    }
+
+    const handleAdmLogout = async() => {
+        localStorage.removeItem('@chamadosTaking:usuario');
+
+        history.push('/login-adm');
+    }
+
     function renderCallBox () {
     if (state.loading) {
       return <h2>Carregando...</h2>
@@ -109,16 +123,18 @@ export default function ChamadosAdm() {
     return (
         <Container>
             <Header>
-                <HeaderContent>
+                <HeaderContentLeft>
                     <Img src={logo}></Img>
-                    <ButtonHeader>
-                        <p>Chamados</p>
+                    <ButtonHeader onClick={goToChamadosAdm}>
+                        <p>Tela de Chamados</p>
                     </ButtonHeader>
-                    <ButtonHeader>
-                        <p>Meus dados</p>
-                    </ButtonHeader>
-                </HeaderContent>
-                <p>{usuario.name ? usuario.name : usuario.email}</p>
+                </HeaderContentLeft>
+                <HeaderContentRight>
+                    <p>{usuario.name ? usuario.name : usuario.email}</p>
+                    <Logout onClick={handleAdmLogout}>
+                        <FiLogOut color="#ffecd1" />
+                    </Logout>
+                </HeaderContentRight>
             </Header>
 
             { renderCallBox() }

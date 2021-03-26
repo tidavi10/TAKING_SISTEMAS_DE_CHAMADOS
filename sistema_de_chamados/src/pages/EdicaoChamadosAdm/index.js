@@ -7,7 +7,9 @@ import { useToast } from '../../hooks/toast';
 import {
     Container,
     Header,
-    HeaderContent,
+    HeaderContentLeft,
+    HeaderContentRight,
+    Logout,
     Img,
     ButtonHeader,
     CallsBox,
@@ -24,6 +26,8 @@ import {
     ButtonArea,
     SubmitButton
 } from './style';
+
+import {FiLogOut} from 'react-icons/fi';
 
 import logo from '../../assets/logo.png'
 import getBaseAPI from '../../services/api';
@@ -72,7 +76,6 @@ export default function EdicaoChamadosAdm(props) {
             descricao: callItem.descricao,
         }); 
 
-        console.log(response);
         await addToast({
             type: 'success',
             title: 'Resposta enviada com sucesso!',
@@ -89,19 +92,27 @@ export default function EdicaoChamadosAdm(props) {
         }
     };
 
+    const handleAdmLogout = async() => {
+        localStorage.removeItem('@chamadosTaking:usuario');
+
+        history.push('/login-adm');
+    }
+
     return (
         <Container>
             <Header>
-                <HeaderContent>
-                    <Img src={logo}></Img>
-                    <ButtonHeader onClick={goToChamadosAdm}>
-                        <p>Chamados</p>
-                    </ButtonHeader>
-                    <ButtonHeader>
-                        <p>Meus dados</p>
-                    </ButtonHeader>
-                </HeaderContent>
+            <HeaderContentLeft>
+                <Img src={logo}></Img>
+                <ButtonHeader onClick={goToChamadosAdm}>
+                    <p>Tela de Chamados</p>
+                </ButtonHeader>
+            </HeaderContentLeft>
+            <HeaderContentRight>
                 <p>{usuario.name ? usuario.name : usuario.email}</p>
+                <Logout onClick={handleAdmLogout}>
+                    <FiLogOut color="#ffecd1" />
+                </Logout>
+            </HeaderContentRight>
             </Header>
 
             <CallsBox>
@@ -151,6 +162,9 @@ export default function EdicaoChamadosAdm(props) {
             <ButtonArea>
                     <SubmitButton onClick={submitResponse}>
                         <p>Atualizar</p>
+                    </SubmitButton>
+                    <SubmitButton onClick={goToChamadosAdm}>
+                        <p>Cancelar</p>
                     </SubmitButton>
             </ButtonArea>
         </Container>

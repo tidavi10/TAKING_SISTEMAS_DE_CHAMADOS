@@ -4,6 +4,8 @@ import {lighten} from 'polished';
 export const Container = styled.div`
     padding: 24px;
     background: #f8f9fa;
+    max-width: 1100px;
+    margin: 0 auto;
 
     @media (max-width: 576px) {
         padding: 12px;
