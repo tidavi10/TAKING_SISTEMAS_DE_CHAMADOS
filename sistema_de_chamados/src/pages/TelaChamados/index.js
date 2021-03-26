@@ -95,7 +95,7 @@ export default function TelaChamados() {
             .then(d => console.log(`Criado o item ${JSON.stringify(d)}`))
     }
 
-    const handleSubmit = useCallback(async (data) => {
+    const handleSubmit = useCallback(async () => {
         try {
             //console.log(data)
             history.push('/consulta-chamados')
