@@ -35,11 +35,7 @@ function Social() {
                 buttonText="Sign in"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
-<<<<<<< HEAD
-                //cookiePolicy={none}
-=======
                 //cookiePolicy={}
->>>>>>> 4547ab90bbd62fa6c9af83e7b6fd1e969d7516a3
             />
         </div>
     )
