@@ -132,7 +132,7 @@ export default function ChamadosAdm() {
                 <p>Sair</p>
               </ButtonExit>
           </HeaderContent>
-          <p>{!usuario.nome || usuario.nome != undefined ? usuario.nome : usuario.userEmail}</p>
+          <p>{!usuario.name || usuario.name != undefined ? usuario.name : usuario.userEmail}</p>
         </Header>
         { renderCallBox() }
         <Page>
