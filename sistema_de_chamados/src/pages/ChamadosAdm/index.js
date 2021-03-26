@@ -71,7 +71,7 @@ export default function ChamadosAdm() {
     const goToEditCall = (call) => {
         localStorage.setItem('@chamadosTaking:idChamado', call.id);
 
-        history.push('/edicao-chamados-adm', call);
+        history.push('/edicao-chamados-adm');
     }
 
     function renderCallBox () {

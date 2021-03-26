@@ -12,7 +12,7 @@ import { useHistory } from 'react-router-dom';
 
 export default function LoginAdm() {
     const history = useHistory();
-
+    const { addToast } = useToast();
     const { loginUser } = useAuth();
      
     const handleSubmit = useCallback(async (data) => {
@@ -26,7 +26,11 @@ export default function LoginAdm() {
             history.push('/menu-adm')
         } catch (error) {
             console.error(error)
-            alert('Não foi possível logar.')
+            addToast({
+                type: 'error',
+                title: 'Ocorreu um erro ao logar.',
+                description: 'Por favor verifique seus dados ou tente novamente mais tarde.'
+            });
         }
         
     });

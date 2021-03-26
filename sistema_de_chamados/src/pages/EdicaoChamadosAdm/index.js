@@ -50,6 +50,8 @@ export default function EdicaoChamadosAdm(props) {
         setLoading(false);
     }, []);
 
+    console.log(callItem);
+
     const handleChangeDescription = (e) => {
         setCallItem({...callItem, descricao: e.target.value});;
     }
@@ -64,7 +66,7 @@ export default function EdicaoChamadosAdm(props) {
 
     const submitResponse = async(data) => {
         try {
-        const response = await getBaseAPI().post(`resolucao/resposta/${callId}`, {
+        const response = await getBaseAPI().put(`/resolucao/resposta/${callId}`, {
             status: callItem.status,
             tempoGasto: callItem.tempoGasto,
             descricao: callItem.descricao,
