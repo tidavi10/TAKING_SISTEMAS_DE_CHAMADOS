@@ -4,8 +4,9 @@ import getBaseAPI from "../services/api";
 const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
-    const loginUser = useCallback(async({ email, senha, tipoUsuario }) => {
+    const loginUser = useCallback(async({ email, nome, senha, tipoUsuario }) => {
         const payload = { email, senha }
+        const payloadSocial = { email, nome }
 
         let response = null
 
@@ -14,7 +15,7 @@ const AuthProvider = ({ children }) => {
                 response = await getBaseAPI().post('admAuth', payload)
                 break;
             case 'LOGINSOCIAL':
-                response = await getBaseAPI().post('loginsocial/cadastrogmail', payload)
+                response = await getBaseAPI().post('loginsocial/cadastrogmail', payloadSocial)
                 console.log(response)
                 break;
             default:
