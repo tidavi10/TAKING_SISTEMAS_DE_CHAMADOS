@@ -79,7 +79,7 @@ export default function Login() {
                     <button className="login" type="submit" disabled={!isValid}>Login</button>
                     <ToastContainer/>
                     <button className="cadast" type="submit" onClick={gotoCadastro}>Logar como Adm</button>
-                    <p><small>Primeiro acesso? Cadastre-se <a href="https://projetochamadosfrontendtaking.herokuapp.com/cadastro">aqui</a></small></p>
+                    <p><small>Primeiro acesso? Cadastre-se <a href="">aqui</a></small></p>
                     <p className="par">OU</p>
                     <hr></hr>
                     <div className="social"> 
