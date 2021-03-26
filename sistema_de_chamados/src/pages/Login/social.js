@@ -27,7 +27,7 @@ function Social() {
     // Ao commitar utilizar o clientId de Produção
     // Local -> clientId="499021820618-sq7nl7tub85p58odenrb44dl29tut6qo.apps.googleusercontent.com" 
     // Produção -> clientId="499021820618-fvfuf4pb2ebqdvr7k7uudan2js7rsj48.apps.googleusercontent.com"
-
+    //
     return (
         <div>
             <GoogleLogin
@@ -35,7 +35,11 @@ function Social() {
                 buttonText="Sign in"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
+<<<<<<< HEAD
                 //cookiePolicy={none}
+=======
+                //cookiePolicy={}
+>>>>>>> 4547ab90bbd62fa6c9af83e7b6fd1e969d7516a3
             />
         </div>
     )

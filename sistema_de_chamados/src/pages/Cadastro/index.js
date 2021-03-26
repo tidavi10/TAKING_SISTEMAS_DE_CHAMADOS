@@ -8,16 +8,33 @@ import {
 import logo from '../../assets/logo.png'
 import { useHistory } from 'react-router-dom';
 import { cadastrarUsuario } from '../../services/api'
+import { useToast } from '../../hooks/toast';
 
 
 export default function Cadastro() {
+    const {addToast} = useToast();
 
     const history = useHistory();
 
-    const handlerEnviar = (dados, response, req) =>{
-        cadastrarUsuario(dados)
+    const gotoLogin = () =>{
+        history.push('/')
+    }
+
+    const handlerEnviar = async(dados, response, req) => {
+        try{
+            await cadastrarUsuario(dados)
             .then(dados => console.log(`Criado o item ${JSON.stringify(dados)}`)) 
-            //console.log(dados)
+            addToast({
+                type: 'success',
+                title: 'Cadastro efetuado com sucesso',
+            });
+            history.push('/chamados')
+        } catch (erro){
+            addToast({
+                type: 'error',
+                title: 'Não foi possível cadastrar.'
+            });
+        }
     }
     
     return (
@@ -104,7 +121,8 @@ export default function Cadastro() {
                             <ErrorMessage className="erro" name="senha" component="spam" />
                             </div>
                         </div>
-                        <button className="Submit" type="submit" disabled={!isValid} onClick={handlerEnviar}>Cadastrar</button>
+                        <button className="Submit" type="submit" /*disabled={!isValid}*/ onClick={handlerEnviar}>Salvar</button>
+                        <button className="Submit-Cancel" type="submit" onClick={gotoLogin}>Cancelar</button>
                  </div>
                 </div>
 

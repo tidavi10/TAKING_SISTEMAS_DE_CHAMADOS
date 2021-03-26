@@ -10,12 +10,12 @@ import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import LoginSocial from './social'
 import { useAuth } from '../../hooks/auth';
+import { useToast } from '../../hooks/toast';
 
 
 export default function Login() {
-
+    const {addToast} = useToast();
     const { loginUser } = useAuth();
-
     const handleSubmit = useCallback(async (data, actions) => {
         try {
             //console.log(data)
@@ -25,10 +25,16 @@ export default function Login() {
                 nome: data.nome,
                 tipoUsuario: 'USUARIO'
             });
-            
             history.push('/chamados')
+            addToast({
+                type: 'success',
+                title: 'Login efetuado com sucesso',
+            });
         } catch (error) {
-            alert('Não foi possível logar!')
+            addToast({
+                type: 'error',
+                title: 'Login incorreto, verifique sua senha ou email'
+            });
         }
     });
 
@@ -36,7 +42,7 @@ export default function Login() {
     const history = useHistory();
 
     const gotoCadastro = () => {
-        history.push('/cadastro')
+        history.push('/login-adm')
     }
 
     return (
@@ -72,7 +78,8 @@ export default function Login() {
 
                     <button className="login" type="submit" disabled={!isValid}>Login</button>
                     <ToastContainer/>
-                    <button className="cadast" type="submit" onClick={gotoCadastro}>Cadastro</button>
+                    <button className="cadast" type="submit" onClick={gotoCadastro}>Logar como Adm</button>
+                    <p><small>Primeiro acesso? Cadastre-se <a href="http://localhost:3000/cadastro">aqui</a></small></p>
                     <p className="par">OU</p>
                     <hr></hr>
                     <div className="social"> 
