@@ -35,7 +35,7 @@ function Social() {
                 buttonText="Sign in"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
-                cookiePolicy={'https://projetochamadosfrontendtaking.herokuapp.com'}
+                cookiePolicy={none}
             />
         </div>
     )
