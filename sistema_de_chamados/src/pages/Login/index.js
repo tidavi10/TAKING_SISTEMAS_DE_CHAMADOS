@@ -65,14 +65,14 @@ export default function Login() {
                         <label>E-mail:</label>
                         <Field className="input" type="email" name="email"/> 
                         <div className="Form-erro">
-                            <ErrorMessage name="email" component="spam" />
+                            <ErrorMessage name="email" component="span" />
                         </div>
                     </div>
                     <div className="input-div">
                         <label>Senha:</label>   
                         <Field className="input" type="password" name="senha"/>
                         <div className="Form-erro">
-                            <ErrorMessage  name="senha" component="spam" /> 
+                            <ErrorMessage  name="senha" component="span" /> 
                         </div>                                     
                     </div>
 

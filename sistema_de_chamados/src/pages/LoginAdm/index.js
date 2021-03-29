@@ -54,14 +54,14 @@ export default function LoginAdm() {
                             <label>E-mail:</label>
                             <Field type="email" name="email" className="input-adm" />
                             <div className="Form-erro-adm">
-                                <ErrorMessage name="email" component="spam" />
+                                <ErrorMessage name="email" component="span" />
                             </div>
                         </div>
                          <div className="div-adm">
                             <label>Senha:</label>
                             <Field type="password" name="senha" className="input-adm" />
                             <div className="Form-erro-adm">
-                                <ErrorMessage name="password" component="spam" />
+                                <ErrorMessage name="password" component="span" />
                             </div>
                         </div>
                         <button className="button-adm" type="submit" disabled={!isValid} >Login</button>

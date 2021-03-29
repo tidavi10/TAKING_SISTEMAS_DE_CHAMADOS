@@ -38,6 +38,7 @@ export default function ChamadosAdm() {
         activePage: 1,
         posts: [],
         postsPerPage: 5,
+        totalDePaginas: -1,
     });
 
     const [listaDeChamados, setlistaDeChamados] = useState([]);
@@ -117,6 +118,14 @@ export default function ChamadosAdm() {
                     </CallItem>
                 )
             }
+            <Page>
+                <Pagination
+                    pageLimit={state.postsPerPage} 
+                    totalRecords={totalDePaginas * state.postsPerPage} 
+                    onPageChanged={onPageChanged}
+                    pageNeighbours={1}
+                />
+            </Page>
         </CallsBox>)
     }
     
@@ -138,14 +147,6 @@ export default function ChamadosAdm() {
             </Header>
 
             { renderCallBox() }
-            <Page>
-                <Pagination
-                    pageLimit={state.postsPerPage} 
-                    totalRecords={totalDePaginas * state.postsPerPage} 
-                    onPageChanged={onPageChanged}
-                    pageNeighbours={1}
-                />
-            </Page>
         </Container>
     )
 }
