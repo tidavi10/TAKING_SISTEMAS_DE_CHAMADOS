@@ -30,13 +30,13 @@ import {
 import {FiLogOut} from 'react-icons/fi';
 
 import logo from '../../assets/logo.png'
-import getBaseAPI from '../../services/api';
+import { getBaseAdmAPI } from '../../services/api';
 
 export default function EdicaoChamadosAdm(props) {
     const history = useHistory();
     const [callItem, setCallItem] = useState({});
     const [loading, setLoading] = useState(false);
-    const { usuario } = useAuth();
+    const { admin } = useAuth();
     const { addToast } = useToast();
 
     const callId = localStorage.getItem('@chamadosTaking:idChamado');
@@ -48,7 +48,7 @@ export default function EdicaoChamadosAdm(props) {
     useEffect(async() => {
         setLoading(true);
 
-        const response = await getBaseAPI().get(`/chamados/adm/${callId}`);
+        const response = await getBaseAdmAPI().get(`/chamados/adm/${callId}`);
         setCallItem(response.data);
         
         setLoading(false);
@@ -70,21 +70,20 @@ export default function EdicaoChamadosAdm(props) {
 
     const submitResponse = async(data) => {
         try {
-        const response = await getBaseAPI().put(`/resolucao/resposta/${callId}`, {
-            status: callItem.status,
-            tempoGasto: callItem.tempoGasto,
-            descricao: callItem.descricao,
-        }); 
+            await getBaseAdmAPI().put(`/resolucao/resposta/${callId}`, {
+                status: callItem?.status,
+                tempoGasto: callItem?.tempoGasto,
+                descricao: callItem?.descricao,
+            }); 
 
-        await addToast({
-            type: 'success',
-            title: 'Resposta enviada com sucesso!',
-            description: 'Deu tudo certo! Bora resolver o próximo chamado!?'
-        });
+            await addToast({
+                type: 'success',
+                title: 'Chamado atualizado com sucesso!',
+            });
 
-        history.push('/chamados-adm');
+            history.push('/chamados-adm');
         } catch (erro) {
-            addToast({
+            await addToast({
                 type: 'error',
                 title: 'Não foi possível realizar essa operação.',
                 description: 'Por favor tente novamente mais tarde.'
@@ -93,7 +92,7 @@ export default function EdicaoChamadosAdm(props) {
     };
 
     const handleAdmLogout = async() => {
-        localStorage.removeItem('@chamadosTaking:usuario');
+        localStorage.removeItem('@chamadosTaking:adminUser');
 
         history.push('/login-adm');
     }
@@ -108,7 +107,7 @@ export default function EdicaoChamadosAdm(props) {
                 </ButtonHeader>
             </HeaderContentLeft>
             <HeaderContentRight>
-                <p>{usuario.name ? usuario.name : usuario.email}</p>
+                <p>{admin.name ? admin.name : admin.email}</p>
                 <Logout onClick={handleAdmLogout}>
                     <FiLogOut color="#ffecd1" />
                 </Logout>

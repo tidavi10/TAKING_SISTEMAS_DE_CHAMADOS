@@ -25,7 +25,7 @@ export default function Routes() {
                 <PrivateRouteAdm path='/edicao-chamados-adm' component={EdicaoChamadosAdm}/>
                 <Route path='/login-adm' component={LoginAdm}/>
                 <PrivateRouteAdm path= '/menu-adm' component={MenuAdm}/>
-                <NotFound />
+                <PrivateRoute component={NotFound} />
             </Switch>
         </BrowserRouter>
     )

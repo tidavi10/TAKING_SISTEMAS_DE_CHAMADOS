@@ -13,16 +13,14 @@ import { useHistory } from 'react-router-dom';
 export default function LoginAdm() {
     const history = useHistory();
     const { addToast } = useToast();
-    const { loginUser } = useAuth();
+    const { loginAdm, admin } = useAuth();
      
     const handleSubmit = useCallback(async (data) => {
         try {
-            await loginUser({
+            await loginAdm({
                 email: data.email,
                 senha: data.senha,
-                tipoUsuario: 'ADMIN'
             });
-
             history.push('/menu-adm')
         } catch (error) {
             console.error(error)
@@ -32,8 +30,7 @@ export default function LoginAdm() {
                 description: 'Por favor verifique seus dados ou tente novamente mais tarde.'
             });
         }
-        
-    });
+    }, []);
 
     return (
         <>

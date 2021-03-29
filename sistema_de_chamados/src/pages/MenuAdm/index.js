@@ -17,14 +17,14 @@ import { useAuth } from '../../hooks/auth';
 
 export default function MenuAdm() {
     const history = useHistory();
-    const { usuario } = useAuth();
+    const { admin } = useAuth();
 
     const goToChamadosAdm = () => {
         history.push('/chamados-adm')
     }
 
     const handleAdmLogout = async() => {
-        localStorage.removeItem('@chamadosTaking:usuario');
+        localStorage.removeItem('@chamadosTaking:adminUser');
 
         history.push('/login-adm');
     }
@@ -40,7 +40,7 @@ export default function MenuAdm() {
                             </ButtonHeader>
                     </HeaderContentLeft>
                     <HeaderContentRight>
-                        <p>{usuario.name ? usuario.name : usuario.email}</p>
+                        <p>{admin.name ? admin.name : admin.email}</p>
                         <Logout onClick={handleAdmLogout}>
                             <FiLogOut color="#ffecd1" />
                         </Logout>
