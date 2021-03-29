@@ -31,7 +31,7 @@ function Social() {
     return (
         <div>
             <GoogleLogin
-                clientId="499021820618-sq7nl7tub85p58odenrb44dl29tut6qo.apps.googleusercontent.com" 
+                clientId="499021820618-c4dttfcpvpne9unmojlb6n3idbk3rr3l.apps.googleusercontent.com" 
                 buttonText="Sign in"
                 onSuccess={responseGoogle}
                 onFailure={responseGoogle}
