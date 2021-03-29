@@ -93,7 +93,7 @@ export default function ChamadosAdm() {
 
   function renderCallBox () {
     if (loading) {
-      return <h2>Carregando...</h2>
+      return <div className="loader">Loading...</div>
     }
     return <CallsBox>
     <LegendCalls>

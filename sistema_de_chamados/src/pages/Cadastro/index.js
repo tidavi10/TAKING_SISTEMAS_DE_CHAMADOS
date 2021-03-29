@@ -9,11 +9,13 @@ import logo from '../../assets/logo.png'
 import { useHistory } from 'react-router-dom';
 import { cadastrarUsuario } from '../../services/api'
 import { useToast } from '../../hooks/toast';
+import { useAuth } from '../../hooks/auth';
 
 
 export default function Cadastro() {
     const {addToast} = useToast();
 
+    const { loginUser } = useAuth();
     const history = useHistory();
 
     const gotoLogin = () =>{
@@ -23,11 +25,19 @@ export default function Cadastro() {
     const handlerEnviar = async(dados, response, req) => {
         try{
             await cadastrarUsuario(dados)
-            .then(dados => console.log(`Criado o item ${JSON.stringify(dados)}`)) 
+            .then(dados => console.log(`Criado o item ${JSON.stringify(dados)}`))
             addToast({
                 type: 'success',
-                title: 'Cadastro efetuado com sucesso',
+                title: 'Cadastro efetuado com sucesso.',
             });
+
+            await loginUser({
+                email: dados.email,
+                senha: dados.senha,
+                nome: dados.nome,
+                tipoUsuario: 'USUARIO'
+            });
+
             history.push('/chamados')
         } catch (erro){
             addToast({
@@ -67,35 +77,35 @@ export default function Cadastro() {
                             <label>Nome:</label>
                                 <Field className="input" type="text" name="nome"/>
                             <div className="Form-erro">
-                                <ErrorMessage className="erro" name="nome" component="spam" />
+                                <ErrorMessage className="erro" name="nome" component="span" />
                             </div>
                         </div> 
                         <div className="inputdiv">
                             <label>E-mail:</label>
                             <Field className="input" type="email" name="email"/>
                             <div className="Form-erro">
-                                <ErrorMessage className="erro" name="email" component="spam" />
+                                <ErrorMessage className="erro" name="email" component="span" />
                             </div>
                         </div > 
                         <div className="inputdiv"> 
                             <label>CPF:</label>  
                                 <Field className="input" type="text" name="cpf"/>
                             <div className="Form-erro">
-                                <ErrorMessage className="erro" name="cpf" component="spam" />
+                                <ErrorMessage className="erro" name="cpf" component="span" />
                             </div>
                         </div>
                         <div className="inputdiv">
                             <label>RG:</label>
                             <Field className="input" type="text" name="rg"/>
                             <div className="Form-erro">
-                                <ErrorMessage className="erro" name="rg" component="spam" />
+                                <ErrorMessage className="erro" name="rg" component="span" />
                             </div>
                         </div>
                         <div className="inputdiv">
                             <label>CEP:</label>
                             <Field className="input" type="text" name="cep"/>
                             <div className="Form-erro">
-                                <ErrorMessage className="erro" name="cep" component="spam" />
+                                <ErrorMessage className="erro" name="cep" component="span" />
                             </div>
                         </div>
                     </div>
@@ -104,24 +114,24 @@ export default function Cadastro() {
                             <label>Endereço:</label>
                             <Field className="input" type="text" name="endereco"/>
                             <div className="Form-erro">
-                                <ErrorMessage className="erro" name="endereco" component="spam" />
+                                <ErrorMessage className="erro" name="endereco" component="span" />
                             </div>
                         </div>
                         <div className="inputdiv">
                             <label>Cargo:</label>
                             <Field className="input" type="text" name="cargo"/>
                             <div className="Form-erro">
-                                <ErrorMessage className="erro" name="cargo" component="spam" />
+                                <ErrorMessage className="erro" name="cargo" component="span" />
                             </div>
                             </div>
                         <div className="inputdiv">
                             <label>Senha:</label>
                             <Field className="input" type="password" name="senha" />
                             <div className="Form-erro">
-                            <ErrorMessage className="erro" name="senha" component="spam" />
+                            <ErrorMessage className="erro" name="senha" component="span" />
                             </div>
                         </div>
-                        <button className="Submit" type="submit" /*disabled={!isValid}*/>Salvar</button>
+                        <button className="Submit" type="submit" /*disabled={!isValid}*/ >Salvar</button>
                         <button className="Submit-Cancel" type="submit" onClick={gotoLogin}>Cancelar</button>
                  </div>
                 </div>
