@@ -99,6 +99,7 @@ export default function TelaChamados() {
         try {
             //console.log(data)
             history.push('/consulta-chamados')
+            
 
             addToast({
                 type: 'success',
