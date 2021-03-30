@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { FiEdit } from 'react-icons/fi';
 
 import Pagination from './components/Pagination';
-import getBaseAPI, { listarChamadosAdm, totalPaginasAdm } from '../../services/api'
+import { listarChamadosAdm, totalPaginasAdm } from '../../services/api'
 
 import { useAuth } from '../../hooks/auth';
 
@@ -32,12 +32,13 @@ import {
 
 export default function ChamadosAdm() {
     const history = useHistory();
-    const { usuario } = useAuth();
+    const { admin } = useAuth();
     
     const [state, setState] = useState({ 
         activePage: 1,
         posts: [],
         postsPerPage: 5,
+        totalDePaginas: -1,
     });
 
     const [listaDeChamados, setlistaDeChamados] = useState([]);
@@ -83,7 +84,7 @@ export default function ChamadosAdm() {
     }
 
     const handleAdmLogout = async() => {
-        localStorage.removeItem('@chamadosTaking:usuario');
+        localStorage.removeItem('@chamadosTaking:adminUser');
 
         history.push('/login-adm');
     }
@@ -117,6 +118,14 @@ export default function ChamadosAdm() {
                     </CallItem>
                 )
             }
+            <Page>
+                <Pagination
+                    pageLimit={state.postsPerPage} 
+                    totalRecords={totalDePaginas * state.postsPerPage} 
+                    onPageChanged={onPageChanged}
+                    pageNeighbours={1}
+                />
+            </Page>
         </CallsBox>)
     }
     
@@ -130,7 +139,7 @@ export default function ChamadosAdm() {
                     </ButtonHeader>
                 </HeaderContentLeft>
                 <HeaderContentRight>
-                    <p>{usuario.name ? usuario.name : usuario.email}</p>
+                    <p>{admin.name ? admin.name : admin.email}</p>
                     <Logout onClick={handleAdmLogout}>
                         <FiLogOut color="#ffecd1" />
                     </Logout>
@@ -138,14 +147,6 @@ export default function ChamadosAdm() {
             </Header>
 
             { renderCallBox() }
-            <Page>
-                <Pagination
-                    pageLimit={state.postsPerPage} 
-                    totalRecords={totalDePaginas * state.postsPerPage} 
-                    onPageChanged={onPageChanged}
-                    pageNeighbours={1}
-                />
-            </Page>
         </Container>
     )
 }

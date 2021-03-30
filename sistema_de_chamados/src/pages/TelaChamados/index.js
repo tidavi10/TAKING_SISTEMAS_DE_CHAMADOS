@@ -38,6 +38,10 @@ export default function TelaChamados() {
     //console.log(usuario)
     const history = useHistory();
 
+    const gotoConsultaChamados = () => {
+        history.push('/consulta-chamados')
+    }
+
     const [selectedOption, setSelectedOption] = useState(null);
     const [possiveisProblemas, setPossiveisProblemas] = useState([]);
     const [fileSelect, setFileSelect] = useState(null);
@@ -84,7 +88,6 @@ export default function TelaChamados() {
         setFileSelect(null)
     }
 
-
     const handleEnviar = () => {
         const formData = new FormData();
         if (fileSelect) {
@@ -114,10 +117,6 @@ export default function TelaChamados() {
         }
     });
 
-    const gotoConsultaChamados = () => {
-        history.push('/consulta-chamados')
-    }
-
     function logout() {
         localStorage.clear();
         window.location.href= '/'
@@ -140,7 +139,7 @@ export default function TelaChamados() {
                             <p>Sair</p>
                         </ButtonExit>
                     </HeaderContent>
-                    <p>{!usuario.name || usuario.name != undefined ? usuario.name : usuario.userEmail}</p>
+                    <p>{usuario.name ? usuario.name : usuario.email}</p>
                 </Header>
                 <EditionArea>
                     <InputArea>

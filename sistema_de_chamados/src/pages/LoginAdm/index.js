@@ -13,16 +13,14 @@ import { useHistory } from 'react-router-dom';
 export default function LoginAdm() {
     const history = useHistory();
     const { addToast } = useToast();
-    const { loginUser } = useAuth();
+    const { loginAdm, admin } = useAuth();
      
     const handleSubmit = useCallback(async (data) => {
         try {
-            await loginUser({
+            await loginAdm({
                 email: data.email,
                 senha: data.senha,
-                tipoUsuario: 'ADMIN'
             });
-
             history.push('/menu-adm')
         } catch (error) {
             console.error(error)
@@ -32,8 +30,7 @@ export default function LoginAdm() {
                 description: 'Por favor verifique seus dados ou tente novamente mais tarde.'
             });
         }
-        
-    });
+    }, []);
 
     return (
         <>
@@ -54,14 +51,14 @@ export default function LoginAdm() {
                             <label>E-mail:</label>
                             <Field type="email" name="email" className="input-adm" />
                             <div className="Form-erro-adm">
-                                <ErrorMessage name="email" component="spam" />
+                                <ErrorMessage name="email" component="span" />
                             </div>
                         </div>
                          <div className="div-adm">
                             <label>Senha:</label>
                             <Field type="password" name="senha" className="input-adm" />
                             <div className="Form-erro-adm">
-                                <ErrorMessage name="password" component="spam" />
+                                <ErrorMessage name="password" component="span" />
                             </div>
                         </div>
                         <button className="button-adm" type="submit" disabled={!isValid} >Login</button>

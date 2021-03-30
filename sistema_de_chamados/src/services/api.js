@@ -2,6 +2,20 @@ import axios from 'axios';
 
 const getBaseAPI = () => {
     const data = localStorage.getItem('@chamadosTaking:usuario');
+
+    const parsedData = JSON.parse(data);
+    let headers = {}
+    if (parsedData) {
+        headers['Authorization'] = parsedData.token
+    }
+    return axios.create({
+        baseURL: "https://projetochamadosbackendtaking.herokuapp.com/",
+        headers
+    });
+}
+
+const getBaseAdmAPI = () => {
+    const data = localStorage.getItem('@chamadosTaking:adminUser');
     const parsedData = JSON.parse(data);
     let headers = {}
     if (parsedData) {
@@ -41,18 +55,18 @@ const listarChamados = function (userId , numeroPagina) {
 }
 
 const listarChamadosAdm = function (numeroPagina) {
-    return getBaseAPI().get(`chamados/adm/all/${numeroPagina}`)
+    return getBaseAdmAPI().get(`chamados/adm/all/${numeroPagina}`)
 }
 
 const totalPaginasAdm = function () {
-    return getBaseAPI().get('chamados/totalPaginas/adm')
+    return getBaseAdmAPI().get('chamados/totalPaginas/adm')
 }
 
 const listarRespostasChamado = function (idChamado, id) {
     return getBaseAPI().put(`/resolucao/resposta/${idChamado}/${id}`)
 }
 
-export default getBaseAPI
+export default getBaseAPI;
 
 export {
     listarPossiveisProblemas,
@@ -64,4 +78,5 @@ export {
     cadastrarUsuario,
     totalPaginasAdm,
     listarRespostasChamado,
+    getBaseAdmAPI
 };

@@ -1,9 +1,19 @@
 import React, { createContext, useCallback, useContext, useState } from "react";
-import getBaseAPI from "../services/api";
+import getBaseAPI, { getBaseAdmAPI } from "../services/api";
 
 const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
+    const [adminData, setAdminData] = useState(() => {
+        const data = localStorage.getItem('@chamadosTaking:adminUser');
+        if (data) {
+            const parsedData = JSON.parse(data)
+            return parsedData;
+        }
+    
+        return {};
+    });
+
     const loginUser = useCallback(async({ email, nome, senha, tipoUsuario }) => {
         const payload = { email, senha }
         const payloadSocial = { email, nome }
@@ -11,9 +21,6 @@ const AuthProvider = ({ children }) => {
         let response = null
 
         switch(tipoUsuario) {
-            case 'ADMIN':
-                response = await getBaseAPI().post('admAuth', payload)
-                break;
             case 'LOGINSOCIAL':
                 response = await getBaseAPI().post('loginsocial/cadastrogmail', payloadSocial)
                 console.log(response)
@@ -34,6 +41,17 @@ const AuthProvider = ({ children }) => {
         setAuthData({ token, id, name, email, tipoUsuario });
     }, []);
 
+    const loginAdm = useCallback(async({email, senha}) => {
+        const response = await getBaseAdmAPI().post('admAuth', { email, senha });
+
+        const admEmail = JSON.parse(response.config.data).email
+        const { id, nome, token } = response.data;
+        const data = JSON.stringify({ admEmail, nome, id, token });
+
+        localStorage.setItem('@chamadosTaking:adminUser', data);
+        setAdminData({ admEmail, id, nome, token });
+    }, []);
+
     const [authData, setAuthData] = useState(() => {
     const data = localStorage.getItem('@chamadosTaking:usuario');
     if (data) {
@@ -43,16 +61,22 @@ const AuthProvider = ({ children }) => {
 
     return {};
 });
-console.log(authData.name);
 
     return (
         <AuthContext.Provider value={{
             loginUser,
+            loginAdm,
             usuario: {
                 token: authData?.token,
                 id: authData?.id,
                 name: authData?.name,
                 email: authData?.email,
+            },
+            admin: {
+                token: adminData?.token,
+                id: adminData?.id,
+                name: adminData?.nome,
+                email: adminData?.admEmail,
             }
         }}>
             {children}
