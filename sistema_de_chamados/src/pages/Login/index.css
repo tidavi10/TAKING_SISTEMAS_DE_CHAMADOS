@@ -132,6 +132,11 @@ button.cadast{
     background-color: #ffb703;
     color: white;
 }
+@media (max-width: 576px){
+    button.cadast{
+        font-size: 10px;
+    }
+}
 img{
     width: 40px;
     height: 40px;
@@ -151,7 +156,7 @@ div.Form-erro{
 }
  @media (max-width: 576px) {
         div.Form-erro{
-            font-size: 16px;
+            font-size: 11px;
         }
     }
 
