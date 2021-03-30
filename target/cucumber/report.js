@@ -43,7 +43,7 @@ formatter.step({
 });
 formatter.step({
   "line": 17,
-  "name": "o tipo de \u003cPermissao\u003e do usuário deve ser exibido",
+  "name": "redirecionado para a tela de chamados",
   "keyword": "E "
 });
 formatter.examples({
@@ -55,8 +55,7 @@ formatter.examples({
     {
       "cells": [
         "Usuario",
-        "Senha",
-        "Permissao"
+        "Senha"
       ],
       "line": 20,
       "id": "login;realizar-login-no-sistema-com-usuários-válidos;;1"
@@ -64,8 +63,7 @@ formatter.examples({
     {
       "cells": [
         "\"jorge.silva@taking.com.br\"",
-        "\"02030104\"",
-        "\"?\""
+        "\"02030104\""
       ],
       "line": 21,
       "id": "login;realizar-login-no-sistema-com-usuários-válidos;;2"
@@ -73,8 +71,7 @@ formatter.examples({
     {
       "cells": [
         "\"sonia.nimberg@taking.com.br\"",
-        "\"05006489\"",
-        "\"Tecnico\""
+        "\"05006489\""
       ],
       "line": 22,
       "id": "login;realizar-login-no-sistema-com-usuários-válidos;;3"
@@ -98,7 +95,7 @@ formatter.match({
   "location": "LoginSteps.que_usuário_possa_acessar_a_tela_de_login_do_sistema()"
 });
 formatter.result({
-  "duration": 2907661971,
+  "duration": 3608810097,
   "status": "passed"
 });
 formatter.scenario({
@@ -138,10 +135,7 @@ formatter.step({
 });
 formatter.step({
   "line": 17,
-  "name": "o tipo de \"?\" do usuário deve ser exibido",
-  "matchedColumns": [
-    2
-  ],
+  "name": "redirecionado para a tela de chamados",
   "keyword": "E "
 });
 formatter.match({
@@ -154,7 +148,7 @@ formatter.match({
   "location": "LoginSteps.informar_um_válido(String)"
 });
 formatter.result({
-  "duration": 2377569,
+  "duration": 3184774,
   "status": "passed"
 });
 formatter.match({
@@ -167,29 +161,19 @@ formatter.match({
   "location": "LoginSteps.inserir_uma_válida(String)"
 });
 formatter.result({
-  "duration": 87489,
+  "duration": 110512,
   "status": "passed"
 });
 formatter.match({
   "location": "LoginSteps.o_sistema_deve_permitir_a_autenticação_do_usuário()"
 });
 formatter.result({
-  "duration": 870442349,
+  "duration": 891796404,
   "status": "passed"
 });
-formatter.match({
-  "arguments": [
-    {
-      "val": "?",
-      "offset": 11
-    }
-  ],
-  "location": "LoginSteps.o_tipo_de_do_usuário_deve_ser_exibido(String)"
-});
+formatter.match({});
 formatter.result({
-  "duration": 1186879,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat com.esther.talkingtestealelo.cucumber.steps.LoginSteps.o_tipo_de_do_usuário_deve_ser_exibido(LoginSteps.java:39)\n\tat ✽.E o tipo de \"?\" do usuário deve ser exibido(Login.feature:17)\n",
-  "status": "pending"
+  "status": "undefined"
 });
 formatter.background({
   "line": 9,
@@ -207,7 +191,7 @@ formatter.match({
   "location": "LoginSteps.que_usuário_possa_acessar_a_tela_de_login_do_sistema()"
 });
 formatter.result({
-  "duration": 759266723,
+  "duration": 937680168,
   "status": "passed"
 });
 formatter.scenario({
@@ -247,10 +231,7 @@ formatter.step({
 });
 formatter.step({
   "line": 17,
-  "name": "o tipo de \"Tecnico\" do usuário deve ser exibido",
-  "matchedColumns": [
-    2
-  ],
+  "name": "redirecionado para a tela de chamados",
   "keyword": "E "
 });
 formatter.match({
@@ -263,7 +244,7 @@ formatter.match({
   "location": "LoginSteps.informar_um_válido(String)"
 });
 formatter.result({
-  "duration": 97083,
+  "duration": 121885,
   "status": "passed"
 });
 formatter.match({
@@ -276,29 +257,19 @@ formatter.match({
   "location": "LoginSteps.inserir_uma_válida(String)"
 });
 formatter.result({
-  "duration": 303960,
+  "duration": 125655,
   "status": "passed"
 });
 formatter.match({
   "location": "LoginSteps.o_sistema_deve_permitir_a_autenticação_do_usuário()"
 });
 formatter.result({
-  "duration": 865455520,
+  "duration": 685926958,
   "status": "passed"
 });
-formatter.match({
-  "arguments": [
-    {
-      "val": "Tecnico",
-      "offset": 11
-    }
-  ],
-  "location": "LoginSteps.o_tipo_de_do_usuário_deve_ser_exibido(String)"
-});
+formatter.match({});
 formatter.result({
-  "duration": 469301,
-  "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat com.esther.talkingtestealelo.cucumber.steps.LoginSteps.o_tipo_de_do_usuário_deve_ser_exibido(LoginSteps.java:39)\n\tat ✽.E o tipo de \"Tecnico\" do usuário deve ser exibido(Login.feature:17)\n",
-  "status": "pending"
+  "status": "undefined"
 });
 formatter.background({
   "line": 9,
@@ -316,7 +287,7 @@ formatter.match({
   "location": "LoginSteps.que_usuário_possa_acessar_a_tela_de_login_do_sistema()"
 });
 formatter.result({
-  "duration": 656624879,
+  "duration": 668770822,
   "status": "passed"
 });
 formatter.scenario({
@@ -352,7 +323,7 @@ formatter.match({
   "location": "LoginSteps.informar_um_inválido(String)"
 });
 formatter.result({
-  "duration": 258897,
+  "duration": 1141956,
   "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat com.esther.talkingtestealelo.cucumber.steps.LoginSteps.informar_um_inválido(LoginSteps.java:45)\n\tat ✽.Quando informar um \"jorge.silva\" inválido(Login.feature:25)\n",
   "status": "pending"
 });
@@ -390,7 +361,7 @@ formatter.match({
   "location": "LoginSteps.que_usuário_possa_acessar_a_tela_de_login_do_sistema()"
 });
 formatter.result({
-  "duration": 664427647,
+  "duration": 645946681,
   "status": "passed"
 });
 formatter.scenario({
@@ -426,7 +397,7 @@ formatter.match({
   "location": "LoginSteps.informar_um_válido(String)"
 });
 formatter.result({
-  "duration": 109662,
+  "duration": 209793,
   "status": "passed"
 });
 formatter.match({
@@ -439,7 +410,7 @@ formatter.match({
   "location": "LoginSteps.inserir_uma_inválido(String)"
 });
 formatter.result({
-  "duration": 327440,
+  "duration": 572917,
   "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat com.esther.talkingtestealelo.cucumber.steps.LoginSteps.inserir_uma_inválido(LoginSteps.java:57)\n\tat ✽.E inserir uma \"020301\" inválido(Login.feature:31)\n",
   "status": "pending"
 });
@@ -465,7 +436,7 @@ formatter.match({
   "location": "LoginSteps.que_usuário_possa_acessar_a_tela_de_login_do_sistema()"
 });
 formatter.result({
-  "duration": 676198025,
+  "duration": 613542797,
   "status": "passed"
 });
 formatter.scenario({
@@ -501,7 +472,7 @@ formatter.match({
   "location": "LoginSteps.informar_um_vazio(String)"
 });
 formatter.result({
-  "duration": 424321,
+  "duration": 296516,
   "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat com.esther.talkingtestealelo.cucumber.steps.LoginSteps.informar_um_vazio(LoginSteps.java:63)\n\tat ✽.Quando informar um \"  \" vazio(Login.feature:35)\n",
   "status": "pending"
 });
@@ -539,7 +510,7 @@ formatter.match({
   "location": "LoginSteps.que_usuário_possa_acessar_a_tela_de_login_do_sistema()"
 });
 formatter.result({
-  "duration": 634113689,
+  "duration": 783566763,
   "status": "passed"
 });
 formatter.scenario({
@@ -575,7 +546,7 @@ formatter.match({
   "location": "LoginSteps.informar_um_válido(String)"
 });
 formatter.result({
-  "duration": 157542,
+  "duration": 121912,
   "status": "passed"
 });
 formatter.match({
@@ -588,7 +559,7 @@ formatter.match({
   "location": "LoginSteps.inserir_uma_vazio(String)"
 });
 formatter.result({
-  "duration": 338872,
+  "duration": 830593,
   "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat com.esther.talkingtestealelo.cucumber.steps.LoginSteps.inserir_uma_vazio(LoginSteps.java:69)\n\tat ✽.E inserir uma \"  \" vazio(Login.feature:41)\n",
   "status": "pending"
 });
@@ -614,7 +585,7 @@ formatter.match({
   "location": "LoginSteps.que_usuário_possa_acessar_a_tela_de_login_do_sistema()"
 });
 formatter.result({
-  "duration": 717096193,
+  "duration": 802285311,
   "status": "passed"
 });
 formatter.scenario({
@@ -650,7 +621,7 @@ formatter.match({
   "location": "LoginSteps.informar_um_vazio(String)"
 });
 formatter.result({
-  "duration": 370741,
+  "duration": 437422,
   "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat com.esther.talkingtestealelo.cucumber.steps.LoginSteps.informar_um_vazio(LoginSteps.java:63)\n\tat ✽.Quando informar um \"  \" vazio(Login.feature:45)\n",
   "status": "pending"
 });
@@ -688,7 +659,7 @@ formatter.match({
   "location": "LoginSteps.que_usuário_possa_acessar_a_tela_de_login_do_sistema()"
 });
 formatter.result({
-  "duration": 747716834,
+  "duration": 790177188,
   "status": "passed"
 });
 formatter.scenario({
@@ -724,7 +695,7 @@ formatter.match({
   "location": "LoginSteps.informar_um_inválido(String)"
 });
 formatter.result({
-  "duration": 360789,
+  "duration": 419204,
   "error_message": "cucumber.api.PendingException: TODO: implement me\n\tat com.esther.talkingtestealelo.cucumber.steps.LoginSteps.informar_um_inválido(LoginSteps.java:45)\n\tat ✽.Quando informar um \"jorge.silva\" inválido(Login.feature:50)\n",
   "status": "pending"
 });

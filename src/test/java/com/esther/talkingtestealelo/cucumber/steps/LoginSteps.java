@@ -1,4 +1,4 @@
-package com.esther.talkingtestealelo.cucumber.steps;
+package com.esther.talkingtestealelo.cucumber.steps;//projetochamadosfrontendtaking.herokuapp.com;
 
 import com.esther.talkingtestealelo.cucumber.pageobjects.LoginPage;
 
@@ -32,12 +32,12 @@ public class LoginSteps  extends ParentSteps {
 	public void o_sistema_deve_permitir_a_autenticação_do_usuário() throws Throwable {
 	    paginaLogin.efetuarLogin(this.email, this.senha);
 	}
-
-	@Então("^o tipo de \"([^\"]*)\" do usuário deve ser exibido$")
-	public void o_tipo_de_do_usuário_deve_ser_exibido(String arg1) throws Throwable {
+	
+	public void redirecionado_para_a_tela_de_chamados() throws Throwable {
 	    // Write code here that turns the phrase above into concrete actions
 	    throw new PendingException();
 	}
+
 
 	@Quando("^informar um \"([^\"]*)\" inválido$")
 	public void informar_um_inválido(String arg1) throws Throwable {

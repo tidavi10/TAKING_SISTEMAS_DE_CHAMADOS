@@ -14,12 +14,12 @@ Esquema do Cenário: realizar login no sistema com usuários válidos
 Quando informar um <Usuario> válido
 E inserir uma <Senha> válida
 Então o sistema deve permitir a autenticação do usuário
-E o tipo de <Permissao> do usuário deve ser exibido
+E redirecionado para a tela de chamados
 
 Exemplos:
-| Usuario                       | Senha      | Permissao |
-| "jorge.silva@taking.com.br"   | "02030104" | "?"       |
-| "sonia.nimberg@taking.com.br" | "05006489" | "Tecnico" |
+| Usuario                       | Senha      | 
+| "jorge.silva@taking.com.br"   | "02030104" | 
+| "sonia.nimberg@taking.com.br" | "05006489" |
 
 Cenário: Tentar realizar login com usuário inválido
 Quando informar um "jorge.silva" inválido
