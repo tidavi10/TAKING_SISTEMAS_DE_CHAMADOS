@@ -29,6 +29,7 @@ import {
     CallEditButton,
     Page
 } from './style';
+import { Loader } from '../../components/Loader';
 
 export default function ChamadosAdm() {
     const history = useHistory();
@@ -90,8 +91,8 @@ export default function ChamadosAdm() {
     }
 
     function renderCallBox () {
-    if (state.loading) {
-      return <h2>Carregando...</h2>
+    if (loading) {
+      return <Loader />
     }
     return (
         <CallsBox>

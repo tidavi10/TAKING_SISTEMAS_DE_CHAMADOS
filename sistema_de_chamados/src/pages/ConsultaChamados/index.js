@@ -9,7 +9,6 @@ import logo from "../../assets/logo.png";
 import Pagination from "./components/Pagination";
 import {
   listarChamados,
-  getTotalDeChamados,
   getTotalPaginas,
 } from "../../services/api";
 import {
@@ -26,15 +25,17 @@ import {
   CallStatus,
   Page,
 } from "./style";
-import { Img } from "../ChamadosAdm/style";
+import { Img } from "../ConsultaChamados/style";
+import { Loader } from "../../components/Loader";
 
-export default function ChamadosAdm() {
+export default function ConsultaChamados(props) {
   const { usuario } = useAuth();
   const history = useHistory();
   const [state, setState] = useState({
     activePage: 1,
     posts: [],
     postsPerPage: 5,
+    totalDePaginas: -1,
   });
 
   const [totalDeChamdos, setTotalDeChamados] = useState(0);
@@ -49,36 +50,37 @@ export default function ChamadosAdm() {
 
   useEffect(() => {
     setLoading(true);
+    let isSubscribed = true
     getTotalPaginas(usuario.id, totalDePaginas)
       .then((d) => d.data)
       .then((d) => {
-        setTotalDePaginas(d);
-        console.log(d);
-        setLoading(false);
+        if (isSubscribed) {
+          setTotalDePaginas(d);
+          //console.log(d);
+          setLoading(false);
+        }
       });
+      return () => isSubscribed = false;
   }, []);
-
-  // useEffect(() => {
-  //   setLoading(true)
-  //   getTotalDeChamados(usuario.id, currentPage).then(d => d.data).then(d => {
-  //     setTotalDeChamados(d)
-  //     console.log(d)
-  //     setLoading(false)
-  //   })
-  // },[0]);
 
   useEffect(() => {
     setLoading(true);
+    let isSubscribed = true
     listarChamados(usuario.id, currentPage)
       .then((d) => d.data)
       .then((d) => {
-        setlistaDeChamados(d);
-        console.log(d);
-        // setState({
-        //   ...state
-        // });
-        setLoading(false);
+        if (isSubscribed) {
+          setlistaDeChamados(d);
+          //console.log(d);
+          setState({
+            ...state,
+            totalDeChamdos
+          });
+          setLoading(false);
+        }
       });
+
+      return () => isSubscribed = false;
   }, [currentPage]);
 
   const onPageChanged = (data) => {
@@ -96,9 +98,7 @@ export default function ChamadosAdm() {
   }
 
   function renderCallBox() {
-    if (loading) {
-      return <div className="loader">Loading...</div>;
-    }
+
     return (
       <CallsBox>
         <LegendCalls>
@@ -106,7 +106,8 @@ export default function ChamadosAdm() {
           <span>Descrição</span>
           <span>Status</span>
         </LegendCalls>
-        {listaDeChamados.map((d) => (
+        { loading &&  <Loader /> }
+        {!loading && listaDeChamados.map((d) => (
           <CallItem key={d.id}>
             <CallCod>
               <span>{d.id}</span>
@@ -148,6 +149,8 @@ export default function ChamadosAdm() {
         </Header>
         {renderCallBox()}
       </Container>
+      {/* {ConsultaChamados.loading && <Loader></Loader>}
+      {ConsultaChamados.ConsultaChamadosData && <ConsultaChamados {...ConsultaChamados.ConsultaChamadosData} />} */}
     </Router>
   );
 }
