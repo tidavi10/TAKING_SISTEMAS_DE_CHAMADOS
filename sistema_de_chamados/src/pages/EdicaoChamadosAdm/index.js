@@ -35,6 +35,7 @@ import { getBaseAdmAPI } from '../../services/api';
 export default function EdicaoChamadosAdm(props) {
     const history = useHistory();
     const [callItem, setCallItem] = useState({});
+    const [statusData, setStatusData] = useState([]);
     const [loading, setLoading] = useState(false);
     const { admin } = useAuth();
     const { addToast } = useToast();
@@ -54,7 +55,13 @@ export default function EdicaoChamadosAdm(props) {
         setLoading(false);
     }, []);
 
-    console.log(callItem);
+    useEffect(async() => {
+        const response = await getBaseAdmAPI().get('/status');
+
+        const status = response.data.map(item => item.status)
+
+        setStatusData(status);
+    }, []);
 
     const handleChangeDescription = (e) => {
         setCallItem({...callItem, descricao: e.target.value});;
@@ -100,18 +107,19 @@ export default function EdicaoChamadosAdm(props) {
     return (
         <Container>
             <Header>
-            <HeaderContentLeft>
-                <Img src={logo}></Img>
-                <ButtonHeader onClick={goToChamadosAdm}>
-                    <p>Tela de Chamados</p>
-                </ButtonHeader>
-            </HeaderContentLeft>
-            <HeaderContentRight>
-                <p>{admin.name ? admin.name : admin.email}</p>
-                <Logout onClick={handleAdmLogout}>
-                    <FiLogOut color="#ffecd1" />
-                </Logout>
-            </HeaderContentRight>
+                <HeaderContentLeft>
+                    <Img src={logo}></Img>
+                    <ButtonHeader onClick={goToChamadosAdm}>
+                        <p>Tela de Chamados</p>
+                    </ButtonHeader>
+                </HeaderContentLeft>
+                
+                <HeaderContentRight>
+                    <p>{admin.name ? admin.name : admin.email}</p>
+                    <Logout onClick={handleAdmLogout}>
+                        <FiLogOut color="#ffecd1" />
+                    </Logout>
+                </HeaderContentRight>
             </Header>
 
             <CallsBox>
@@ -138,18 +146,23 @@ export default function EdicaoChamadosAdm(props) {
                 <InputArea>
                     <EditionStatus>
                         <label htmlFor="status">Status:</label>
-                        <select value={callItem.status} onChange={handleChangeStatus} name="status" id="status">
-                            <option value="Pendente">Pendente</option>
-                            <option value="Em andamento">Em andamento</option>
-                            <option value="Finalizado">Finalizado</option>
+                        <select value={callItem.status} onChange={handleChangeStatus}>
+                            {statusData.map( status => (
+                                <option value={status}>{status}</option>
+                            ))}
                         </select>
                     </EditionStatus>
 
                     <EditionRunTime>
                         <label>Tempo gasto na execução:</label>
-                        <input type="text" value={callItem.tempoGasto} onChange={handleChangeRunTime} />
+                        <input
+                            type="text"
+                            value={callItem.tempoGasto}
+                            onChange={handleChangeRunTime}
+                        />
                     </EditionRunTime>
                 </InputArea>
+
                 <DescriptionArea>
                     <label>Descrição do problema/ Obs.:</label>
                     <div>
