@@ -11,7 +11,7 @@ const dragReject = css`
 export const DropContainer = styled.div.attrs({
   className: "dropzone"
 })`
-  border: 1px dashed #ddd;
+  border: 2px dashed #ddd;
   border-radius: 4px;
   width: 300px;
   height: 50px;
@@ -19,6 +19,7 @@ export const DropContainer = styled.div.attrs({
   font-size: 1rem;
   font-weight: 200;
   cursor: pointer;
+  background: #fff;
   transition: height 0.2s ease;
   ${props => props.isDragActive && dragActive};
   ${props => props.isDragReject && dragReject};
