@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import Select from "react-select";
@@ -30,11 +30,9 @@ import {
 } from "../TelaChamados/style";
 import { useAuth } from "../../hooks/auth";
 import { useToast } from "../../hooks/toast";
-import { Loader } from "../../components/Loader";
 
 export default function TelaChamados() {
   const { usuario } = useAuth();
-  //console.log(usuario)
   const history = useHistory();
 
   const gotoConsultaChamados = () => {

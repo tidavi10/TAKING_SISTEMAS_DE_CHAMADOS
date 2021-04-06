@@ -1,5 +1,4 @@
-import React, { useCallback } from 'react';
-import { useState, useEffect } from 'react'
+import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import schema from './schema'
 import './index.css'
@@ -25,7 +24,6 @@ export default function Cadastro() {
     const handlerEnviar = async(dados, response, req) => {
         try{
             await cadastrarUsuario(dados)
-            .then(dados => console.log(`Criado o item ${JSON.stringify(dados)}`))
             addToast({
                 type: 'success',
                 title: 'Cadastro efetuado com sucesso.',

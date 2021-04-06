@@ -58,7 +58,6 @@ export default function ChamadosAdm() {
       .then((call) => {
         if (isSubscribed) {
           setTotalDePaginas(call);
-          console.log(call);
           setLoading(false);
         }
       });
@@ -74,7 +73,6 @@ export default function ChamadosAdm() {
       .then((call) => {
         if (isSubscribed) {
           setlistaDeChamados(call);
-          console.log(call);
           setLoading(false);
         }
       });

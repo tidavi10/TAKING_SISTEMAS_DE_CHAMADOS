@@ -56,7 +56,6 @@ export default function ConsultaChamados(props) {
       .then((d) => {
         if (isSubscribed) {
           setTotalDePaginas(d);
-          //console.log(d);
           setLoading(false);
         }
       });
@@ -71,7 +70,6 @@ export default function ConsultaChamados(props) {
       .then((d) => {
         if (isSubscribed) {
           setlistaDeChamados(d);
-          //console.log(d);
           setState({
             ...state,
             totalDeChamdos
@@ -149,8 +147,6 @@ export default function ConsultaChamados(props) {
         </Header>
         {renderCallBox()}
       </Container>
-      {/* {ConsultaChamados.loading && <Loader></Loader>}
-      {ConsultaChamados.ConsultaChamadosData && <ConsultaChamados {...ConsultaChamados.ConsultaChamadosData} />} */}
     </Router>
   );
 }

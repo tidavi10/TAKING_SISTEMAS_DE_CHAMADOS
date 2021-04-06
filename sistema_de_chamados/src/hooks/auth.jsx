@@ -23,7 +23,6 @@ const AuthProvider = ({ children }) => {
         switch(tipoUsuario) {
             case 'LOGINSOCIAL':
                 response = await getBaseAPI().post('loginsocial/cadastrogmail', payloadSocial)
-                console.log(response)
                 break;
             default:
                 response = await getBaseAPI().post('authenticate', payload)
@@ -37,7 +36,6 @@ const AuthProvider = ({ children }) => {
         const data = JSON.stringify({ email, name, id, token, tipoUsuario });
         localStorage.setItem('@chamadosTaking:usuario', data);
 
-        console.log(name);
         setAuthData({ token, id, name, email, tipoUsuario });
     }, []);
 
