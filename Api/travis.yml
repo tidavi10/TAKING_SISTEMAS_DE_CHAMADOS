@@ -1,0 +1,15 @@
+language: java
+jdk:
+-openjdk11
+dist: trusty
+before_install:
+- chmod +x mvnw
+
+deploy
+provider: heroku:git
+app: library-loan-api
+api_key:
+secure: <API_KEY_ENCRYPTED>
+edge: true
+on:
+branch: BACKEND_TAKING
