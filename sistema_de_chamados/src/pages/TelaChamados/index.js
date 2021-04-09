@@ -25,11 +25,13 @@ import {
   Footer,
   ButtonFinish,
   EditionText,
-  ButtonExit,
   Img,
+  HeaderContentRight,
+  Logout,
 } from "../TelaChamados/style";
 import { useAuth } from "../../hooks/auth";
 import { useToast } from "../../hooks/toast";
+import { FiLogOut } from "react-icons/fi";
 
 export default function TelaChamados() {
   const { usuario } = useAuth();
@@ -127,11 +129,13 @@ export default function TelaChamados() {
             <Button type="submit" onClick={gotoConsultaChamados}>
               <p>Consultar chamado</p>
             </Button>
-            <ButtonExit type="submit" onClick={logout}>
-              <p>Sair</p>
-            </ButtonExit>
           </HeaderContent>
-          <p>{usuario.name ? usuario.name : usuario.email}</p>
+          <HeaderContentRight>
+            <p>{usuario.name ? usuario.name.split(' ')[0] : usuario.email}</p>
+            <Logout onClick={logout}>
+              <FiLogOut color="#ffecd1" />
+            </Logout> 
+          </HeaderContentRight>
         </Header>
         <EditionArea>
           <InputArea>

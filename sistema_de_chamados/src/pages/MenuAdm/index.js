@@ -40,7 +40,7 @@ export default function MenuAdm() {
                             </ButtonHeader>
                     </HeaderContentLeft>
                     <HeaderContentRight>
-                        <p>{admin.name ? admin.name : admin.email}</p>
+                        <p>{admin.name ? admin.name.split(' ')[0] : admin.email}</p>
                         <Logout onClick={handleAdmLogout}>
                             <FiLogOut color="#ffecd1" />
                         </Logout>
