@@ -7,34 +7,6 @@ div.container-login{
     flex-direction: column;
     background: #219ebc;
 }
-    /*Phone less than 576px*/
-    @media (max-width: 576px) {
-        div.container-login{
-
-        }
-    }
-   
-    /*Tablete 768px and up*/
-    @media (min-width: 768px){
-        div.container-login{
-
-        }
-    }
-
-    /*Desktop 992px and up*/
-    @media (min-width: 992px){
-        div.container-login{
-
-        }
-    }
-
-    /*Desktop 1200px and up*/
-    @media (min-width: 1200px){
-        div.container-login{
-
-        }
-    }
-
 
 .title-login{
     font-size: 30px;
@@ -159,11 +131,3 @@ div.Form-erro{
             font-size: 11px;
         }
     }
-
-p.par{
-    margin-top: 10px;
-    font-size: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}

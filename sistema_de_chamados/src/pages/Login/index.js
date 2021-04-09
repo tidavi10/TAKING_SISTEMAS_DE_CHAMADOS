@@ -99,7 +99,6 @@ export default function Login() {
                   </a>
                 </small>
               </p>
-              <p className="par">Ou</p>
               <hr></hr>
               <div className="social">
                 <LoginSocial />

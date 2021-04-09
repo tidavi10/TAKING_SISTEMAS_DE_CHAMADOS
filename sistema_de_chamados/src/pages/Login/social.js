@@ -24,7 +24,7 @@ function Social() {
 
   // Ao commitar utilizar o clientId de Produção
   // Local -> clientId="499021820618-sq7nl7tub85p58odenrb44dl29tut6qo.apps.googleusercontent.com"
-  // Produção -> clientId="499021820618-c4dttfcpvpne9unmojlb6n3idbk3rr3l.apps.googleusercontent.com"
+  // Produção -> clientId="499021820618-5koevu1a5uj2n9gofrr63hfejrqa0tk8.apps.googleusercontent.com"
   //
   return (
     <div>
