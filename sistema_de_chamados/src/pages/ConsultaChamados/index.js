@@ -16,7 +16,6 @@ import {
   Header,
   HeaderContent,
   ButtonHeader,
-  ButtonExit,
   CallsBox,
   LegendCalls,
   CallItem,
@@ -24,9 +23,12 @@ import {
   CallType,
   CallStatus,
   Page,
+  HeaderContentRight,
+  Logout,
 } from "./style";
 import { Img } from "../ConsultaChamados/style";
 import { Loader } from "../../components/Loader";
+import { FiLogOut } from "react-icons/fi";
 
 export default function ConsultaChamados(props) {
   const { usuario } = useAuth();
@@ -139,11 +141,13 @@ export default function ConsultaChamados(props) {
             <ButtonHeader type="submit" onClick={goToChamados}>
               <p>Abrir novo chamado</p>
             </ButtonHeader>
-            <ButtonExit type="submit" onClick={logout}>
-              <p>Sair</p>
-            </ButtonExit>
           </HeaderContent>
-          <p>{usuario.name ? usuario.name.split(' ')[0] : usuario.email}</p>
+          <HeaderContentRight>
+            <p>{usuario.name ? usuario.name.split(' ')[0] : usuario.email}</p>
+            <Logout onClick={logout}>
+              <FiLogOut color="#ffecd1" />
+            </Logout> 
+          </HeaderContentRight>
         </Header>
         {renderCallBox()}
       </Container>

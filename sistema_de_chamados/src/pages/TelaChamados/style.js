@@ -110,7 +110,7 @@ export const HeaderContent = styled.div`
 
 export const Button = styled.button`
   background: #219ebc;
-  width: 50%;
+  width: 100%;
   max-width: 200px;
   height: 90%;
   font-size: 18px;
@@ -147,40 +147,121 @@ export const Button = styled.button`
   }
 `;
 
-export const ButtonExit = styled.button`
-  background: #219ebc;
-  width: 50px;
-  height: 90%;
-  font-weight: 500;
-  transition: background 0.2s;
-  transition: border 0.2s;
-  padding: 0 3px;
-  color: #ffecd1;
-  margin-left: 6px;
+export const HeaderContentRight = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 6px;
 
   > p {
+    color: #ffecd1;
+    margin-right: 16px;
     margin-bottom: 0;
   }
 
-  &:hover {
-    border: 1px solid #dee2e6;
-    border-radius: 6px;
-  }
-
   @media (max-width: 576px) {
-    font-size: 81.25%;
+    display: flex;
+    align-items: center;
+    margin-right: 6px;
+
+    > p {
+      font-size: 75%;
+      margin-right: 10px;
+      font-weight: 500;
+    }
   }
 
   @media (min-width: 576.1px) {
-    font-size: 81.25%;
+    display: flex;
+    align-items: center;
+    margin-right: 6px;
+
+    > p {
+      font-size: 81.25%;
+      margin-right: 10px;
+      font-weight: 500;
+    }
   }
 
   @media (min-width: 768px) {
-    font-size: 87.5%;
+    display: flex;
+    align-items: center;
+    margin-right: 6px;
+
+    > p {
+      font-size: 87.5%;
+      margin-right: 12px;
+      font-weight: 500;
+    }
   }
 
   @media (min-width: 992px) and (max-width: 1199px) {
-    font-size: 93.75%;
+    display: flex;
+    align-items: center;
+    margin-right: 6px;
+
+    > p {
+      font-size: 93.75%;
+      margin-right: 14px;
+      font-weight: 500;
+    }
+  }
+`;
+
+export const Logout = styled.button`
+  width: 20px;
+  height: 20px;
+  background: none;
+  display: flex;
+  z-index: 1;
+  align-items: center;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  > svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  @media (max-width: 576px) {
+    width: 14px;
+    height: 14px;
+
+    > svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
+
+  @media (min-width: 576.1px) {
+    width: 16px;
+    height: 16px;
+
+    > svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    width: 18px;
+    height: 18px;
+
+    > svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  @media (min-width: 992px) and (max-width: 1199px) {
+    width: 20px;
+    height: 20px;
+
+    > svg {
+      width: 20px;
+      height: 20px;
+    }
   }
 `;
 
